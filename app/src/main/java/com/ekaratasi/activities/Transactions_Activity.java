@@ -101,7 +101,6 @@ public class Transactions_Activity extends AppCompatActivity {
 
     private void loadRecyclerViewData(){
 
-      Toast.makeText(getApplicationContext(),"RARARA", Toast.LENGTH_LONG).show();
 
 //        final ProgressDialog progressDialog=new ProgressDialog(this);
 //        progressDialog.setMessage("Loading data....");
