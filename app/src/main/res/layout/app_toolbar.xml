@@ -11,7 +11,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView android:textSize="17.0sp"
-        android:textColor="#ffffffff"
+        android:textColor="#000"
         android:fontFamily="@font/geomanist_regular"
         android:text="Manage Balance"
         android:layout_gravity="center"

@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.ekaratasi.R;
 import com.ekaratasi.activities.InvoiceItem_Activity;
 import com.ekaratasi.adapter.MainAdapter;
+import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.model.ListItem;
 
 import org.json.JSONArray;
@@ -137,7 +138,7 @@ public class Transactions_Activity extends AppCompatActivity {
 
                             }
 
-                            adapter=new MainAdapter(listItems,getApplicationContext());
+                            adapter=new TransactionsAdapter(listItems,getApplicationContext());
                             recyclerView.setAdapter(adapter);
 
 

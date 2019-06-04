@@ -10,30 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.ekaratasi.R;
-import com.ekaratasi.activities.InvoiceItem_Activity;
-import com.ekaratasi.adapter.MainAdapter;
 import com.ekaratasi.model.ListItem;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class TransactionItem_Activity extends AppCompatActivity {
-
+    TextView material,cost;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -76,7 +59,20 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
         navigation.setItemIconTintList(null);
 
+        ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
 
+        if (listItem != null) {
+           material = (TextView) findViewById(R.id.material);
+            cost = (TextView) findViewById(R.id.cost);
+
+
+           cost.setText(listItem.getPrice());
+            material.setText(listItem.getName());
+
+
+
+
+        }
 
     }
 

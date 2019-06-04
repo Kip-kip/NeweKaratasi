@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ekaratasi.R;
+import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.model.ListItem;
 
 import java.util.List;
@@ -48,6 +50,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.textViewPrice.setText("KES " +listItem.getPrice());
 
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, TransactionItem_Activity.class);
+
+                intent.putExtra("DETAIL",listItem);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
+
+
+            }
+        });
+
 
     }
 
@@ -60,6 +77,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
         public TextView textViewName;
         public TextView textViewPrice;
+        public LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);

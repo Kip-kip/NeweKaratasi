@@ -77,12 +77,66 @@
                 android:textColor="#b1b1b1"/>
 
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerview"
-            android:layout_marginTop="10dp">
-        </android.support.v7.widget.RecyclerView>
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Material"
+                android:textColor="#000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:id="@+id/material"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text=""
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Cost"
+                android:textColor="#000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:id="@+id/cost"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text=""
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
