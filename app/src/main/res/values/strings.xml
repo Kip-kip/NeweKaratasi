@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">eKaratasi</string>
+    <string name="profile_image">Profile Image</string>
+
+    <string name="uni_prompt">Choose a university</string>
+    <string-array name="uni_arrays">
+        <item>UNIVERSITY</item>
+    </string-array>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--<color name="colorPrimary">#263238</color>-->
+<!--<color name="colorPrimaryLight">#2D3C44</color>-->
+
+<!--<color name="colorPrimaryDark">#242F35</color>-->
+<!--<color name="colorPrimaryDarker">#242F35</color>-->
+<!--<color name="colorAccent">#79FFFFFF</color>-->
+
+<color name="colorPrimary">#ffffff</color>
+<color name="colorPrimaryLight">#23000000</color>
+
+<color name="colorPrimaryDark">#ffffff</color>
+<color name="colorPrimaryDarker">#99FFFFFF</color>
+<color name="colorAccent">#917022</color>
+<color name="textColor">#263238</color>
+<color name="textColor1">#263238</color>
+<color name="textColor2">#000</color>
+<color name="textColor3">#917022</color>
+<color name="blessings">#263238</color>
+    <color name="white">#fff</color>
+    <color name="lessblessings">#637783</color>
+</resources>

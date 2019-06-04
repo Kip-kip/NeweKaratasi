@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <dimen name="actionBarSize">56dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="viewpager_margin_overlap">-60dp</dimen>
+    <dimen name="viewpager_margin_overlap_payment">-30dp</dimen>
+
+    <!--genaral spacing-->
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_xmedium">7dp</dimen>
+    <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_mxlarge">25dp</dimen>
+    <dimen name="spacing_xlarge">35dp</dimen>
+    <dimen name="spacing_xmlarge">40dp</dimen>
+    <dimen name="spacing_xxlarge">50dp</dimen>
+    <dimen name="spacing_xxxlarge">55dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="_50dp">50.0dip</dimen>
+
+    <dimen name="transaction_action_button_height">35.0dip</dimen>
+    <dimen name="transaction_actions_padding">8.0sp</dimen>
+    <dimen name="transaction_item_margin_top">4.0dip</dimen>
+    <dimen name="transaction_item_padding_top">0.0dip</dimen>
+    <dimen name="transaction_item_title_size">16.0sp</dimen>
+    <dimen name="transaction_item_value_size">14.0sp</dimen>
+    <dimen name="transaction_line_margins">4.0dip</dimen>
+    <dimen name="transaction_status_size">17.0dip</dimen>
+    <dimen name="transaction_status_title_size">21.0dip</dimen>
+    <dimen name="transaction_total_text_size">17.0sp</dimen>
+
+    <dimen name="edit_text_icon_size">14.0dip</dimen>
+    <dimen name="profile_image_size">70.0dip</dimen>
+    <dimen name="profile_name_size">14.0sp</dimen>
+    <dimen name="profile_balance_size">12.0sp</dimen>
+    <dimen name="available_balance_padding">10.0sp</dimen>
+    <dimen name="available_bal_amount_size">16.0sp</dimen>
+    <dimen name="available_balance_size">14.0sp</dimen>
+
+
+    <dimen name="auth_logo_width">110.0dip</dimen>
+    <dimen name="auth_logo_height">110.0dip</dimen>
+    <dimen name="text_size_large">16.0sp</dimen>
+    <dimen name="text_size_small">13.0sp</dimen>
+    <dimen name="button_height">32.0dip</dimen>
+    <dimen name="small_font_size">14.0sp</dimen>
+    <dimen name="medium_font_size">16.0sp</dimen>
+</resources>
