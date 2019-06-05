@@ -13,7 +13,7 @@
         android:layout_width="52.0dip"
         android:layout_height="52.0dip"
         android:layout_marginStart="10.0dip"
-        android:layout_marginTop="10.0dip"
+        android:layout_marginTop="30.0dip"
         android:layout_marginBottom="10.0dip"
         android:src="@drawable/icon_transfer"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,16 +48,31 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
     <TextView
-        android:id="@+id/textViewAmount"
+        android:id="@+id/textViewTotalCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4.0dip"
+        android:fontFamily="@font/geomanist_regular"
+        android:text="KES 277"
+        android:textColor="#ff666666"
+        android:textSize="12.0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewPrice"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice" />
+
+
+
+    <TextView
+        android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10.0dip"
         android:fontFamily="@font/geomanist_regular"
-        android:text="+ KES 30,000"
+        android:text=""
         android:textColor="#AD0E4406"
         android:textSize="12.0sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewName" />
+        app:layout_constraintTop_toTopOf="@+id/textViewTotalCost" />
 
     <!--<View-->
         <!--android:layout_width="match_parent"-->

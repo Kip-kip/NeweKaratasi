@@ -11,10 +11,10 @@
         android:icon="@drawable/transaction"
         android:title="Transactions" />
 
-    <item
-        android:id="@+id/navigation_invoice"
-        android:icon="@drawable/invoice"
-        android:title="Invoice" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_invoice"-->
+        <!--android:icon="@drawable/invoice"-->
+        <!--android:title="Invoice" />-->
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/notification"

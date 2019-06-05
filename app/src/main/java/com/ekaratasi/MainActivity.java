@@ -45,18 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
 
-                case R.id.navigation_invoice:
-
-                    Intent itt = new Intent(MainActivity.this, InvoiceItem_Activity.class);
-                    startActivity(itt);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
-
-                    return true;
-
                 case R.id.navigation_messages:
 
-                    Intent ittt = new Intent(MainActivity.this, MessageItem_Activity.class);
+                    Intent ittt = new Intent(MainActivity.this, Message_Activity.class);
                     startActivity(ittt);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();

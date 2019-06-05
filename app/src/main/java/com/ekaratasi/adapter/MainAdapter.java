@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ekaratasi.R;
 import com.ekaratasi.activities.TransactionItem_Activity;
@@ -46,8 +45,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ListItem listItem=listItems.get(position);
-        holder.textViewName.setText(listItem.getName());
-        holder.textViewPrice.setText("KES " +listItem.getPrice());
+        holder.textViewName.setText(listItem.getAgent());
+        holder.textViewPrice.setText("KES " +listItem.getProgress());
 
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {

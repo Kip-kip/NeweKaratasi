@@ -7,199 +7,557 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff"
-    tools:context="com.ekaratasi.activities.InvoiceItem_Activity">
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/thumbnails"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="@dimen/_50dp"
+            android:background="#fff9f7f7">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/trans_details2" />
+
+
+                </LinearLayout>
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Transaction Details"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
+
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#b1b1b1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="DESCRIPTION"
+                        android:textColor="#b1b1b1"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text="INFO"
+                        android:textColor="#b1b1b1"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+                <!--AGENT-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Agent"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewAgent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---TRANS REFNO-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Transaction Ref.No"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewTransRefno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---CUSTOMER REFNO-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Customer Ref.No"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewCustRefno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---MATERIAL-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Material"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewMaterial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---BINDTYPEE-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Bind Type"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewBindType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---BIND COLOR-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Bind Color"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewBindColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---COPIES-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Copies"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewCopies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+
+                <!---INSTRUCTIONS-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Instructions"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewInst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <!--INVOICE STATUS-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Invoice Status"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewInvoice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <!--PAYMENT STATUS-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Payment Status"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <!--PROGRESS STATUS-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Progress Status"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:id="@+id/textViewProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+                <!--extre STATUS-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+<ImageView
+    android:id="@+id/toInvoice"
+    android:layout_width="@dimen/_50dp"
+    android:layout_height="@dimen/_50dp"
+    android:src="@drawable/invoice_"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="@dimen/_50dp"/>
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_marginTop="10dp">-->
+                <!--<Button-->
+                <!--android:id="@+id/btnLogdin"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35.0dip"-->
+                <!--android:background="@drawable/bg_btn_round_blessings"-->
+                <!--android:backgroundTint="#4A914A"-->
+                <!--android:fontFamily="@font/geomanist_regular"-->
+                <!--android:text="Pay"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="25dp"-->
+                <!--android:layout_marginRight="25dp"/>-->
+
+                <!--<Button-->
+                <!--android:id="@+id/btnLogin"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="35.0dip"-->
+                <!--android:background="@drawable/bg_btn_round_blessings"-->
+                <!--android:backgroundTint="#9E3F3F"-->
+                <!--android:fontFamily="@font/geomanist_regular"-->
+                <!--android:text="Dispute"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_marginLeft="25dp"-->
+                <!--android:layout_marginRight="25dp"/>-->
+                <!--</LinearLayout>-->
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#b1b1b1" />
+            </LinearLayout>
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/circle"
-            android:layout_marginTop="30dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="2dp"
-                android:src="@drawable/trans_details2"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:fontFamily="@font/geomanist_regular"
-            android:text="Transaction Details"
-            android:textColor="#000"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="#b1b1b1"
-            android:layout_marginTop="30dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:text="DESCRIPTION"
-                android:textColor="#b1b1b1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:gravity="center"
-                android:text="INFO"
-                android:layout_marginLeft="50dp"
-                android:textColor="#b1b1b1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:text="Material"
-                android:textColor="#000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:id="@+id/material"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:gravity="center"
-                android:text=""
-                android:layout_marginLeft="50dp"
-                android:textColor="#000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:text="Cost"
-                android:textColor="#000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:id="@+id/cost"
-                android:layout_weight="1"
-                android:fontFamily="@font/geomanist_regular"
-                android:gravity="center"
-                android:text=""
-                android:layout_marginLeft="50dp"
-                android:textColor="#000"/>
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="#b1b1b1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="35.0dip"
-                android:background="@drawable/bg_btn_round_blessings"
-                android:backgroundTint="#4A914A"
-                android:fontFamily="@font/geomanist_regular"
-                android:text="Pay"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"/>
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="35.0dip"
-                android:background="@drawable/bg_btn_round_blessings"
-                android:backgroundTint="#9E3F3F"
-                android:fontFamily="@font/geomanist_regular"
-                android:text="Dispute"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-</RelativeLayout>
-<android.support.design.widget.BottomNavigationView
-android:id="@+id/navigation"
-android:layout_width="0dp"
-android:layout_height="wrap_content"
-android:layout_marginStart="0dp"
-android:layout_marginEnd="0dp"
-app:itemTextColor="@color/blessings"
-android:background="@color/white"
-app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintLeft_toLeftOf="parent"
-app:layout_constraintRight_toRightOf="parent"
-app:menu="@menu/navigation" />
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        app:itemTextColor="@color/blessings"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/navigation" />
 </android.support.constraint.ConstraintLayout>

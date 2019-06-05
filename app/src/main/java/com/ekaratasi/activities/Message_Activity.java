@@ -1,10 +1,8 @@
 package com.ekaratasi.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.solver.widgets.WidgetContainer;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,10 +17,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ekaratasi.MainActivity;
 import com.ekaratasi.R;
-import com.ekaratasi.activities.InvoiceItem_Activity;
-import com.ekaratasi.adapter.MainAdapter;
+import com.ekaratasi.adapter.MessageAdapter;
+import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.model.ListItem;
+import com.ekaratasi.model.MessageListItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,10 +33,10 @@ import java.util.List;
 
 public class Message_Activity extends AppCompatActivity {
 
-    private static final String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php";
+    private static final String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private List<ListItem> listItems;
+    private List<MessageListItem> listItems;
 
     View loading;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -48,25 +46,33 @@ public class Message_Activity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
-                    return true;
-                case R.id.navigation_transactions:
-
-
-
-                    return true;
-                case R.id.navigation_notifications:
-
-                    return true;
-                case R.id.navigation_invoice:
-                    Intent it = new Intent(Message_Activity.this, InvoiceItem_Activity.class);
+                    Intent it = new Intent(Message_Activity.this, MainActivity.class);
                     startActivity(it);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
+                    return true;
+
+                case R.id.navigation_transactions:
+                    Intent itt = new Intent(Message_Activity.this, Message_Activity.class);
+                    startActivity(itt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
+
 
                     return true;
 
+                case R.id.navigation_notifications:
+                    Intent ittt = new Intent(Message_Activity.this, InvoiceItem_Activity.class);
+                    startActivity(ittt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
+                    return true;
+
                 case R.id.navigation_messages:
+                    Intent itttt = new Intent(Message_Activity.this, Message_Activity.class);
+                    startActivity(itttt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
                     return true;
             }
             return false;
@@ -95,13 +101,11 @@ public class Message_Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         loadRecyclerViewData();
-
     }
 
 
     private void loadRecyclerViewData(){
 
-        Toast.makeText(getApplicationContext(),"RARARA", Toast.LENGTH_LONG).show();
 
 //        final ProgressDialog progressDialog=new ProgressDialog(this);
 //        progressDialog.setMessage("Loading data....");
@@ -125,9 +129,11 @@ public class Message_Activity extends AppCompatActivity {
 
                             for(int i=0; i<array.length();i++){
                                 JSONObject o=array.getJSONObject(i);
-                                ListItem item=new ListItem(
-                                        o.getString("name"),
-                                        o.getString("price")
+                                MessageListItem item=new MessageListItem(
+                                        o.getString("sender"),
+                                        o.getString("receiver"),
+                                        o.getString("text"),
+                                        o.getString("time")
 
                                 );
 
@@ -138,7 +144,7 @@ public class Message_Activity extends AppCompatActivity {
 
                             }
 
-                            adapter=new MainAdapter(listItems,getApplicationContext());
+                            adapter=new MessageAdapter(listItems,getApplicationContext());
                             recyclerView.setAdapter(adapter);
 
 
@@ -165,5 +171,6 @@ public class Message_Activity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
 
 }

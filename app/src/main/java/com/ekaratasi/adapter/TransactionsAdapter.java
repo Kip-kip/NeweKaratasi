@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ekaratasi.R;
 import com.ekaratasi.activities.TransactionItem_Activity;
@@ -47,8 +45,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ListItem listItem=listItems.get(position);
-        holder.textViewName.setText(listItem.getName());
-        holder.textViewPrice.setText("KES " +listItem.getPrice());
+        holder.textViewName.setText(listItem.getAgent());
+        holder.textViewPrice.setText(listItem.getProgress());
+        holder.textViewTime.setText(listItem.getTime_stamp());
 
 
         holder.card.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +76,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
         public TextView textViewName;
         public TextView textViewPrice;
+        public TextView textViewTime;
         public ConstraintLayout card;
 
         public ViewHolder(View itemView) {
@@ -84,6 +84,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
 
             textViewName=itemView.findViewById(R.id.textViewName);
             textViewPrice= itemView.findViewById(R.id.textViewPrice);
+            textViewTime= itemView.findViewById(R.id.textViewTime);
             card= itemView.findViewById(R.id.datalist);
 
 
