@@ -3,53 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#fff9f7f7"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/activity_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f6f6f6"
-        tools:context="com.ekaratasi.activities.MessageItem_Activity">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/linear_profile"
             android:orientation="vertical">
 
             <!---HERE-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/geomanist_regular"
-                android:textColor="#98a9b7"
-                android:text="January 18" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:fontFamily="@font/geomanist_regular"-->
+                <!--android:textColor="#98a9b7"-->
+                <!--android:text="January 18" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/images" />
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_gravity="bottom"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:src="@drawable/images" />-->
 
                 <LinearLayout
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/round_grey"
+                    android:id="@+id/agent"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -61,7 +55,7 @@
                         android:layout_marginTop="05dp"
                         android:fontFamily="@font/geomanist_regular"
                         android:textColor="#616e7f"
-                        android:text="Hi, there" />
+                        android:text="" />
 
 
                 </LinearLayout>
@@ -69,18 +63,19 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:text="January 18"
-                android:fontFamily="@font/geomanist_regular"
-                android:textColor="#98a9b7"
-                android:id="@+id/myTextView_Roboto_Regular" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:text="January 18"-->
+                <!--android:fontFamily="@font/geomanist_regular"-->
+                <!--android:textColor="#98a9b7"-->
+                <!--android:id="@+id/myTextView_Roboto_Regular" />-->
 
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:id="@+id/customer"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
@@ -102,20 +97,20 @@
                         android:layout_marginTop="05dp"
                         android:id="@+id/textViewTextCust"
                         android:fontFamily="@font/geomanist_regular"
-                        android:text="Hi, there"
-                        android:textColor="#fff" />
+                        android:text="too close"
+                        android:textColor="#E9FFFFFF" />
 
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="@font/geomanist_regular"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#98a9b7"
-                    android:text="just now. Seen"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:fontFamily="@font/geomanist_regular"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:textColor="#98a9b7"-->
+                    <!--android:text="just now. Seen"/>-->
 
             </LinearLayout>
 
@@ -124,53 +119,5 @@
             <!---HERE-->
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="5dp"
-            android:background="#ffffff"
-            android:orientation="horizontal">
-
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/geomanist_regular"
-                android:background="@android:color/transparent"
-                android:hint="Write a replay"
-                android:minWidth="250dp"
-                android:textColor="#000"
-                android:textColorHint="#ced5db" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:gravity="right">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_send_black_24dp"
-                    android:tint="#d9d9d9" />
-
-
-                <ImageView
-                    android:id="@+id/attach"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_attach_file"
-                    android:tint="#d9d9d9" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

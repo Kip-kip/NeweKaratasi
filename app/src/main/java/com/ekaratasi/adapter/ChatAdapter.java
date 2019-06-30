@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ekaratasi.R;
@@ -49,12 +50,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
        // holder.textViewTime.setText(listItem.getTime());
 
-//if(listItem.getReceiver().equals("AGE")){
-    holder.textViewTextAgent.setText(listItem.getSender());
-//}
-//else{
-    //holder.textViewTextCust.setText(listItem.getSender());
-//}
+if(listItem.getSender().equals("CUST")){
+    holder.textViewTextCust.setText(listItem.getText());
+    holder.agent.setVisibility(View.GONE);
+}
+else{
+    holder.textViewTextAgent.setText(listItem.getText());
+    holder.cust.setVisibility(View.GONE);
+}
 
 
 
@@ -69,6 +72,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         public TextView textViewTextAgent;
         public TextView textViewTextCust;
+
+        public LinearLayout agent;
+        public LinearLayout cust;
         //public TextView textViewTime;
 
         public ViewHolder(View itemView) {
@@ -76,7 +82,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
             textViewTextAgent=itemView.findViewById(R.id.textViewTextAgent);
             textViewTextCust= itemView.findViewById(R.id.textViewTextCust);
-           // textViewTime= itemView.findViewById(R.id.textViewTime);
+
+            agent= itemView.findViewById(R.id.agent);
+            cust= itemView.findViewById(R.id.customer);
 
 
 
