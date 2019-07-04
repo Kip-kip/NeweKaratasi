@@ -1,13 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:background="@color/white"
-    android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textColor="@color/blessings"
-   android:id="@+id/ello"
-    />
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="fill_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@id/app_bar_layout"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@id/app_toolbar"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:textSize="15.0sp"
+                android:textColor="#263238"
+                android:layout_gravity="center"
+                android:id="@id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Transactions Details"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/ello"
+        android:layout_width="match_parent"
+        android:layout_height="35.0dip"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="25dp"
+        android:backgroundTint="@color/blessings"
+        android:fontFamily="@font/geomanist_regular"
+        android:text=""
+        android:visibility="gone"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/txtagent"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Cyber Agent"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/agent"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.0dip"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edit_text_blue_border"
+            android:ems="10"
+            android:hint="Enter agnt number"
+            android:textColorHint="#666464"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:paddingStart="20.0dip"
+            android:paddingTop="10.0dip"
+            android:paddingEnd="20.0dip"
+            android:paddingBottom="10.0dip"
+            android:textColor="@color/blessings"
+            android:layout_marginRight="20dp"
+            android:textSize="13.0sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/fffllo"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Material"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+
+        <Spinner
+            android:id="@+id/material"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/blessings"
+            android:background="@drawable/spinner_bg"
+            android:entries="@array/material" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/fsffllo"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Copies"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/copies"
+            android:layout_width="141dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.0dip"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edit_text_blue_border"
+            android:ems="10"
+            android:hint="No of copies"
+            android:textColorHint="#666464"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:paddingStart="20.0dip"
+            android:paddingTop="10.0dip"
+            android:paddingEnd="20.0dip"
+            android:paddingBottom="10.0dip"
+            android:textColor="@color/blessings"
+            android:layout_marginRight="20dp"
+            android:textSize="13.0sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/ffflldwo"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Bind"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/bindoption"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/blessings"
+            android:background="@drawable/spinner_bg"
+            android:entries="@array/bindoption" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/bindoptionf"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Bind Color"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+
+        <Spinner
+            android:id="@+id/bindcolor"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/blessings"
+            android:background="@drawable/spinner_bg"
+            android:entries="@array/bindcolor" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/ffflloff"
+            android:layout_width="100dp"
+            android:layout_height="35.0dip"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="@color/blessings"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Instructions (optional)"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/instructions"
+            android:layout_width="241dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.0dip"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edit_text_blue_border"
+            android:lines="8"
+            android:minLines="6"
+            android:maxLines="10"
+            android:hint="Instructions"
+            android:inputType="textMultiLine"
+            android:textColorHint="#666464"
+             android:paddingStart="20.0dip"
+            android:paddingTop="10.0dip"
+            android:paddingEnd="20.0dip"
+            android:paddingBottom="10.0dip"
+            android:textColor="@color/blessings"
+            android:textSize="13.0sp"
+            android:scrollbars="vertical"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="35.0dip"
+        android:background="@drawable/bg_btn_round_blessings"
+        android:backgroundTint="@color/blessings"
+        android:fontFamily="@font/geomanist_regular"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"/>
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="bindoption">
+        <item>--</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="material">
+        <item>--</item>
+        <item>A3</item>
+        <item>A4</item>
+        <item>A5</item>
+        <item>A6</item>
+    </string-array>
+
+    <string-array name="bindcolor">
+        <item>--</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Red</item>
+
+    </string-array>
+
+</resources>
