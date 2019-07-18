@@ -40,7 +40,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_notifications:
-                    Intent ittt = new Intent(TransactionItem_Activity.this, InvoiceItem_Activity.class);
+                    Intent ittt= new Intent(TransactionItem_Activity.this, Notification_Activity.class);
                     startActivity(ittt);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();

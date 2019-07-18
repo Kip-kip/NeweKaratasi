@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.ekaratasi.activities.InvoiceItem_Activity;
 import com.ekaratasi.activities.MessageItem_Activity;
 import com.ekaratasi.activities.Message_Activity;
+import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.PDFUpload_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_notifications:
-
+                    Intent itt= new Intent(MainActivity.this, Notification_Activity.class);
+                    startActivity(itt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
                     return true;
 
                 case R.id.navigation_messages:

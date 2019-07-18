@@ -311,4 +311,13 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(PDFUpload_Activity.this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
+
+    }
+
 }

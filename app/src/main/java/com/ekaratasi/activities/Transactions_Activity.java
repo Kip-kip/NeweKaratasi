@@ -61,7 +61,7 @@ public class Transactions_Activity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_notifications:
-                    Intent ittt = new Intent(Transactions_Activity.this, InvoiceItem_Activity.class);
+                    Intent ittt= new Intent(Transactions_Activity.this, Notification_Activity.class);
                     startActivity(ittt);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
@@ -97,8 +97,9 @@ public class Transactions_Activity extends AppCompatActivity {
         listItems = new ArrayList<>();
 
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
         loadRecyclerViewData();
 
     }
@@ -180,5 +181,15 @@ public class Transactions_Activity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(Transactions_Activity.this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
+
+    }
+
 
 }

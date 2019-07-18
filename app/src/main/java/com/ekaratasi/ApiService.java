@@ -9,6 +9,7 @@ import com.ekaratasi.POJO.MainData;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 
@@ -19,6 +20,7 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     @FormUrlEncoded
-    @POST("eKaratasi/pages_user.php")
-    Call<MainData> insertMainData(@Field("material") String material, @Field("bindoption") String bindoption, @Field("bindcolor") String bindcolor, @Field("instructions") String instructions,@Field("copies") String copies, @Field("agent") String agent);
+
+    @POST("eKaratasi/Refubished/BackendAffairs/save_transactions.php")
+    Call<MainData> insertMainData(@Field("material") String material,@Field("copies") String copies, @Field("bindoption") String bindoption, @Field("bindcolor") String bindcolor, @Field("agent") String agent, @Field("instructions") String instructions);
 }
