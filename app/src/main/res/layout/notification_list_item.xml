@@ -1,0 +1,72 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/messagedatalist"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingStart="10.0dip"
+    android:paddingEnd="12.0dip">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="52.0dip"
+        android:layout_height="52.0dip"
+        android:layout_marginStart="10.0dip"
+        android:layout_marginTop="20.0dip"
+        android:layout_marginBottom="10.0dip"
+        android:src="@drawable/icon_transfer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10.0dip"
+        android:fontFamily="@font/geomanist_regular"
+        android:text="Dodge Challenger"
+        android:textColor="#ff333333"
+        android:textSize="14.0sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewText"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4.0dip"
+        android:fontFamily="@font/geomanist_regular"
+        android:text=""
+        android:maxLength="23"
+        android:textColor="#ff666666"
+        android:textSize="12.0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewAgent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAgent" />
+
+
+
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10.0dip"
+        android:fontFamily="@font/geomanist_regular"
+        android:text=""
+        android:textColor="#AD0E4406"
+        android:textSize="12.0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewText" />
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0.7dp"-->
+    <!--android:background="#b1b1b1"-->
+    <!--tools:layout_editor_absoluteX="16dp"-->
+    <!--tools:layout_editor_absoluteY="74dp" />-->
+</android.support.constraint.ConstraintLayout>

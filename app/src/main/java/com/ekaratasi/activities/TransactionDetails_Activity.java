@@ -1,5 +1,6 @@
 package com.ekaratasi.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -76,7 +77,22 @@ Spinner material,bindcolor,bindoption;
                     public void onResponse(Call<MainData> call, Response<MainData> response) {
                         MainData tuongee=response.body();
                         String ongeleshwa=tuongee.getError_msg();
-                        Toast.makeText(TransactionDetails_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
+                        Integer num =Integer.parseInt(tuongee.getError());
+
+
+                        if(num==1){
+                            Intent it = new Intent(TransactionDetails_Activity.this, Activity_Transaction_Success.class);
+                            startActivity(it);
+                            overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                            finish();
+                        }
+                        else{
+                            Intent it = new Intent(TransactionDetails_Activity.this, Activity_Transaction_Success.class);
+                            startActivity(it);
+                            overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                            finish();
+                        }
                     }
 
                     @Override
