@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:fontFamily="@font/geomanist_regular"
-            android:text="Normal purchase"
+            android:text="Transaction Cost"
             android:textColor="#000"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"/>
@@ -48,6 +48,7 @@
                 <!--android:src="@drawable/transaction"-->
                 <!--android:layout_marginTop="10dp"/>-->
             <TextView
+                android:id="@+id/total_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
@@ -72,18 +73,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
+                android:width="100dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/geomanist_regular"
-                android:text="ITEM"
+                android:text="SERVICE"
                  android:textColor="#b1b1b1"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
+                android:width="100dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/geomanist_regular"
                 android:gravity="center"
-                android:text="QTY"
+                android:text="PAGES"
                 android:layout_marginLeft="50dp"
                 android:textColor="#b1b1b1"/>
             <TextView
@@ -91,24 +94,179 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12dp"
+                android:width="100dp"
                 android:fontFamily="@font/geomanist_regular"
                 android:gravity="right"
                 android:text="PRICE"
                 android:textColor="#b1b1b1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="SUB TOTAL"
+                android:textColor="#b1b1b1"/>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerview"
-            android:layout_marginTop="10dp">
-        </android.support.v7.widget.RecyclerView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.7dp"
-            android:background="#b1b1b1"
+            android:orientation="horizontal"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/bw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Black and White"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/bw_pages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text="15"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/bw_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="2"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/bw_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="200"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Coloured"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/c_pages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text="15"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/c_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="12dp"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="2"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/c_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="200"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Binding"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/total_pages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text="15"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/bind_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="2"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/bind_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+                android:text="200"
+                android:textColor="#000"/>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +275,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="VAT"
+                android:text="eKaratasi Fee"
                 android:layout_marginLeft="15dp"
                 android:textSize="12dp"
                 android:fontFamily="@font/geomanist_regular"
@@ -129,6 +287,7 @@
                 <!--android:layout_marginTop="3dp"-->
                 <!--android:src="@drawable/invoice"/>-->
             <TextView
+                android:id="@+id/ekaratasi_fee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="KES 7.85"
@@ -137,6 +296,13 @@
                 android:layout_marginRight="15dp"
                 android:textColor="#b1b1b1"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="#b1b1b1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,6 +324,7 @@
                 <!--android:layout_marginTop="3dp"-->
                 <!--android:src="@drawable/invoice" />-->
             <TextView
+                android:id="@+id/total_cost2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="KES 7.85"
@@ -167,28 +334,30 @@
                 android:textColor="#000"/>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f6f8f9"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Digital receipt powered by"
-            android:textSize="12dp"
-            android:fontFamily="@font/geomanist_regular"
-            android:textColor="#b1b1b1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="eKaratasi"
-            android:fontFamily="@font/geomanist_regular"
-            android:layout_marginLeft="3dp"
-            android:textSize="12dp"
-            android:textColor="#b1b1b1"/>
-    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#f6f8f9"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:paddingBottom="20dp"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:gravity="center_horizontal">-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Digital receipt powered by"-->
+            <!--android:textSize="12dp"-->
+            <!--android:fontFamily="@font/geomanist_regular"-->
+            <!--android:textColor="#b1b1b1"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="eKaratasi"-->
+            <!--android:fontFamily="@font/geomanist_regular"-->
+            <!--android:layout_marginLeft="3dp"-->
+            <!--android:textSize="12dp"-->
+            <!--android:textColor="#b1b1b1"/>-->
+    <!--</LinearLayout>-->
+
 </RelativeLayout>

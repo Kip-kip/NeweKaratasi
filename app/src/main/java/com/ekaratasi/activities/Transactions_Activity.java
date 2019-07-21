@@ -143,7 +143,16 @@ public class Transactions_Activity extends AppCompatActivity {
                                         o.getString("instructions"),
                                         o.getString("payment_status"),
                                         o.getString("invoice_status"),
-                                        o.getString("time_stamp")
+                                        o.getString("time_stamp"),
+                                        o.getString("bw_pages"),
+                                        o.getString("bw_cost"),
+                                        o.getString("c_pages"),
+                                        o.getString("c_cost"),
+                                        o.getString("total_pages"),
+                                        o.getString("bind_cost"),
+                                        o.getString("total_cost"),
+                                        o.getString("ekaratasi_fee")
+
 
                                 );
 

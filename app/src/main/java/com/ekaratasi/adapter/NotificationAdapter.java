@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ekaratasi.R;
 import com.ekaratasi.activities.MessageItem_Activity;
+import com.ekaratasi.activities.NotificationItem_Activity;
 import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.model.MessageListItem;
@@ -56,7 +57,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Notification_Activity.class);
+                Intent intent = new Intent(context, NotificationItem_Activity.class);
 
                 intent.putExtra("DETAIL",listItem);
 

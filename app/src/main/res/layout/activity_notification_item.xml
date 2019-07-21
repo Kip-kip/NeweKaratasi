@@ -58,11 +58,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
+
+    <LinearLayout
+        android:id="@+id/agent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_grey"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="85dp">
+
+        <!--#616e7f-->
+        <TextView
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="05dp"
+            android:fontFamily="@font/geomanist_regular"
+            android:text=""
+            android:textColor="@color/blessings" />
+
+
     </LinearLayout>
 
 
 
-
+</LinearLayout>
 
 
 

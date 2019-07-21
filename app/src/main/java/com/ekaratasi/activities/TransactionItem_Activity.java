@@ -1,5 +1,6 @@
 package com.ekaratasi.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,53 +10,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.ekaratasi.MainActivity;
 import com.ekaratasi.R;
+import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.model.ListItem;
 
+import java.util.List;
+
 public class TransactionItem_Activity extends AppCompatActivity {
-    TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,invoice,progress;
+    TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,
+            invoice,progress,bw_pages,bw_cost,c_pages,c_cost,total_pages,bind_cost,ekaratasi_fee,total_cost,total_cost2;
     ImageView toinvoice;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent it = new Intent(TransactionItem_Activity.this, MainActivity.class);
-                    startActivity(it);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
-                    return true;
-
-                case R.id.navigation_transactions:
-                    Intent itt = new Intent(TransactionItem_Activity.this, TransactionItem_Activity.class);
-                    startActivity(itt);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
+    ViewFlipper myflipper;
 
 
-                    return true;
 
-                case R.id.navigation_notifications:
-                    Intent ittt= new Intent(TransactionItem_Activity.this, Notification_Activity.class);
-                    startActivity(ittt);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
-                    return true;
-
-                case R.id.navigation_messages:
-                    Intent itttt = new Intent(TransactionItem_Activity.this, Message_Activity.class);
-                    startActivity(itttt);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
-                    return true;
-            }
-            return false;
-        }
-    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +34,10 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
 
         toinvoice= (ImageView) findViewById(R.id.toInvoice);
+        myflipper = (ViewFlipper) findViewById(R.id.flipper);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        navigation.setItemIconTintList(null);
-
-        ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
+        final ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
 
         if (listItem != null) {
            agent = (TextView) findViewById(R.id.textViewAgent);
@@ -85,7 +53,18 @@ public class TransactionItem_Activity extends AppCompatActivity {
             progress = (TextView) findViewById(R.id.textViewProgress);
 
 
-           agent.setText(listItem.getAgent());
+            //Flipped
+            bw_pages = (TextView) findViewById(R.id.bw_pages);
+            bw_cost = (TextView) findViewById(R.id.bw_cost);
+            c_pages = (TextView) findViewById(R.id.c_pages);
+            c_cost = (TextView) findViewById(R.id.c_cost);
+            total_pages=findViewById(R.id.total_pages);
+            bind_cost=findViewById(R.id.bind_cost);
+            ekaratasi_fee=findViewById(R.id.ekaratasi_fee);
+            total_cost=findViewById(R.id.total_cost);
+            total_cost2=findViewById(R.id.total_cost2);
+
+            agent.setText(listItem.getAgent());
             trans_refno.setText(listItem.getTrans_refno());
             customer_refno.setText(listItem.getCustomer_refno());
             material.setText(listItem.getMaterial());
@@ -97,6 +76,19 @@ public class TransactionItem_Activity extends AppCompatActivity {
             invoice.setText(listItem.getInvoice_status());
             progress.setText(listItem.getProgress());
 
+            //Flipped
+                  bw_pages.setText(listItem.getBw_pages());
+                    bw_cost.setText(listItem.getBw_cost());
+                    c_pages.setText(listItem.getC_pages());
+                    c_cost.setText(listItem.getC_cost());
+                   total_pages.setText(listItem.getTotal_pages());
+                    bind_cost.setText(listItem.getBind_cost());
+                   total_cost.setText(listItem.getTotal_cost());
+            total_cost2.setText(listItem.getTotal_cost());
+                   ekaratasi_fee.setText((listItem.getEkaratasi_fee()));
+
+
+
 
 
         }
@@ -107,15 +99,24 @@ public class TransactionItem_Activity extends AppCompatActivity {
         toinvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(TransactionItem_Activity.this, InvoiceItem_Activity.class);
-                startActivity(it);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                finish();
+
+                myflipper.showNext();
             }
         });
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent i = new Intent(TransactionItem_Activity.this, MainActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
+    }
+
+
 
 
 }

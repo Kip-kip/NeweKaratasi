@@ -53,7 +53,7 @@ public class Message_Activity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_transactions:
-                    Intent itt = new Intent(Message_Activity.this, Message_Activity.class);
+                    Intent itt = new Intent(Message_Activity.this, Transactions_Activity.class);
                     startActivity(itt);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
