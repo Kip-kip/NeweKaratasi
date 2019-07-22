@@ -20,4 +20,6 @@
 <color name="blessings">#263238</color>
     <color name="white">#fff</color>
     <color name="lessblessings">#637783</color>
+    <color name="green">#174206</color>
+    <color name="red">#86060B</color>
 </resources>

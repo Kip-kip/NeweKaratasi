@@ -10,7 +10,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.ekaratasi.activities.Activity_Login;
 import com.ekaratasi.activities.InvoiceItem_Activity;
 import com.ekaratasi.activities.MessageItem_Activity;
 import com.ekaratasi.activities.Message_Activity;
@@ -18,8 +21,15 @@ import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.PDFUpload_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
+import com.ekaratasi.helper.SQLiteHandler;
+import com.ekaratasi.helper.SessionManager;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+    ImageView gotosettings;
+    private SessionManager session;
+    private SQLiteHandler db;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -75,6 +85,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         newtransaction=findViewById(R.id.btnNewTrans);
+        gotosettings=findViewById(R.id.gotosettings);
+
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String phone = user.get("username");
+
+        Toast.makeText(MainActivity.this, phone, Toast.LENGTH_LONG).show();
 
         newtransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +114,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        gotosettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                session.setLogin(false);
+                Intent it = new Intent(MainActivity.this, Activity_Login.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+
+            }
+        });
+
     }
 
     @Override
@@ -96,5 +136,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void logoutUser() {
+        session.setLogin(false);
+        Intent it = new Intent(MainActivity.this, Activity_Login.class);
+        startActivity(it);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
+    }
 
 }

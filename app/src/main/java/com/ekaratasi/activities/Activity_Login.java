@@ -16,15 +16,21 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.ekaratasi.R;
+import com.ekaratasi.helper.SQLiteHandler;
+import com.ekaratasi.helper.SessionManager;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator;
 import com.flaviofaria.kenburnsview.Transition;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
 public class Activity_Login extends AppCompatActivity {
 
 Button login;
+    private SessionManager session;
+    private SQLiteHandler db;
 
 
     @Override
@@ -33,35 +39,33 @@ Button login;
         setContentView(R.layout.activity_login);
 
         login=findViewById(R.id.btnLogin);
+// Session manager
+        session = new SessionManager(getApplicationContext());
+// SQLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(Activity_Login.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        db.addUser("db", "db","db", "db");
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                session.setLogin(true);
                 Intent it = new Intent(Activity_Login.this,MainActivity.class);
                 startActivity(it);
             }
         });
-
-//        KenBurnsView kbv = findViewById(R.id.bg);
-//        kbv.setTransitionListener(new KenBurnsView.TransitionListener() {
-//            @Override
-//            public void onTransitionStart(Transition transition) {
-//
-//            }
-//            @Override
-//            public void onTransitionEnd(Transition transition) {
-//
-//            }
-//        });
-//
-//        AccelerateDecelerateInterpolator ACCELERATE_DECELERATE = new AccelerateDecelerateInterpolator();
-//        RandomTransitionGenerator generator = new RandomTransitionGenerator(5000, ACCELERATE_DECELERATE);
-////duration = 10000ms = 10s and interpolator = ACCELERATE_DECELERATE
-//        kbv.setTransitionGenerator(generator); //
-        /*SET CUSTOM FONT*/
-//        TextView textView = (TextView) findViewById(R.id.textView);
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/PTM55FT.ttf");
-//        textView.setTypeface(typeface);
 
 
 

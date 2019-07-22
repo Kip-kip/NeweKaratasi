@@ -271,6 +271,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/cop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Copies"
+                android:textColor="#000"/>
+            <TextView
+                android:id="@+id/ccopies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text="15"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+
+                android:textColor="#000"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:textSize="12dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="right"
+
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="15dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -333,31 +386,53 @@
                 android:layout_marginRight="15dp"
                 android:textColor="#000"/>
         </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp">
+        <Button
+            android:textStyle="bold"
+            android:layout_margin="25dp"
+            android:textColor="@color/white"
+            android:id="@+id/btnDecline"
+            android:background="@drawable/bg_btn_round_dispute"
+            android:layout_width="wrap_content"
+            android:layout_height="35.0dip"
+            android:layout_marginTop="26.0dip"
+            android:text="Dispute"
+            android:layout_weight="1"
+            android:fontFamily="@font/geomanist_regular"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone" />
+        <Button
+            android:textStyle="bold"
+            android:layout_margin="25dp"
+            android:textColor="@color/white"
+            android:id="@+id/btnPay"
+            android:background="@drawable/bg_btn_round_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="35.0dip"
+            android:layout_marginTop="26.0dip"
+            android:text="Pay"
+            android:layout_weight="1"
+            android:fontFamily="@font/geomanist_regular"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone" />
+
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="#f6f8f9"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:paddingBottom="20dp"-->
-        <!--android:paddingTop="20dp"-->
-        <!--android:gravity="center_horizontal">-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Digital receipt powered by"-->
-            <!--android:textSize="12dp"-->
-            <!--android:fontFamily="@font/geomanist_regular"-->
-            <!--android:textColor="#b1b1b1"/>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="eKaratasi"-->
-            <!--android:fontFamily="@font/geomanist_regular"-->
-            <!--android:layout_marginLeft="3dp"-->
-            <!--android:textSize="12dp"-->
-            <!--android:textColor="#b1b1b1"/>-->
-    <!--</LinearLayout>-->
 
+    </LinearLayout>
 </RelativeLayout>
