@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         android:largeHeap="true"
         >
-        <activity android:name=".activities.Activity_Profile"></activity>
+        <activity android:name=".activities.Activity_Register"></activity>
         <activity android:name=".activities.Activity_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
