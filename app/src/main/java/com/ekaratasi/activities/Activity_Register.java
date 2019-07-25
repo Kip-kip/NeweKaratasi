@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -34,6 +35,7 @@ public class Activity_Register extends AppCompatActivity {
         final ViewFlipper myflipper;
         Button btnNameNext,btnPhoneNext,btnEmailNext,btnRegister;
         ImageView back1,back2,back3,back4;
+        TextView toLogin;
         final EditText name,email,phone,password;
 
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class Activity_Register extends AppCompatActivity {
         btnEmailNext=findViewById(R.id.btnEmailNext);
         btnRegister=findViewById(R.id.btnRegister);
         back1=findViewById(R.id.back1);
+        toLogin=findViewById(R.id.toLogin);
 
         back3=findViewById(R.id.back3);
         back4=findViewById(R.id.back4);
@@ -112,6 +115,7 @@ public class Activity_Register extends AppCompatActivity {
 
                         Integer num =Integer.parseInt(tuongee.getError());
 
+                        Toast.makeText(Activity_Register.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
                         if(num==1){
                             Intent it = new Intent(Activity_Register.this, Activity_Login.class);
@@ -161,6 +165,19 @@ public class Activity_Register extends AppCompatActivity {
             }
         });
 
+
+
+        //already ave account
+        toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent it = new Intent(Activity_Register.this, Activity_Login.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                finish();
+            }
+        });
     }
 
 

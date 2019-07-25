@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ekaratasi.activities.Activity_Login;
@@ -26,8 +27,10 @@ import com.ekaratasi.helper.SessionManager;
 
 import java.util.HashMap;
 
+
 public class MainActivity extends AppCompatActivity {
     ImageView gotosettings;
+
     private SessionManager session;
     private SQLiteHandler db;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
      Button newtransaction;
+    TextView txtwelcome;
 
 
     @Override
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         newtransaction=findViewById(R.id.btnNewTrans);
         gotosettings=findViewById(R.id.gotosettings);
+        txtwelcome=findViewById(R.id.txtWelcome);
 
 
         // session manager
@@ -99,9 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Fetching user details from sqlite
         HashMap<String, String> user = db.getUserDetails();
-        String phone = user.get("username");
+        String username = user.get("username");
 
-        Toast.makeText(MainActivity.this, phone, Toast.LENGTH_LONG).show();
+       txtwelcome.setText("Welcome,"+" "+username);
+
+
+
 
         newtransaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,8 +125,11 @@ public class MainActivity extends AppCompatActivity {
         gotosettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //end session
                 session.setLogin(false);
+                //delete user
+                db.deleteUsers();
+
                 Intent it = new Intent(MainActivity.this, Activity_Login.class);
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);

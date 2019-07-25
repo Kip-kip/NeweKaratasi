@@ -35,4 +35,7 @@
     <style name="ToolbarColoredBackArrow" parent="@style/AppTheme">
         <item name="android:textColorSecondary">#ffffffff</item>
     </style>
+    <style name="AppTheme.WhiteAccent" parent="@style/AppTheme">
+        <item name="colorAccent">@color/white</item>
+    </style>
 </resources>

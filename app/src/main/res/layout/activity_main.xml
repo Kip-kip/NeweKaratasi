@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15.0dip"
                     android:fontFamily="@font/geomanist_regular"
-                    android:text="Welcome, Cyrus Kiprotich"
+                    android:text="Welcome, Sir/Madam"
                     android:textAlignment="center"
                     android:textColor="@color/blessings"
                     android:textSize="@dimen/profile_name_size"

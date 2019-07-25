@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ekaratasi.ApiServiceLogin;
@@ -46,6 +47,7 @@ public class Activity_Login extends AppCompatActivity {
 Button login;
 TextView toRegister;
 EditText emaili,passi;
+    LinearLayout loadingview;
     private SessionManager session;
     private SQLiteHandler db;
 
@@ -59,6 +61,11 @@ EditText emaili,passi;
         toRegister=findViewById(R.id.toRegister);
         emaili=findViewById(R.id.emaili);
         passi=findViewById(R.id.passi);
+       // loadingview=findViewById(R.id.loading_view);
+
+
+
+
 // Session manager
         session = new SessionManager(getApplicationContext());
 // SQLite database handler
@@ -78,6 +85,11 @@ EditText emaili,passi;
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                //hide login button
+//                login.setVisibility(View.GONE);
+//                //unhide loading view
+//                loadingview.setVisibility(View.VISIBLE);
 
                 OkHttpClient client = new OkHttpClient();
                 Gson gson = new GsonBuilder()
@@ -99,13 +111,24 @@ EditText emaili,passi;
                     public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
                         UserLogin tuongee=response.body();
                         String ongeleshwa=tuongee.getError_msg();
+                        String returnuserid=tuongee.getReturnuserid();
+                        String returnname=tuongee.getReturnname();
+                        String returnphone=tuongee.getReturnphone();
 
                         Integer num =Integer.parseInt(tuongee.getError());
 
                         Toast.makeText(Activity_Login.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
+
                         if(num==1){
+
+//                            //u hide login button
+//                            login.setVisibility(View.VISIBLE);
+//                            //hide loading view
+//                            loadingview.setVisibility(View.GONE);
+
                             //save user data to database
-                           // db.addUser("db", "db","db", "db");
+                            db.addUser(returnname, returnphone,returnuserid, "sometime");
                             session.setLogin(true);
                             Intent it = new Intent(Activity_Login.this, MainActivity.class);
                             startActivity(it);
@@ -113,13 +136,13 @@ EditText emaili,passi;
                             finish();
 
 
+
                         }
                         else{
-
-//                            Intent it = new Intent(TransactionDetails_Activity.this, Activity_Transaction_Success.class);
-//                            startActivity(it);
-//                            overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-//                            finish();
+//                            //show login button
+//                            login.setVisibility(View.VISIBLE);
+//                            //hide loading view
+//                            loadingview.setVisibility(View.GONE);
                         }
 
                     }

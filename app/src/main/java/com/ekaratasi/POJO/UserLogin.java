@@ -5,7 +5,7 @@ package com.ekaratasi.POJO;
  */
 
 public class UserLogin {
-    String emaili,passi,error_msg,error;;
+    String emaili,passi,error_msg,error,returnphone,returnname,returnuserid;
 
 
     public String getEmaili() {
@@ -38,5 +38,29 @@ public class UserLogin {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public String getReturnphone() {
+        return returnphone;
+    }
+
+    public void setReturnphone(String returnphone) {
+        this.returnphone = returnphone;
+    }
+
+    public String getReturnname() {
+        return returnname;
+    }
+
+    public void setReturnname(String returnname) {
+        this.returnname = returnname;
+    }
+
+    public String getReturnuserid() {
+        return returnuserid;
+    }
+
+    public void setReturnuserid(String returnuserid) {
+        this.returnuserid = returnuserid;
     }
 }

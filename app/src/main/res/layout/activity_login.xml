@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
     android:layout_height="match_parent">
+
+
 
     <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/bg"
@@ -66,12 +69,12 @@
         android:inputType="text"
         android:textColor="#ffeeeeee"
         android:textColorHint="#ffeeeeee"
-        android:textSize="13.0sp"
+        android:textSize="14.0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="0.636" />
 
     <EditText
         android:id="@+id/passi"
@@ -90,7 +93,7 @@
         android:inputType="textPassword"
         android:textColor="#ffeeeeee"
         android:textColorHint="#ffeeeeee"
-        android:textSize="13.0sp"
+        android:textSize="14.0sp"
         app:layout_constraintTop_toBottomOf="@+id/emaili"
          />
 
@@ -112,6 +115,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passi" />
 
+    <!--<LinearLayout android:gravity="center"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_margin="25dp"-->
+        <!--android:id="@+id/loading_view"-->
+        <!--android:background="@drawable/bg_loading_round"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="0.0dip"-->
+        <!--android:layout_height="35.0dip"-->
+        <!--android:layout_marginTop="16.0dip"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/passi">-->
+        <!--<ProgressBar-->
+            <!--android:theme="@style/AppTheme.WhiteAccent"-->
+            <!--android:id="@+id/progress_bar"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30.0dip" />-->
+    <!--</LinearLayout>-->
 
     <TextView
         android:id="@+id/toRegister"
