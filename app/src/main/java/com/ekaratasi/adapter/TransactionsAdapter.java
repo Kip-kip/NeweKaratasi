@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ekaratasi.R;
@@ -48,6 +49,20 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         holder.textViewName.setText(listItem.getAgent());
         holder.textViewPrice.setText(listItem.getProgress());
         holder.textViewTime.setText(listItem.getTime_stamp());
+        //DETERMINE STATUS BUTTONS
+        if(listItem.getProgress().equals("Unseen")){
+            holder.btnunseen.setVisibility(View.VISIBLE);
+        }
+        else if(listItem.getProgress().equals("Pending")) {
+            holder.btnpending.setVisibility(View.VISIBLE);
+        }
+        else if(listItem.getProgress().equals("Completed")) {
+            holder.btncompleted.setVisibility(View.VISIBLE);
+        }
+        else{
+
+        }
+
 
 
         holder.card.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +92,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         public TextView textViewName;
         public TextView textViewPrice;
         public TextView textViewTime;
+        Button btnpending,btncompleted,btnunseen;
         public ConstraintLayout card;
 
         public ViewHolder(View itemView) {
@@ -85,6 +101,11 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             textViewName=itemView.findViewById(R.id.textViewName);
             textViewPrice= itemView.findViewById(R.id.textViewPrice);
             textViewTime= itemView.findViewById(R.id.textViewTime);
+
+            btncompleted=itemView.findViewById(R.id.btnCompleted);
+            btnpending=itemView.findViewById(R.id.btnPending);
+            btnunseen=itemView.findViewById(R.id.btnUnseen);
+
             card= itemView.findViewById(R.id.datalist);
 
 

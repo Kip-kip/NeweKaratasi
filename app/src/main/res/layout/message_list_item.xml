@@ -57,11 +57,31 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10.0dip"
         android:fontFamily="@font/geomanist_regular"
-        android:text=""
+        android:text="sinoi"
         android:textColor="#AD0E4406"
         android:textSize="12.0sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewText" />
+
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="50dp"
+        android:layout_height="15.0dip"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_btn_round_accept"
+        android:fontFamily="@font/geomanist_regular"
+        android:text="Pay"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
+
+
 
     <!--<View-->
     <!--android:layout_width="match_parent"-->

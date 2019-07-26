@@ -48,24 +48,28 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <LinearLayout
+        android:id="@+id/yarecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="6.0dip"
         android:layout_marginRight="6.0dip"
-        app:layout_constraintEnd_toStartOf="@+id/textViewAmount"
-        app:layout_constraintHorizontal_bias="0.5"
+       app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="fill_parent"
+            android:visibility="invisible"
             android:layout_height="wrap_content">
 
 
 
+
         </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
+
 
     <com.ekaratasi.widgets.ViewLoadingDotsFade
         android:id="@+id/loadingdots"
@@ -81,6 +85,30 @@
 
 
 
+    <ImageView
+        android:id="@+id/noresultimage"
+        android:layout_width="match_parent"
+        android:layout_height="150.0dip"
+        android:layout_marginTop="120dp"
+        android:alpha="0.7"
+        app:layout_constraintTop_toBottomOf="@+id/yarecyclerView"
+        android:src="@drawable/findnoresult"
+        android:visibility="invisible" />
+
+
+    <TextView
+        android:id="@+id/noresulttext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="70.0dip"
+        android:paddingTop="30.0dip"
+        android:paddingEnd="70.0dip"
+        android:layout_marginTop="250dp"
+        android:text="No recent transactions. Click New Transaction button to add."
+        android:textAlignment="center"
+        android:textColor="#855F5A5A"
+        app:layout_constraintTop_toBottomOf="@+id/yarecyclerView"
+        android:visibility="invisible" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

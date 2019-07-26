@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +41,8 @@ public class Notification_Activity extends AppCompatActivity {
     private List<NotificationListItem> listItems;
 
     View loading;
+    ImageView noresultimage;
+    TextView noresulttext;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -90,6 +94,8 @@ public class Notification_Activity extends AppCompatActivity {
         navigation.setItemIconTintList(null);
 
         loading=findViewById(R.id.loadingdots);
+        noresultimage=findViewById(R.id.noresultimage);
+        noresulttext=findViewById(R.id.noresulttext);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -118,9 +124,12 @@ public class Notification_Activity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        // progressDialog.dismiss();
+                        // dismiss loadin
                         loading.setVisibility(View.INVISIBLE);
 
+                        //show no result
+                        noresulttext.setVisibility(View.VISIBLE);
+                        noresultimage.setVisibility(View.VISIBLE);
 
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -140,6 +149,11 @@ public class Notification_Activity extends AppCompatActivity {
                                         o.getString("time")
 
                                 );
+
+                                //show recycler view and hhide no rsult
+                                recyclerView.setVisibility(View.VISIBLE);
+                                noresultimage.setVisibility(View.GONE);
+                                noresulttext.setVisibility(View.GONE);
 
 
                                 listItems.add(item);

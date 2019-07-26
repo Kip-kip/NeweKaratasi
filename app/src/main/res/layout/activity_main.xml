@@ -146,7 +146,7 @@
                     android:layout_height="@dimen/profile_image_size"
                     android:layout_gravity="center"
                     android:layout_marginTop="50.0dip"
-                    android:alpha="0.9"
+                    android:alpha="1"
                     android:contentDescription="@string/profile_image"
                     app:layout_constraintBottom_toTopOf="@+id/txtWelcome"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -332,9 +332,72 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@+id/cardView"
+    >
+    <LinearLayout
+        android:id="@+id/linearLayout11"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="22.0dip"
+        android:layout_marginStart="22.0dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtRecentTxns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:fontFamily="@font/geomanist_regular"
+            android:text="Recent Transactions"
+            android:textColor="@color/blessings"
+
+            android:textSize="@dimen/available_balance_size" />
+
+        <LinearLayout
+            android:id="@+id/allTransactions"
+            android:layout_width="100.0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/geomanist_regular"
+                android:text="VIEW ALL  "
+                android:textColor="#ff444444" />
+
+            <Button
+                android:id="@+id/viewall"
+                android:layout_width="30.0dip"
+                android:layout_height="30.0dip"
+                android:background="@drawable/bg_btn_round"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text=">"
+                android:textAllCaps="false"
+                android:textColor="#ffffffff"
+                android:textSize="14.0sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="0.0dip"
-                android:layout_height="0.0dip"
+                android:layout_height="302dp"
                 android:layout_marginStart="0.0dip"
                 android:layout_marginTop="12.0dip"
                 android:layout_marginEnd="0.0dip"
@@ -345,239 +408,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout2"
-                    android:layout_width="0.0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20.0dip"
-                    android:layout_marginTop="0.0dip"
-                    android:layout_marginEnd="22.0dip"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/txtRecentTxns"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.0"
-                        android:fontFamily="@font/geomanist_regular"
-                        android:text="Recent Transactions"
-                        android:textColor="@color/blessings"
-
-                        android:textSize="@dimen/available_balance_size" />
-
-                    <LinearLayout
-                        android:id="@+id/allTransactions"
-                        android:layout_width="90.0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="VIEW ALL"
-                            android:textColor="#ff444444" />
-
-                        <Button
-                            android:layout_width="30.0dip"
-                            android:layout_height="30.0dip"
-                            android:background="@drawable/bg_btn_round"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:gravity="center"
-                            android:text=">"
-                            android:textAllCaps="false"
-                            android:textColor="#ffffffff"
-                            android:textSize="14.0sp"
-                            android:textStyle="bold" />
 
 
-                    </LinearLayout>
-                </LinearLayout>
+                <com.ekaratasi.widgets.ViewLoadingDotsFade
+                    android:id="@+id/loadingdots"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:background="@color/blessings"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    android:layout_width="0.0dip"
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
                     android:layout_height="0.0dip"
-                    android:layout_marginTop="8.0dip"
-                    android:scrollbars="none"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                    android:paddingTop="-10dp"
+                    android:visibility="invisible" />
 
-                <LinearLayout
-                    android:id="@+id/emptyListView"
-                    android:layout_width="0.0dip"
-                    android:layout_height="0.0dip"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-                    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/datalist"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?selectableItemBackground"
-                        android:paddingStart="10.0dip"
-                        android:paddingEnd="12.0dip">
+                <ImageView
+                    android:id="@+id/noresultimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150.0dip"
+                    android:layout_marginTop="20dp"
+                    android:alpha="0.7"
+                    android:src="@drawable/womannoresults"
+                    android:visibility="invisible" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="52.0dip"
-                            android:layout_height="52.0dip"
-                            android:layout_marginStart="10.0dip"
-                            android:layout_marginTop="10.0dip"
-                            android:layout_marginBottom="10.0dip"
-                            android:src="@drawable/icon_transfer"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/textViewTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="Dodge Challenger"
-                            android:textColor="#ff333333"
-                            android:textSize="14.0sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
-                            app:layout_constraintStart_toEndOf="@+id/imageView"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed" />
-
-                        <TextView
-                            android:id="@+id/textViewDescription"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="Mpesa"
-                            android:textColor="#ff666666"
-                            android:textSize="12.0sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
-
-                        <TextView
-                            android:id="@+id/textViewAmount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="+ KES 30,000"
-                            android:textColor="#AD0E4406"
-                            android:textSize="12.0sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
-                    </android.support.constraint.ConstraintLayout>
-
-                    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/datalist2"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?selectableItemBackground"
-                        android:paddingStart="10.0dip"
-                        android:paddingEnd="12.0dip">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="52.0dip"
-                            android:layout_height="52.0dip"
-                            android:layout_marginStart="10.0dip"
-                            android:layout_marginTop="10.0dip"
-                            android:layout_marginBottom="10.0dip"
-                            android:src="@drawable/icon_store"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textViewTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="Chevy Camaro"
-                            android:textColor="#ff333333"
-                            android:textSize="14.0sp"
-                            app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
-                            app:layout_constraintStart_toEndOf="@+id/imageView"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed" />
-
-                        <TextView
-                            android:id="@+id/textViewDescription"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="Mpesa"
-                            android:textColor="#ff666666"
-                            android:textSize="12.0sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/textViewTitle"
-                            app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
-
-                        <TextView
-                            android:id="@+id/textViewAmount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10.0dip"
-                            android:fontFamily="@font/geomanist_regular"
-                            android:text="-  KES 25,000"
-                            android:textColor="#ffd0021b"
-                            android:textSize="12.0sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
-                    </android.support.constraint.ConstraintLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="130.0dip"
-                        android:alpha="0.2"
-                        android:src="@drawable/ic_no_result"
-                        android:visibility="invisible" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="70.0dip"
-                        android:paddingTop="30.0dip"
-                        android:paddingEnd="70.0dip"
-                        android:text="No recent transactions. Click Plus icon below to start."
-                        android:textAlignment="center"
-                        android:textColor="#ffcccccc"
-                        android:visibility="invisible" />
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/loading_indicator"
+                <TextView
+                    android:id="@+id/noresulttext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="8.0dip"
-                    android:layout_marginEnd="8.0dip"
-                    android:indeterminate="true"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/recycler_view" />
+                   android:paddingStart="70.0dip"
+                    android:paddingTop="30.0dip"
+                    android:paddingEnd="70.0dip"
+                    android:text="No recent transactions. Click New Transaction button to add."
+                    android:textAlignment="center"
+                    android:textColor="#855F5A5A"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/noresultimage" />
+
             </android.support.constraint.ConstraintLayout>
 
 
@@ -591,7 +466,7 @@
         android:layout_marginEnd="0dp"
         app:itemTextColor="@color/blessings"
         android:background="@color/white"
-       app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />

@@ -10,6 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,18 +43,15 @@ public class Transactions_Activity extends AppCompatActivity {
     private List<ListItem> listItems;
 
     View loading;
+    ImageView noresultimage;
+    TextView noresulttext;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Intent it = new Intent(Transactions_Activity.this, MainActivity.class);
-                    startActivity(it);
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-                    finish();
-                    return true;
 
                 case R.id.navigation_transactions:
                     Intent itt = new Intent(Transactions_Activity.this, Transactions_Activity.class);
@@ -58,6 +60,13 @@ public class Transactions_Activity extends AppCompatActivity {
                     finish();
 
 
+                    return true;
+
+                case R.id.navigation_home:
+                    Intent it = new Intent(Transactions_Activity.this, MainActivity.class);
+                    startActivity(it);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
                     return true;
 
                 case R.id.navigation_notifications:
@@ -89,12 +98,17 @@ public class Transactions_Activity extends AppCompatActivity {
         navigation.setItemIconTintList(null);
 
         loading=findViewById(R.id.loadingdots);
+        noresultimage=findViewById(R.id.noresultimage);
+        noresulttext=findViewById(R.id.noresulttext);
+
+
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listItems = new ArrayList<>();
+
 
 
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -117,10 +131,12 @@ public class Transactions_Activity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        // progressDialog.dismiss();
+                        // dismiss loadin
                         loading.setVisibility(View.INVISIBLE);
 
-
+                        //show no result
+                        noresulttext.setVisibility(View.VISIBLE);
+                        noresultimage.setVisibility(View.VISIBLE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                         try {
@@ -154,10 +170,18 @@ public class Transactions_Activity extends AppCompatActivity {
                                         o.getString("ekaratasi_fee")
 
 
+
                                 );
 
 
-                                listItems.add(item);
+                                //show recycler view and hhide no rsult
+                                recyclerView.setVisibility(View.VISIBLE);
+                                noresultimage.setVisibility(View.GONE);
+                                noresulttext.setVisibility(View.GONE);
+
+
+
+                                    listItems.add(item);
 
 
 
@@ -182,7 +206,6 @@ public class Transactions_Activity extends AppCompatActivity {
 
 
 
-                        // Toast.makeText(getApplicationContext(),volleyerror.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
 
