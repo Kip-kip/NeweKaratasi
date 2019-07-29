@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/white"
     android:layout_height="fill_parent">
 
 
@@ -141,14 +140,19 @@
 
 
         <Spinner
+            android:theme="@style/spinnerColor"
             android:id="@+id/material"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="fill_parent"
             android:layout_height="40.0dip"
-            android:layout_marginRight="20dp"
-            android:backgroundTint="@color/blessings"
+            android:paddingStart="10.0dip"
+           android:layout_marginRight="20dp"
+            android:textColorHint="#666464"
+            android:textSize="13.0sp"
             android:background="@drawable/spinner_bg"
             android:entries="@array/material" />
+
+
+
 
     </LinearLayout>
 
@@ -217,11 +221,12 @@
 
         <Spinner
             android:id="@+id/bindoption"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:theme="@style/spinnerColor"
             android:layout_width="fill_parent"
             android:layout_height="40.0dip"
+            android:paddingStart="10.0dip"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/blessings"
+            android:textColorHint="#666464"
             android:background="@drawable/spinner_bg"
             android:entries="@array/bindoption" />
 
@@ -249,12 +254,13 @@
 
 
         <Spinner
+            android:theme="@style/spinnerColor"
             android:id="@+id/bindcolor"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="fill_parent"
             android:layout_height="40.0dip"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/blessings"
+            android:paddingStart="10.0dip"
+            android:textColorHint="#666464"
             android:background="@drawable/spinner_bg"
             android:entries="@array/bindcolor" />
 

@@ -39,7 +39,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
-                android:src="@drawable/images" />
+                android:src="@drawable/icon_user" />
 
             <LinearLayout
 
@@ -51,7 +51,7 @@
 
 
                 <TextView
-                    android:id="@+id/textViewSender"
+                    android:id="@+id/textViewMain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/geomanist_regular"
@@ -60,15 +60,15 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textViewTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/geomanist_regular"
-                    android:text="Active in last 2 minss"
-                    android:textColor="#616e7f"
-                    android:textSize="13sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textViewTime"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:fontFamily="@font/geomanist_regular"-->
+                    <!--android:text="Active in last 2 minss"-->
+                    <!--android:textColor="#616e7f"-->
+                    <!--android:textSize="13sp" />-->
 
             </LinearLayout>
         </LinearLayout>

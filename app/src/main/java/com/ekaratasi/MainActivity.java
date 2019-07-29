@@ -1,6 +1,8 @@
 package com.ekaratasi;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -187,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         loadRecyclerViewData();
+        showDialogImageShare();
 
     }
 
@@ -196,6 +200,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void showDialogImageShare() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_image);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+
+//        ((Button) dialog.findViewById(R.id.btnPayy)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), "Button Accept Clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        dialog.show();
+    }
 
     private void logoutUser() {
         session.setLogin(false);

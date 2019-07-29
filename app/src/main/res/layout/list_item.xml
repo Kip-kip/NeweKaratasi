@@ -4,7 +4,6 @@
     android:id="@+id/datalist"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:paddingStart="10.0dip"
     android:paddingEnd="12.0dip">
 

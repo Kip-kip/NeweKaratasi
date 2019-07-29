@@ -1,41 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="440dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/spacing_middle"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
-    <com.flaviofaria.kenburnsview.KenBurnsView
-        android:id="@+id/bg"
-        android:layout_width="409dp"
-        android:layout_height="724dp"
-        android:src="@drawable/bg"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="3dp" />
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/email2" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/spacing_large"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/spacing_middle"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="@dimen/spacing_middle">
 
 
-    <TextView
-        android:id="@+id/champ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hey Champ! Let's get started"
+                <Button
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:id="@+id/btnDecline"
+                    android:background="@drawable/bg_btn_round_dispute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25.0dip"
+                    android:layout_marginTop="26.0dip"
+                    android:text="Dispute"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/geomanist_regular"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        android:textColor="@color/textColor1"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="70dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
 
-    <EditText
-        android:drawableLeft="@android:drawable/sym_action_call"
-        android:drawablePadding="10dp"
-        android:id="@+id/phone"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="phone"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="486dp" />
+                <Button
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:id="@+id/btnPayy"
+                    android:background="@drawable/bg_btn_round_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25.0dip"
+                    android:layout_marginTop="26.0dip"
+                    android:text="Pay"
+                    android:fontFamily="@font/geomanist_regular"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
 
-</android.support.constraint.ConstraintLayout>
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/spacing_large"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="1dp">
+
+            <View
+                android:layout_width="@dimen/spacing_mxlarge"
+                android:layout_height="6dp" />
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

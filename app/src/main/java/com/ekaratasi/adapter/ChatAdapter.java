@@ -48,7 +48,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         final ChatListItem listItem=listItems.get(position);
 
 
-       // holder.textViewTime.setText(listItem.getTime());
+
 
 if(listItem.getSender().equals("CUST")){
     holder.textViewTextCust.setText(listItem.getText());
@@ -73,12 +73,14 @@ else{
         public TextView textViewTextAgent;
         public TextView textViewTextCust;
 
+
         public LinearLayout agent;
         public LinearLayout cust;
         //public TextView textViewTime;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
 
             textViewTextAgent=itemView.findViewById(R.id.textViewTextAgent);
             textViewTextCust= itemView.findViewById(R.id.textViewTextCust);

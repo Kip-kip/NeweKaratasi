@@ -4,13 +4,13 @@
 
 
     <string-array name="bindoption">
-        <item>--</item>
+        <item>Select bind option</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
 
     <string-array name="material">
-        <item>--</item>
+        <item>Select material</item>
         <item>A3</item>
         <item>A4</item>
         <item>A5</item>
@@ -18,7 +18,7 @@
     </string-array>
 
     <string-array name="bindcolor">
-        <item>--</item>
+        <item>Select bind color</item>
         <item>Blue</item>
         <item>Green</item>
         <item>Red</item>

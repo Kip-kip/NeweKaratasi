@@ -4,7 +4,6 @@
     android:id="@+id/messagedatalist"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:paddingStart="10.0dip"
     android:paddingEnd="12.0dip">
 
@@ -62,6 +61,26 @@
         android:textSize="12.0sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewText" />
+
+
+
+    <Button
+        android:id="@+id/btnUnread"
+        android:layout_width="50dp"
+        android:layout_height="15.0dip"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_btn_round_completed"
+        android:fontFamily="@font/geomanist_regular"
+        android:text="Unread"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/textViewText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
     <!--<View-->
     <!--android:layout_width="match_parent"-->

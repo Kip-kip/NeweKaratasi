@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,8 +41,9 @@ public class MessageItem_Activity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private List<ChatListItem> listItems;
 
-    View loading;
 
+    View loading;
+TextView textViewMain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class MessageItem_Activity extends AppCompatActivity {
 
 
         loading=findViewById(R.id.loadingdots);
+        textViewMain= findViewById(R.id.textViewMain);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -57,9 +60,20 @@ public class MessageItem_Activity extends AppCompatActivity {
         listItems = new ArrayList<>();
 
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
         loadRecyclerViewData();
+
+        //
+        final MessageListItem messagelistItem = (MessageListItem) getIntent().getExtras().getSerializable("DETAIL");
+
+        if (messagelistItem != null) {
+            textViewMain.setText(messagelistItem.getSender());
+        }
+
+
+
     }
 
 

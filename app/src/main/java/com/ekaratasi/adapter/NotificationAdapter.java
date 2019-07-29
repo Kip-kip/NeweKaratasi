@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ekaratasi.R;
@@ -53,6 +54,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.textViewText.setText(listItem.getMessage());
         holder.textViewTime.setText(listItem.getTime());
 
+        //DETERMINE STATUS BUTTONS
+        if(listItem.getStatus().equals("Unread")) {
+            holder.btnunread.setVisibility(View.VISIBLE);
+        }
+        else{
+
+        }
+
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +91,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public TextView textViewAgent;
         public TextView textViewTime;
         public ConstraintLayout card;
+        public Button btnread,btnunread;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -91,6 +101,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             textViewTime= itemView.findViewById(R.id.textViewTime);
             card= itemView.findViewById(R.id.messagedatalist);
 
+            btnunread=itemView.findViewById(R.id.btnUnread);
 
 
 
