@@ -22,5 +22,5 @@ public interface ApiService {
     @FormUrlEncoded
 
     @POST("eKaratasi/Refubished/BackendAffairs/save_transactions.php")
-    Call<MainData> insertMainData(@Field("material") String material,@Field("copies") String copies, @Field("bindoption") String bindoption, @Field("bindcolor") String bindcolor, @Field("agent") String agent, @Field("instructions") String instructions);
+    Call<MainData> insertMainData(@Field("user_id") String user_id,@Field("material") String material,@Field("copies") String copies, @Field("bindoption") String bindoption, @Field("bindcolor") String bindcolor, @Field("agent") String agent, @Field("instructions") String instructions, @Field("docfile") String docfile);
 }

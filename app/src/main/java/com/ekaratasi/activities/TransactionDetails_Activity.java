@@ -16,8 +16,11 @@ import android.widget.Toast;
 import com.ekaratasi.POJO.ConfirmAgent;
 import com.ekaratasi.POJO.MainData;
 import com.ekaratasi.R;
+import com.ekaratasi.helper.SQLiteHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -31,12 +34,12 @@ TextView txt;
 EditText copies,agent,instructions;
 Spinner material,bindcolor,bindoption;
     Button SubmitButton;
+    private SQLiteHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
 
-        txt=findViewById(R.id.ello);
 
         copies = (EditText) findViewById(R.id.copies);
         agent = (EditText) findViewById(R.id.agent);
@@ -44,9 +47,6 @@ Spinner material,bindcolor,bindoption;
         bindcolor=(Spinner) findViewById(R.id.bindcolor);
         bindoption=(Spinner) findViewById(R.id.bindoption);
         instructions=(EditText) findViewById(R.id.instructions);
-        String transId = getIntent().getStringExtra("TRANS_ID");
-        txt.setText(transId);
-
 
         SubmitButton = (Button) findViewById(R.id.btnSubmit);
 
@@ -115,6 +115,14 @@ Spinner material,bindcolor,bindoption;
 
     public void SaveData(){
 
+        //get the user_id
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
         OkHttpClient client = new OkHttpClient();
         Gson gson = new GsonBuilder()
                 .create();
@@ -126,13 +134,15 @@ Spinner material,bindcolor,bindoption;
                 .build();
         com.ekaratasi.ApiService service = retrofit.create(com.ekaratasi.ApiService.class);
         MainData maindata = new MainData();
+        maindata.setUser_id(user_id);
         maindata.setMaterial(material.getSelectedItem().toString());
         maindata.setCopies(copies.getText().toString());
         maindata.setBindoption(bindoption.getSelectedItem().toString());
         maindata.setAgent(agent.getText().toString());
         maindata.setBindcolor(bindcolor.getSelectedItem().toString());
         maindata.setInstructions(instructions.getText().toString());
-        Call<MainData> call = service.insertMainData(maindata.getMaterial(), maindata.getCopies(), maindata.getBindoption(), maindata.getBindcolor(),maindata.getAgent(),maindata.getInstructions());
+        maindata.setDocfile(getIntent().getStringExtra("PDF_REFNO"));
+        Call<MainData> call = service.insertMainData(maindata.getUser_id(), maindata.getMaterial(), maindata.getCopies(), maindata.getBindoption(), maindata.getBindcolor(),maindata.getAgent(),maindata.getInstructions(),maindata.getDocfile());
 
         call.enqueue(new Callback<MainData>() {
             @Override

@@ -57,21 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/ello"
-        android:layout_width="match_parent"
-        android:layout_height="35.0dip"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="25dp"
-        android:backgroundTint="@color/blessings"
-        android:fontFamily="@font/geomanist_regular"
-        android:text=""
-        android:visibility="gone"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textStyle="bold" />
-
 
 
 
@@ -103,7 +88,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_edit_text_blue_border"
             android:ems="10"
-            android:hint="Enter agnt number"
+            android:hint="Enter agent number"
             android:textColorHint="#666464"
             android:inputType="textPersonName"
             android:maxLength="20"

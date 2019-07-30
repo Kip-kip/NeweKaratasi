@@ -6,8 +6,24 @@ package com.ekaratasi.POJO;
 
 public class MainData {
 
-    String material,bindoption,bindcolor,copies,agent,instructions,error_msg,error;
+    String user_id,docfile,material,bindoption,bindcolor,copies,agent,instructions,error_msg,error;
 
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getDocfile() {
+        return docfile;
+    }
+
+    public void setDocfile(String docfile) {
+        this.docfile = docfile;
+    }
 
     public String getMaterial() {
         return material;

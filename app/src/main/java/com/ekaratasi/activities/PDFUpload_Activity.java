@@ -223,12 +223,12 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
                 // progressDialog.dismiss();
                 loading.setVisibility(View.VISIBLE);
 
-                PdfID = UUID.randomUUID().toString();
+                PdfID = "DOC-"+UUID.randomUUID().toString();
                 uploadReceiver.setDelegate(this);
                 uploadReceiver.setUploadID(PdfID);
                 new MultipartUploadRequest(this, PdfID, PDF_UPLOAD_HTTP_URL)
                         .addFileToUpload(PdfPathHolder, "pdf")
-                        .addParameter("name", PdfNameHolder)
+                        .addParameter("name", PdfID)
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(2)
                         .startUpload();
@@ -264,7 +264,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         // progressDialog.dismiss();
         loading.setVisibility(View.INVISIBLE);
         Intent it = new Intent(PDFUpload_Activity.this, TransactionDetails_Activity.class);
-        it.putExtra("TRANS_ID", PdfID);
+        it.putExtra("PDF_REFNO", PdfID);
         startActivity(it);
         overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
         finish();
