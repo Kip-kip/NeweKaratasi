@@ -21,5 +21,5 @@ public interface ApiServicePay {
 
     @FormUrlEncoded
     @POST("eKaratasi/pay_second/STKprocessor.php")
-    Call<UserPay> insertPaymentData(@Field("phone") String phone, @Field("cash") String cash);
+    Call<UserPay> insertPaymentData(@Field("phone") String phone, @Field("cash") String cash, @Field("trans_refno") String trans_refno);
 }

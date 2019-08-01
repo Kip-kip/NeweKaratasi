@@ -195,7 +195,8 @@ int bwtotalcost=bwpagesint * bwcostint;
         UserPay userpay = new UserPay();
         userpay.setPhone(phone);
         userpay.setCash(total_cost.getText().toString());
-        Call<UserPay> call = service.insertPaymentData(userpay.getPhone(), userpay.getCash());
+        userpay.setTrans_refno(trans_refno.getText().toString());
+        Call<UserPay> call = service.insertPaymentData(userpay.getPhone(), userpay.getCash(), userpay.getTrans_refno());
 
         call.enqueue(new Callback<UserPay>() {
             @Override

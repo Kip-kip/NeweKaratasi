@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.ekaratasi.MainActivity;
 import com.ekaratasi.R;
 import com.ekaratasi.adapter.TransactionsAdapter;
+import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.model.ListItem;
 
 import org.json.JSONArray;
@@ -32,15 +33,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Transactions_Activity extends AppCompatActivity {
-//    private static String car="Not_Paid";
-//    private static String carr="Sent";  https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php?car="+car+"&carr="+carr
-    private static final String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php";
+
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
+    private SQLiteHandler db;
 
     View loading;
     ImageView noresultimage;
@@ -92,6 +94,7 @@ public class Transactions_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_transactions);
 
 
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -111,6 +114,7 @@ public class Transactions_Activity extends AppCompatActivity {
 
 
 
+
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
 //                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -120,7 +124,14 @@ public class Transactions_Activity extends AppCompatActivity {
 
 
     private void loadRecyclerViewData(){
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
 
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php?user_id="+user_id+"";
 
 //        final ProgressDialog progressDialog=new ProgressDialog(this);
 //        progressDialog.setMessage("Loading data....");

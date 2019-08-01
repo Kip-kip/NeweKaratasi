@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
     TextView txtwelcome,noresulttext;
     View loading;
     LinearLayout alltransactions;
-    private static final String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactionsformain.php";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
@@ -210,6 +209,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRecyclerViewData(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactionsformain.php?user_id="+user_id+"";
 
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
