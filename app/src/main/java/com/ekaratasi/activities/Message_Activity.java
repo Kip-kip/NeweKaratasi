@@ -23,6 +23,7 @@ import com.ekaratasi.MainActivity;
 import com.ekaratasi.R;
 import com.ekaratasi.adapter.MessageAdapter;
 import com.ekaratasi.adapter.TransactionsAdapter;
+import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.model.ListItem;
 import com.ekaratasi.model.MessageListItem;
 
@@ -31,11 +32,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Message_Activity extends AppCompatActivity {
 
-    private static final String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<MessageListItem> listItems;
@@ -43,6 +44,7 @@ public class Message_Activity extends AppCompatActivity {
     View loading;
     ImageView noresultimage;
     TextView noresulttext;
+    private SQLiteHandler db;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -111,11 +113,18 @@ public class Message_Activity extends AppCompatActivity {
 
 
     private void loadRecyclerViewData(){
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
 
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
 
 //        final ProgressDialog progressDialog=new ProgressDialog(this);
 //        progressDialog.setMessage("Loading data....");
 //        progressDialog.show();
+
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php?user_id="+user_id+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,
@@ -139,6 +148,9 @@ public class Message_Activity extends AppCompatActivity {
                             for(int i=0; i<array.length();i++){
                                 JSONObject o=array.getJSONObject(i);
                                 MessageListItem item=new MessageListItem(
+                                        o.getString("agent_name"),
+                                        o.getString("agent"),
+                                        o.getString("customer"),
                                         o.getString("sender"),
                                         o.getString("receiver"),
                                         o.getString("text"),

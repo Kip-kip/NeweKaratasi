@@ -17,66 +17,58 @@
         tools:layout_editor_absoluteX="159dp"
         tools:layout_editor_absoluteY="33dp">
 
-        <LinearLayout
-            android:id="@+id/linear_profile"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
 
-            android:background="@color/white"
-            android:orientation="horizontal">
-
+        <android.support.v7.widget.Toolbar
+            android:id="@id/app_toolbar"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_arrow_back" />
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/icon_user" />
-
-            <LinearLayout
-
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
-                android:orientation="vertical">
+                android:layout_marginLeft="60dp"
+                android:src="@drawable/icon_user" />
+
+            <TextView
+                android:id="@+id/textViewMain"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="Barry Aguiler"
+                android:textColor="@color/blessings"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/agent_refno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text=""/>
+        </android.support.v7.widget.Toolbar>
 
 
-                <TextView
-                    android:id="@+id/textViewMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/geomanist_regular"
-                    android:text="Barry Aguiler"
-                    android:textColor="@color/blessings"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/textViewTime"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="5dp"-->
-                    <!--android:fontFamily="@font/geomanist_regular"-->
-                    <!--android:text="Active in last 2 minss"-->
-                    <!--android:textColor="#616e7f"-->
-                    <!--android:textSize="13sp" />-->
 
-            </LinearLayout>
-        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/linear_profile"
+            android:layout_below="@+id/app_toolbar"
             android:layout_marginTop="-1dp"
             android:orientation="vertical">
 
@@ -87,7 +79,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="6.0dip"
                 android:layout_marginRight="6.0dip"
-                app:layout_constraintEnd_toStartOf="@+id/textViewAmount"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +97,7 @@
                 android:id="@+id/loadingdots"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:background="@color/blessings"
                 android:visibility="visible" />
             <!---HERE-->
@@ -122,12 +114,13 @@
 
 
             <EditText
+                android:id="@+id/textmessage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/geomanist_regular"
-                android:hint="Write a replay"
+                android:hint="Write a reply"
                 android:minWidth="250dp"
                 android:textColor="#000"
                 android:textColorHint="#ced5db" />
@@ -139,22 +132,16 @@
                 android:gravity="right">
 
                 <ImageView
+                    android:id="@+id/sendBtn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/ic_send_black_24dp"
-                    android:tint="#d9d9d9" />
+                    android:tint="#968E8E" />
 
 
-                <ImageView
-                    android:id="@+id/attach"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_attach_file"
-                    android:tint="#d9d9d9" />
+
             </LinearLayout>
         </LinearLayout>
 
