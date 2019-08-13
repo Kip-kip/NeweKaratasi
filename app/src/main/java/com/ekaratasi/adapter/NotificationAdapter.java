@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.ekaratasi.POJO.ConfirmAgent;
+import com.ekaratasi.POJO.ReadNotification;
 import com.ekaratasi.R;
 import com.ekaratasi.activities.MessageItem_Activity;
 import com.ekaratasi.activities.NotificationItem_Activity;
@@ -17,8 +19,17 @@ import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.model.MessageListItem;
 import com.ekaratasi.model.NotificationListItem;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Cyrus on 4/5/2018.
@@ -54,6 +65,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.textViewText.setText(listItem.getMessage());
         holder.textViewTime.setText(listItem.getTime());
 
+
         //DETERMINE STATUS BUTTONS
         if(listItem.getStatus().equals("Unread")) {
             holder.btnunread.setVisibility(View.VISIBLE);
@@ -73,6 +85,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(intent);
+
 
 
             }
@@ -101,10 +114,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             textViewTime= itemView.findViewById(R.id.textViewTime);
             card= itemView.findViewById(R.id.messagedatalist);
 
+
             btnunread=itemView.findViewById(R.id.btnUnread);
 
 
 
         }
     }
+
 }

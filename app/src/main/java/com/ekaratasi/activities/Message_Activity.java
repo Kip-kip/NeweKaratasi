@@ -42,8 +42,8 @@ public class Message_Activity extends AppCompatActivity {
     private List<MessageListItem> listItems;
 
     View loading;
-    ImageView noresultimage;
-    TextView noresulttext;
+    ImageView noresultimage,nointernet;
+    TextView noresulttext,nointernettext;
     private SQLiteHandler db;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -98,6 +98,8 @@ public class Message_Activity extends AppCompatActivity {
         loading=findViewById(R.id.loadingdots);
         noresultimage=findViewById(R.id.noresultimage);
         noresulttext=findViewById(R.id.noresulttext);
+        nointernet=findViewById(R.id.nointernet);
+        nointernettext=findViewById(R.id.nointernettext);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -185,11 +187,10 @@ public class Message_Activity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError volleyerror) {
 
 
+                        loading.setVisibility(View.INVISIBLE);
 
-
-
-
-                        // Toast.makeText(getApplicationContext(),volleyerror.getMessage(),Toast.LENGTH_LONG).show();
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
                     }
                 });
 

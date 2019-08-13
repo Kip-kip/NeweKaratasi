@@ -45,8 +45,8 @@ public class Transactions_Activity extends AppCompatActivity {
     private SQLiteHandler db;
 
     View loading;
-    ImageView noresultimage;
-    TextView noresulttext;
+    ImageView noresultimage,nointernet;
+    TextView noresulttext,nointernettext;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -103,6 +103,8 @@ public class Transactions_Activity extends AppCompatActivity {
         loading=findViewById(R.id.loadingdots);
         noresultimage=findViewById(R.id.noresultimage);
         noresulttext=findViewById(R.id.noresulttext);
+        nointernet=findViewById(R.id.nointernet);
+        nointernettext=findViewById(R.id.nointernettext);
 
 
 
@@ -212,7 +214,10 @@ public class Transactions_Activity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
+                        loading.setVisibility(View.INVISIBLE);
 
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
 
 
 

@@ -47,7 +47,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ListItem listItem=listItems.get(position);
         holder.textViewName.setText(listItem.getAgent());
-        holder.textViewPrice.setText(listItem.getProgress());
+        holder.textViewPayment.setText(listItem.getPayment_status());
+        holder.textViewTotalCost.setText("KES " +listItem.getTotal_cost());
         holder.textViewTime.setText(listItem.getTime_stamp());
         //DETERMINE STATUS BUTTONS
         if(listItem.getProgress().equals("Unseen")){
@@ -90,7 +91,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewName;
-        public TextView textViewPrice;
+        public TextView textViewPayment;
+        public TextView textViewTotalCost;
         public TextView textViewTime;
         Button btnpending,btncompleted,btnunseen;
         public ConstraintLayout card;
@@ -99,8 +101,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             super(itemView);
 
             textViewName=itemView.findViewById(R.id.textViewName);
-            textViewPrice= itemView.findViewById(R.id.textViewPrice);
+            textViewPayment= itemView.findViewById(R.id.textViewPayment);
             textViewTime= itemView.findViewById(R.id.textViewTime);
+            textViewTotalCost=itemView.findViewById(R.id.textViewTotalCost);
 
             btncompleted=itemView.findViewById(R.id.btnCompleted);
             btnpending=itemView.findViewById(R.id.btnPending);

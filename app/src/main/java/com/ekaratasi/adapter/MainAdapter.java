@@ -46,7 +46,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ListItem listItem=listItems.get(position);
         holder.textViewName.setText(listItem.getAgent());
-        holder.textViewPrice.setText("KES " +listItem.getProgress());
+        holder.textViewTotalCost.setText("KES " +listItem.getTotal_cost());
+        holder.textViewPayment.setText(listItem.getPayment_status());
 
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -75,14 +76,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textViewName;
-        public TextView textViewPrice;
+        public TextView textViewPayment;
+        public TextView textViewTotalCost;
         public LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             textViewName=itemView.findViewById(R.id.textViewName);
-            textViewPrice= itemView.findViewById(R.id.textViewPrice);
+            textViewPayment= itemView.findViewById(R.id.textViewPayment);
+            textViewTotalCost=itemView.findViewById(R.id.textViewTotalCost);
 
 
 

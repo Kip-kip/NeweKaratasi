@@ -2,6 +2,7 @@ package com.ekaratasi;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -35,22 +36,29 @@ import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.PDFUpload_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
+import com.ekaratasi.adapter.TotalTransactionsAdapter;
 import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.helper.SessionManager;
 import com.ekaratasi.model.ListItem;
+import com.ekaratasi.model.TotalCostItem;
+import com.ekaratasi.model.TotalTransactionsItem;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView gotosettings,noresultimage;
+    ImageView gotosettings,noresultimage,nointernet;
 
     private SessionManager session;
     private SQLiteHandler db;
@@ -96,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
      Button newtransaction,viewall;
-    TextView txtwelcome,noresulttext;
+    TextView txtwelcome,noresulttext,nointernettext,totalcost,totaltransactions;
     View loading;
     LinearLayout alltransactions;
     private RecyclerView recyclerView;
@@ -119,10 +127,15 @@ public class MainActivity extends AppCompatActivity {
         txtwelcome=findViewById(R.id.txtWelcome);
 
         noresultimage=findViewById(R.id.noresultimage);
+        nointernet=findViewById(R.id.nointernet);
         noresulttext=findViewById(R.id.noresulttext);
+        nointernettext=findViewById(R.id.nointernettext);
         loading=findViewById(R.id.loadingdots);
         viewall=findViewById(R.id.viewall);
         alltransactions=findViewById(R.id.allTransactions);
+
+        totalcost=findViewById(R.id.totalcost);
+        totaltransactions=findViewById(R.id.totaltransactions);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -185,16 +198,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+     //load the total cost
+        loadTotalCost();
 
+       //load the totaltransactions
+        loadTotalTransactions();
 
-
+       //load transactions data
         loadRecyclerViewData();
+
+
+
+
 
     }
 
     @Override
     public void onBackPressed() {
-
+    saveListData();
 
     }
 
@@ -207,6 +228,132 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
         finish();
     }
+    private void loadTotalCost(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totalcost.php?user_id="+user_id+"";
+
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+      //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                TotalCostItem item=new TotalCostItem(
+                                        o.getString("cost")
+                                );
+
+
+
+
+                               totalcost.setText("KSh "+o.getString("cost"));
+
+
+
+                            }
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+
+
+
+
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void loadTotalTransactions(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totaltransactions.php?user_id="+user_id+"";
+
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                TotalTransactionsItem item=new TotalTransactionsItem(
+                                        o.getString("transactions")
+                                );
+
+
+
+
+                                totaltransactions.setText(o.getString("transactions"));
+
+
+
+                            }
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+
+
+
+
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
 
     private void loadRecyclerViewData(){
 
@@ -297,12 +444,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
+                        loading.setVisibility(View.INVISIBLE);
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
 
 
 
-
-
-                        // Toast.makeText(getApplicationContext(),volleyerror.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -310,6 +457,35 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
+    private void saveListData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(listItems);
+        editor.putString("task list", json);
+        editor.apply();
+    }
+
+    private void loadListData() {
+
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("task list", null);
+
+        Type type = new TypeToken<ArrayList<ListItem>>() {}.getType();
+         listItems = gson.fromJson(json, type);
+
+       if (listItems == null) {
+           listItems= new ArrayList<>();
+        }
+        else{
+
+        }
+    }
+
 
 
 }

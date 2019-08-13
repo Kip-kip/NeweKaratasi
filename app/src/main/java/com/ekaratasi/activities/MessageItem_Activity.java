@@ -1,5 +1,6 @@
 package com.ekaratasi.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +25,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ekaratasi.MainActivity;
+import com.ekaratasi.POJO.ReadMessage;
+import com.ekaratasi.POJO.ReadNotification;
 import com.ekaratasi.POJO.SendMessage;
 import com.ekaratasi.R;
 import com.ekaratasi.adapter.ChatAdapter;
@@ -58,9 +62,9 @@ public class MessageItem_Activity extends AppCompatActivity {
 
 
     View loading;
-TextView textViewMain,agent_refno;
+TextView textViewMain,agent_refno,nointernettext;
 EditText text;
-ImageView sendbtn;
+ImageView sendbtn,nointernet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,9 @@ ImageView sendbtn;
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        nointernet=findViewById(R.id.nointernet);
+        nointernettext=findViewById(R.id.nointernettext);
 
         listItems = new ArrayList<>();
 
@@ -96,7 +103,7 @@ ImageView sendbtn;
 
 
 
-        //
+
         final MessageListItem messagelistItem = (MessageListItem) getIntent().getExtras().getSerializable("DETAIL");
 
         if (messagelistItem != null) {
@@ -106,10 +113,14 @@ ImageView sendbtn;
 
         loadRecyclerViewData();
 
+        ReadMessage();
+
     }
 
 
     private void loadRecyclerViewData(){
+
+        loading.setVisibility(View.VISIBLE);
 // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -161,6 +172,8 @@ ImageView sendbtn;
 
                             adapter=new ChatAdapter(listItems,getApplicationContext());
                             recyclerView.setAdapter(adapter);
+                            recyclerView.scrollToPosition(listItems.size() - 1);
+
 
 
                         } catch (JSONException e) {
@@ -174,11 +187,10 @@ ImageView sendbtn;
                     public void onErrorResponse(VolleyError volleyerror) {
 
 
+                        loading.setVisibility(View.INVISIBLE);
 
-
-
-
-                        // Toast.makeText(getApplicationContext(),volleyerror.getMessage(),Toast.LENGTH_LONG).show();
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -223,9 +235,15 @@ ImageView sendbtn;
                 SendMessage tuongee=response.body();
                 String ongeleshwa=tuongee.getError_msg();
 
-                Toast.makeText(MessageItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
-                loadRecyclerViewData();
+
+
+                listItems.clear();
+                adapter.notifyDataSetChanged();
+                hideKeyboard(MessageItem_Activity.this);
+               loadRecyclerViewData();
+
+
             }
 
             @Override
@@ -238,5 +256,59 @@ ImageView sendbtn;
 
     }
 
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+
+    public void ReadMessage(){
+
+        //get the user_id
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
+        OkHttpClient client = new OkHttpClient();
+        Gson gson = new GsonBuilder()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ekaratasikenya.com/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        com.ekaratasi.ApiServiceReadMessage service = retrofit.create(com.ekaratasi.ApiServiceReadMessage.class);
+        ReadMessage readmessage = new ReadMessage();
+        readmessage.setAgentt(agent_refno.getText().toString());
+        readmessage.setCustomer(user_id);
+
+        Call<ReadMessage> call = service.insertReadMessageData(readmessage.getAgentt(), readmessage.getCustomer());
+
+        call.enqueue(new Callback<ReadMessage>() {
+            @Override
+            public void onResponse(Call<ReadMessage> call, retrofit2.Response<ReadMessage> response) {
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ReadMessage> call, Throwable t) {
+
+            }
+
+
+        });
+
+
+    }
 
 }

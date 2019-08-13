@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -39,6 +41,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
     ImageView toinvoice;
     ViewFlipper myflipper;
     Button pay,decline;
+    LinearLayout progressunseen,progresspending,progresscompleted;
 
 
 
@@ -52,6 +55,9 @@ public class TransactionItem_Activity extends AppCompatActivity {
         pay=findViewById(R.id.btnPay);
         decline=findViewById(R.id.btnDecline);
         myflipper = (ViewFlipper) findViewById(R.id.flipper);
+        progressunseen=findViewById(R.id.progressunseen);
+        progresspending=findViewById(R.id.progresspending);
+        progresscompleted=findViewById(R.id.progresscompleted);
 
 
         final ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
@@ -125,7 +131,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
             String bwcoststring=listItem.getBw_cost();
             int bwcostint=Integer.parseInt(bwcoststring);
 
-int bwtotalcost=bwpagesint * bwcostint;
+             int bwtotalcost=bwpagesint * bwcostint;
 
             bw_total.setText(Integer.toString(bwtotalcost));
 //compute c_total
@@ -168,6 +174,26 @@ int bwtotalcost=bwpagesint * bwcostint;
                 Toast.makeText(TransactionItem_Activity.this, "Payment will be initiated in a moment. Hold still", Toast.LENGTH_LONG).show();
             }
         });
+
+
+        //hide invoice if status is not pending
+        String progressstatus=progress.getText().toString();
+
+        if(progressstatus.equals("Unseen")){
+       progressunseen.setVisibility(View.VISIBLE);
+
+        }
+        else if(progressstatus.equals("Pending")){
+            progresspending.setVisibility(View.VISIBLE);
+            toinvoice.setVisibility(View.VISIBLE);
+        }
+        else if(progressstatus.equals("Completed")){
+            progresscompleted.setVisibility(View.VISIBLE);
+        }
+        else{
+
+        }
+
 
 
     }

@@ -433,9 +433,90 @@
 
                 </LinearLayout>
 
-                <!--PROGRESS STATUS-->
+                <!--PROGRESS STATUS UNSEEN-->
+                <TextView
+                    android:id="@+id/textViewProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/geomanist_regular"
+                    android:gravity="center"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textColor="#000"
+                    android:textSize="13dp" />
+
                 <LinearLayout
+                    android:id="@+id/progressunseen"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Progress Status"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+
+
+                    <ProgressBar
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:progress="0"/>
+
+
+
+                </LinearLayout>
+
+                <!--PROGRESS STATUS PENDING-->
+                <LinearLayout
+                    android:id="@+id/progresspending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/geomanist_regular"
+                        android:text="Progress Status"
+                        android:textColor="#000"
+                        android:textSize="13dp" />
+
+
+                    <ProgressBar
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="12dp"
+                        android:progressTint="#E2901A"
+                        android:layout_weight="1"
+                        android:progress="50"/>
+
+
+
+                </LinearLayout>
+
+                <!--PROGRESS STATUS COMPLETED-->
+                <LinearLayout
+                    android:id="@+id/progresscompleted"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
@@ -451,19 +532,20 @@
                         android:textColor="#000"
                         android:textSize="13dp" />
 
-                    <TextView
-                        android:id="@+id/textViewProgress"
+
+
+                    <ProgressBar
+                        style="@android:style/Widget.ProgressBar.Horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
+                        android:layout_height="12dp"
+                        android:progressTint="@color/lightgreen"
                         android:layout_weight="1"
-                        android:fontFamily="@font/geomanist_regular"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="#000"
-                        android:textSize="13dp" />
+                        android:progress="100"/>
+
+
 
                 </LinearLayout>
+
                 <!--extre STATUS-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -502,7 +584,10 @@
     android:layout_height="@dimen/_50dp"
     android:src="@drawable/invoice_"
     android:layout_marginLeft="15dp"
+    android:visibility="invisible"
     android:layout_marginBottom="@dimen/_50dp"/>
+
+
 
                 <!--<LinearLayout-->
                 <!--android:layout_width="match_parent"-->

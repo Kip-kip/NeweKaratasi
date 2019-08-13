@@ -42,8 +42,8 @@ public class Notification_Activity extends AppCompatActivity {
     private SQLiteHandler db;
 
     View loading;
-    ImageView noresultimage;
-    TextView noresulttext;
+    ImageView noresultimage,nointernet;
+    TextView noresulttext,nointernettext;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -96,7 +96,9 @@ public class Notification_Activity extends AppCompatActivity {
 
         loading=findViewById(R.id.loadingdots);
         noresultimage=findViewById(R.id.noresultimage);
+        nointernet=findViewById(R.id.nointernet);
         noresulttext=findViewById(R.id.noresulttext);
+        nointernettext=findViewById(R.id.nointernettext);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -149,6 +151,7 @@ public class Notification_Activity extends AppCompatActivity {
                             for(int i=0; i<array.length();i++){
                                 JSONObject o=array.getJSONObject(i);
                                 NotificationListItem item=new NotificationListItem(
+                                        o.getString("id"),
                                         o.getString("trans_id"),
                                         o.getString("agent_refno"),
                                         o.getString("type"),
@@ -184,12 +187,10 @@ public class Notification_Activity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
+                        loading.setVisibility(View.INVISIBLE);
 
-
-
-
-
-                        // Toast.makeText(getApplicationContext(),volleyerror.getMessage(),Toast.LENGTH_LONG).show();
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
                     }
                 });
 

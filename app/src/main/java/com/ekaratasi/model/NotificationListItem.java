@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class NotificationListItem implements Serializable {
-
+    private String id;
     private String trans_id;
     private String agent;
     private String type;
@@ -21,14 +21,24 @@ public class NotificationListItem implements Serializable {
 
 
 
-    public NotificationListItem(String trans_id, String agent , String type,
+    public NotificationListItem(String id,String trans_id, String agent , String type,
                            String message , String status,String time ) {
+        this.id = id;
         this.trans_id = trans_id;
         this.agent = agent;
         this.type = type;
         this.message = message;
         this.status = status;
         this.time = time;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTrans_id() {
