@@ -34,6 +34,7 @@ import com.ekaratasi.activities.MessageItem_Activity;
 import com.ekaratasi.activities.Message_Activity;
 import com.ekaratasi.activities.Notification_Activity;
 import com.ekaratasi.activities.PDFUpload_Activity;
+import com.ekaratasi.activities.Settings_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
 import com.ekaratasi.adapter.TotalTransactionsAdapter;
@@ -185,14 +186,9 @@ public class MainActivity extends AppCompatActivity {
         gotosettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //end session
-                session.setLogin(false);
-                //delete user
-                db.deleteUsers();
-
-                Intent it = new Intent(MainActivity.this, Activity_Login.class);
+                Intent it = new Intent(MainActivity.this, Settings_Activity.class);
                 startActivity(it);
-                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                 finish();
 
             }

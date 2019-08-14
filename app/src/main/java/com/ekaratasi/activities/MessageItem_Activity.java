@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -63,8 +64,9 @@ public class MessageItem_Activity extends AppCompatActivity {
 
     View loading;
 TextView textViewMain,agent_refno,nointernettext;
-EditText text;
+EditText text,insertagent;
 ImageView sendbtn,nointernet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,7 @@ ImageView sendbtn,nointernet;
         agent_refno=findViewById(R.id.agent_refno);
         sendbtn=findViewById(R.id.sendBtn);
         text=findViewById(R.id.textmessage);
+        insertagent=findViewById(R.id.insertagent);
 
 
         recyclerView =findViewById(R.id.recyclerView);
@@ -85,12 +88,49 @@ ImageView sendbtn,nointernet;
         nointernet=findViewById(R.id.nointernet);
         nointernettext=findViewById(R.id.nointernettext);
 
+
         listItems = new ArrayList<>();
+
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+//                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+
+        Intent intent = getIntent();
+        String indic= intent.getStringExtra("INDIC");
+
+
+        if(indic.equals("CREATE")) {
+
+
+            insertagent.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.INVISIBLE);
+
+        }
+        else{
+            final MessageListItem messagelistItem = (MessageListItem) getIntent().getExtras().getSerializable("DETAIL");
+
+            if (messagelistItem != null) {
+                textViewMain.setText(messagelistItem.getAgent_name());
+                agent_refno.setText(messagelistItem.getAgentt());
+            }
+
+            loadRecyclerViewData();
+
+        }
 
         // Adding click listener Send Message button.
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               Intent intent = getIntent();
+                String indic= intent.getStringExtra("INDIC");
+                if(indic.equals("CREATE")) {
+                    //set agent_refno from insert agent edit text
+                   agent_refno.setText(insertagent.getText().toString());
+                }
+                else{
+
+                }
 
                 SendMessage();
 
@@ -98,20 +138,7 @@ ImageView sendbtn,nointernet;
         });
 
 
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-//                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-
-
-
-        final MessageListItem messagelistItem = (MessageListItem) getIntent().getExtras().getSerializable("DETAIL");
-
-        if (messagelistItem != null) {
-            textViewMain.setText(messagelistItem.getAgent_name());
-            agent_refno.setText(messagelistItem.getAgentt());
-        }
-
-        loadRecyclerViewData();
 
         ReadMessage();
 
@@ -234,16 +261,37 @@ ImageView sendbtn,nointernet;
             public void onResponse(Call<SendMessage> call, retrofit2.Response<SendMessage> response) {
                 SendMessage tuongee=response.body();
                 String ongeleshwa=tuongee.getError_msg();
+                Integer num =Integer.parseInt(tuongee.getError());
+
+                if(num==0){
+                    Toast.makeText(MessageItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+                }
+                else {
 
 
+                    Intent intent = getIntent();
+                    String indic = intent.getStringExtra("INDIC");
 
 
-                listItems.clear();
-                adapter.notifyDataSetChanged();
-                hideKeyboard(MessageItem_Activity.this);
-               loadRecyclerViewData();
+                    if (indic.equals("CREATE")) {
 
 
+                        loadRecyclerViewData();
+                        Intent it = new Intent(MessageItem_Activity.this, Message_Activity.class);
+                            startActivity(it);
+                            overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                            finish();
+
+                    } else {
+
+                        listItems.clear();
+                        adapter.notifyDataSetChanged();
+                        hideKeyboard(MessageItem_Activity.this);
+                        loadRecyclerViewData();
+
+                    }
+
+                }
             }
 
             @Override

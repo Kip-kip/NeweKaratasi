@@ -1,14 +1,18 @@
 package com.ekaratasi.activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -18,9 +22,11 @@ import android.widget.ViewFlipper;
 
 import com.ekaratasi.ApiServicePay;
 import com.ekaratasi.MainActivity;
+import com.ekaratasi.POJO.SendMessage;
 import com.ekaratasi.POJO.UserPay;
 import com.ekaratasi.R;
 import com.ekaratasi.adapter.TransactionsAdapter;
+import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.model.ListItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,6 +48,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
     ViewFlipper myflipper;
     Button pay,decline;
     LinearLayout progressunseen,progresspending,progresscompleted;
+    private SQLiteHandler db;
 
 
 
@@ -49,7 +56,6 @@ public class TransactionItem_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_item);
-
 
         toinvoice= (ImageView) findViewById(R.id.toInvoice);
         pay=findViewById(R.id.btnPay);
@@ -170,11 +176,23 @@ public class TransactionItem_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                showDialogInitiatePayment();
+
              stkPush();
-                Toast.makeText(TransactionItem_Activity.this, "Payment will be initiated in a moment. Hold still", Toast.LENGTH_LONG).show();
+
+
             }
         });
 
+
+        decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+               showDialogDispute();
+
+                     }
+        });
 
         //hide invoice if status is not pending
         String progressstatus=progress.getText().toString();
@@ -203,11 +221,11 @@ public class TransactionItem_Activity extends AppCompatActivity {
     void stkPush() {
         /*SAVE PHONE */
         // SqLite database handler
-//        db = new SQLiteHandler(getApplicationContext());
-//
-//        // Fetching user details from sqlite
-//        HashMap<String, String> user = db.getUserDetails();
-        String phone = "0718700519"; //user.get("phone");
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String phone = user.get("phone");
         OkHttpClient client = new OkHttpClient();
         Gson gson = new GsonBuilder()
                 .create();
@@ -242,7 +260,100 @@ public class TransactionItem_Activity extends AppCompatActivity {
     }
 
 
+    private void showDialogDispute() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_dispute);
+        dialog.setCancelable(true);
 
+        final EditText et_post = dialog.findViewById(R.id.et_post);
+
+        final TextView agent_disputed = dialog.findViewById(R.id.agent_disputed);
+        agent_disputed.setText(agent.getText().toString());
+
+        ((Button) dialog.findViewById(R.id.bt_cancel)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ((Button) dialog.findViewById(R.id.bt_submit)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //send message
+
+
+
+                //get the user_id
+                // SqLite database handler
+                db = new SQLiteHandler(getApplicationContext());
+
+                // Fetching user details from sqlite
+                HashMap<String, String> user = db.getUserDetails();
+                String user_id = user.get("uid");
+
+                OkHttpClient client = new OkHttpClient();
+                Gson gson = new GsonBuilder()
+                        .create();
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://ekaratasikenya.com/")
+                        .client(client)
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .build();
+                com.ekaratasi.ApiServiceSendMessage service = retrofit.create(com.ekaratasi.ApiServiceSendMessage.class);
+                SendMessage sendmessage = new SendMessage();
+                sendmessage.setAgentt(agent.getText().toString());
+                sendmessage.setCustomer(user_id);
+                sendmessage.setSender("CUST");
+                sendmessage.setReceiver("AGE");
+                sendmessage.setText(et_post.getText().toString());
+
+                Call<SendMessage> call = service.insertMessageData(sendmessage.getAgentt(), sendmessage.getCustomer(), sendmessage.getSender(),sendmessage.getReceiver(), sendmessage.getText());
+
+                call.enqueue(new Callback<SendMessage>() {
+                    @Override
+                    public void onResponse(Call<SendMessage> call, retrofit2.Response<SendMessage> response) {
+                        SendMessage tuongee=response.body();
+                        String ongeleshwa=tuongee.getError_msg();
+                        Integer num =Integer.parseInt(tuongee.getError());
+
+                        if(num==0){
+                            Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+                        }
+                        else {
+
+
+                            Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SendMessage> call, Throwable t) {
+
+                    }
+
+
+                });
+
+
+
+            }
+        });
+        dialog.show();
+    }
+
+
+    private void showDialogInitiatePayment() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_image);
+        dialog.setCancelable(true);
+        dialog.show();
+    }
 
 
     @Override

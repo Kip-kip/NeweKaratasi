@@ -12,9 +12,11 @@
 
 <color name="colorPrimaryDark">#ffffff</color>
 <color name="colorPrimaryDarker">#99FFFFFF</color>
-<color name="colorAccent">#917022</color>
+<color name="colorAccent">#263238</color>
     <color name="mygray">#666464</color>
 <color name="textColor">#263238</color>
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_10">#e6e6e6</color>
 <color name="textColor1">#263238</color>
 <color name="textColor2">#000</color>
 <color name="textColor3">#917022</color>

@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:minHeight="?actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+             app:theme="@style/ThemeOverlay.AppCompat.Dark"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -48,7 +48,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/geomanist_regular"
-                android:text="Barry Aguiler"
+                android:text="New Message"
                 android:textColor="@color/blessings"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -56,12 +56,26 @@
                 android:id="@+id/agent_refno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/red"
                 android:visibility="invisible"
-                android:text=""/>
+                 android:text=""/>
         </android.support.v7.widget.Toolbar>
 
 
-
+        <EditText
+            android:id="@+id/insertagent"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/_50dp"
+            android:fontFamily="@font/geomanist_regular"
+            android:visibility="invisible"
+            android:hint="Type agent number"
+             android:minWidth="250dp"
+            android:textColor="#000"
+            android:textSize="15dp"
+            android:textColorHint="#5D5E5F" />
 
 
 
@@ -111,7 +125,7 @@
                 android:layout_marginTop="120dp"
                 android:alpha="0.7"
                 app:layout_constraintTop_toBottomOf="@+id/yarecyclerView"
-                android:src="@drawable/no_internet"
+                android:src="@drawable/slowinternet"
                 android:visibility="invisible" />
 
             <TextView

@@ -34,10 +34,10 @@
             android:layout_height="25.0dip"
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
-            android:background="@drawable/bg_btn_round_accept"
+            android:background="@drawable/bg_btn_round_completed"
             android:fontFamily="@font/geomanist_regular"
             android:gravity="center"
-            android:text="OK"
+            android:text="Ok"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textStyle="bold" />

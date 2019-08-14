@@ -57,6 +57,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 Intent intent = new Intent(context, MessageItem_Activity.class);
 
                 intent.putExtra("DETAIL",listItem);
+                intent.putExtra("INDIC","EXISTS");
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

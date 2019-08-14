@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,7 @@ public class Message_Activity extends AppCompatActivity {
     View loading;
     ImageView noresultimage,nointernet;
     TextView noresulttext,nointernettext;
+    FloatingActionButton fab;
     private SQLiteHandler db;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,11 +97,14 @@ public class Message_Activity extends AppCompatActivity {
 
         navigation.setItemIconTintList(null);
 
+
         loading=findViewById(R.id.loadingdots);
         noresultimage=findViewById(R.id.noresultimage);
         noresulttext=findViewById(R.id.noresulttext);
         nointernet=findViewById(R.id.nointernet);
         nointernettext=findViewById(R.id.nointernettext);
+
+        fab=findViewById(R.id.fab);
 
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -111,6 +116,26 @@ public class Message_Activity extends AppCompatActivity {
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
 //                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         loadRecyclerViewData();
+
+        // Adding click listener to FAB
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Message_Activity.this, MessageItem_Activity.class);
+
+                intent.putExtra("INDIC","CREATE");
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                Message_Activity.this.startActivity(intent);
+
+
+            }
+        });
+
+
+
     }
 
 
@@ -201,10 +226,12 @@ public class Message_Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(Message_Activity.this, MainActivity.class);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
-        finish();
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        navigation.setVisibility(View.VISIBLE);
+
 
     }
 

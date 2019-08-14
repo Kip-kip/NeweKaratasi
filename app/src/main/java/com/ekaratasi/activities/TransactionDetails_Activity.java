@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ekaratasi.POJO.ConfirmAgent;
 import com.ekaratasi.POJO.MainData;
@@ -230,7 +229,7 @@ Spinner material,bindcolor,bindoption;
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(true);
 
-        ((Button) dialog.findViewById(R.id.btnSucdone)).setOnClickListener(new View.OnClickListener() {
+        ((Button) dialog.findViewById(R.id.btnCrossC)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
