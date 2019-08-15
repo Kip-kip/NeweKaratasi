@@ -12,6 +12,7 @@ import com.ekaratasi.POJO.EditProfile;
 import com.ekaratasi.POJO.MainData;
 import com.ekaratasi.R;
 import com.ekaratasi.helper.SQLiteHandler;
+import com.ekaratasi.helper.SessionManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,6 +31,7 @@ ImageView back;
 EditText txtName,txtPhone,txtEmail;
 TextView saveprofile;
     private SQLiteHandler db;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,26 @@ TextView saveprofile;
         txtEmail=findViewById(R.id.txtEmail);
         txtPhone=findViewById(R.id.txtPhone);
         txtName=findViewById(R.id.txtName);
+
+        //get the user_id
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String name = user.get("username");
+        String phone = user.get("phone");
+        String email = user.get("created_at");
+
+
+        txtPhone.setText(phone);
+        txtName.setText(name);
+        txtEmail.setText(email);
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +84,15 @@ TextView saveprofile;
 
              EditProfile();
 
+            //end session
+                 session.setLogin(false);
+                //delete user
+                db.deleteUsers();
+
+                Intent it = new Intent(EditProfile_Activity.this, Activity_Login.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
             }
         });
 
@@ -117,6 +148,8 @@ TextView saveprofile;
 
                 }
                 else{
+
+
 
                 }
             }

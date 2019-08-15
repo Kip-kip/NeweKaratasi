@@ -45,7 +45,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Activity_Login extends AppCompatActivity {
 
 Button login;
-TextView toRegister;
+TextView toRegister,forgotpin;
 EditText emaili,passi;
     LinearLayout loadingview;
     private SessionManager session;
@@ -61,6 +61,7 @@ EditText emaili,passi;
         toRegister=findViewById(R.id.toRegister);
         emaili=findViewById(R.id.emaili);
         passi=findViewById(R.id.passi);
+        forgotpin=findViewById(R.id.txtForgotPin);
        // loadingview=findViewById(R.id.loading_view);
 
 
@@ -78,6 +79,8 @@ EditText emaili,passi;
             startActivity(intent);
             finish();
         }
+
+
 
 
 
@@ -114,10 +117,11 @@ EditText emaili,passi;
                         String returnuserid=tuongee.getReturnuserid();
                         String returnname=tuongee.getReturnname();
                         String returnphone=tuongee.getReturnphone();
+                        String returnemail=tuongee.getReturnemail();
 
                         Integer num =Integer.parseInt(tuongee.getError());
 
-                        Toast.makeText(Activity_Login.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
 
 
                         if(num==1){
@@ -128,7 +132,7 @@ EditText emaili,passi;
 //                            loadingview.setVisibility(View.GONE);
 
                             //save user data to database
-                            db.addUser(returnname, returnphone,returnuserid, "sometime");
+                            db.addUser(returnname, returnphone,returnuserid, returnemail);
                             session.setLogin(true);
                             Intent it = new Intent(Activity_Login.this, MainActivity.class);
                             startActivity(it);
@@ -143,6 +147,7 @@ EditText emaili,passi;
 //                            login.setVisibility(View.VISIBLE);
 //                            //hide loading view
 //                            loadingview.setVisibility(View.GONE);
+                            Toast.makeText(Activity_Login.this, ongeleshwa, Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -168,6 +173,18 @@ EditText emaili,passi;
             public void onClick(View v) {
 
                 Intent it = new Intent(Activity_Login.this, Activity_Register.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                finish();
+            }
+        });
+
+        //dont ave account
+        forgotpin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent it = new Intent(Activity_Login.this, ForgotPin_Activity.class);
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                 finish();

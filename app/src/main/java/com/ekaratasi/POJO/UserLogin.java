@@ -5,7 +5,7 @@ package com.ekaratasi.POJO;
  */
 
 public class UserLogin {
-    String emaili,passi,error_msg,error,returnphone,returnname,returnuserid;
+    String emaili,passi,error_msg,error,returnphone,returnname,returnuserid,returnemail;
 
 
     public String getEmaili() {
@@ -62,5 +62,13 @@ public class UserLogin {
 
     public void setReturnuserid(String returnuserid) {
         this.returnuserid = returnuserid;
+    }
+
+    public String getReturnemail() {
+        return returnemail;
+    }
+
+    public void setReturnemail(String returnemail) {
+        this.returnemail = returnemail;
     }
 }

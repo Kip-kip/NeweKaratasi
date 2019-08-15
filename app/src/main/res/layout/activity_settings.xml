@@ -36,6 +36,7 @@
                 android:layout_gravity="right|end"
                 android:layout_marginRight="20dip"
                 android:text="Log Out"
+                android:background="@drawable/ripplesmall"
                 android:id="@+id/txtLogout"
                 android:fontFamily="@font/geomanist_regular"
                 android:layout_width="wrap_content"

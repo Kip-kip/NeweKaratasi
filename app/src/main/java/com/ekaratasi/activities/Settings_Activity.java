@@ -12,9 +12,11 @@ import com.ekaratasi.R;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.helper.SessionManager;
 
+import java.util.HashMap;
+
 public class Settings_Activity extends AppCompatActivity {
 
-    TextView logout;
+    TextView logout,txtname,txtphone;
     Button editProfile;
     Button changePin,share;
     ImageView back;
@@ -33,6 +35,21 @@ public class Settings_Activity extends AppCompatActivity {
         back=findViewById(R.id.back);
         share=findViewById(R.id.share);
 
+        txtphone=findViewById(R.id.textMobileNumber);
+        txtname=findViewById(R.id.textName);
+
+
+        //get the user_id
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String name = user.get("username");
+        String phone = user.get("phone");
+
+        txtphone.setText(phone);
+        txtname.setText(name);
 
         // session manager
         session = new SessionManager(getApplicationContext());

@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
+    android:background="#000"
+    android:alpha="0.9"
     android:layout_height="match_parent">
-
 
 
     <com.flaviofaria.kenburnsview.KenBurnsView
@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.4"
-        android:src="@drawable/bg2"
+        android:src="@drawable/ekaratasimain5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.569" />
 
     <EditText
         android:id="@+id/passi"
@@ -97,16 +97,33 @@
         app:layout_constraintTop_toBottomOf="@+id/emaili"
          />
 
+    <TextView
+        android:id="@+id/txtForgotPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="8.0dip"
+         android:paddingTop="8.0dip"
+        android:text="Forgot Pin"
+        android:fontFamily="@font/geomanist_regular"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12.0sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passi" />
+
 
     <Button
         android:textStyle="bold"
-        android:layout_margin="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:textColor="@color/blessings"
         android:id="@+id/btnLogin"
         android:background="@drawable/bg_btn_round_white"
         android:layout_width="0.0dip"
         android:layout_height="35.0dip"
-        android:layout_marginTop="26.0dip"
+        android:layout_marginTop="36.0dip"
         android:text="Login"
         android:fontFamily="@font/geomanist_regular"
         android:textAllCaps="false"

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
+    android:background="#000"
+    android:alpha="0.9"
     android:layout_height="match_parent">
 
     <com.flaviofaria.kenburnsview.KenBurnsView
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.4"
-        android:src="@drawable/phone"
+        android:src="@drawable/regphone3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
