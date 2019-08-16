@@ -54,6 +54,29 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffffff"
                         android:textSize="17.0sp" />
+
+                    <ImageView
+                        android:layout_width="24.0dip"
+                        android:layout_height="24.0dip"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16.0dip"
+                        android:layout_marginEnd="16.0dip"
+                        android:onClick="stopService"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:background="@drawable/ripplesmall"
+                        app:srcCompat="@drawable/ic_notifications_off_black_24dp" />
+
+
+
+                    <TextView
+                        android:id="@+id/txt_reg_id"
+                        android:textColor="@color/red"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true" />
+
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.AppBarLayout>
 
@@ -305,11 +328,13 @@
                             android:layout_height="30.0dip"
                             android:background="@drawable/bg_btn_round"
                             android:fontFamily="@font/geomanist_regular"
+
                             android:gravity="center"
                             android:text="New Transaction"
                             android:textAllCaps="false"
                             android:textColor="#ffffffff"
                             android:textSize="12.0sp" />
+
 
                     </LinearLayout>
 
@@ -476,6 +501,8 @@
                     android:textColor="#855F5A5A"
                     android:visibility="invisible"
                     app:layout_constraintTop_toBottomOf="@+id/noresultimage" />
+
+
 
 
             </android.support.constraint.ConstraintLayout>

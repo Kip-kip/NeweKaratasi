@@ -1,22 +1,30 @@
 package com.ekaratasi;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,7 +36,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ekaratasi.POJO.EditProfile;
+import com.ekaratasi.POJO.UpdateRegid;
 import com.ekaratasi.activities.Activity_Login;
+import com.ekaratasi.activities.EditProfile_Activity;
 import com.ekaratasi.activities.InvoiceItem_Activity;
 import com.ekaratasi.activities.MessageItem_Activity;
 import com.ekaratasi.activities.Message_Activity;
@@ -39,12 +50,17 @@ import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
 import com.ekaratasi.adapter.TotalTransactionsAdapter;
 import com.ekaratasi.adapter.TransactionsAdapter;
+import com.ekaratasi.app.Config;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.helper.SessionManager;
 import com.ekaratasi.model.ListItem;
 import com.ekaratasi.model.TotalCostItem;
 import com.ekaratasi.model.TotalTransactionsItem;
+import com.ekaratasi.service.PersistService;
+import com.ekaratasi.util.NotificationUtils;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
@@ -56,6 +72,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -112,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
 
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private TextView  txtRegId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +190,14 @@ public class MainActivity extends AppCompatActivity {
         newtransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String input = "";
+
+                Intent serviceIntent = new Intent(MainActivity.this, PersistService.class);
+                serviceIntent.putExtra("inputExtra", input);
+
+                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
+
                 Intent it = new Intent(MainActivity.this, PDFUpload_Activity.class);
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
@@ -204,8 +237,30 @@ public class MainActivity extends AppCompatActivity {
         loadRecyclerViewData();
 
 
+        txtRegId =  findViewById(R.id.txt_reg_id);
 
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
 
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    // gcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+                    displayFirebaseRegId();
+
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+
+                }
+            }
+        };
+
+        displayFirebaseRegId();
+
+         UpdateRegid();
 
     }
 
@@ -483,5 +538,107 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    // Fetches reg id from shared preferences
+    // and displays on the screen
+
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+
+        //Log.e(TAG, "Firebase reg id: " + regId);
+
+        if (!TextUtils.isEmpty(regId)) {
+            txtRegId.setText("Firebase Reg Id: " + regId);
+            Toast.makeText(MainActivity.this, regId, Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Not Received", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // register GCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+        // register new push message receiver
+        // by doing this, the activity will be notified each time a new message arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.PUSH_NOTIFICATION));
+
+        // clear the notification area when the app is opened
+        NotificationUtils.clearNotifications(getApplicationContext());
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
+
+    public void UpdateRegid(){
+
+        //get the user_id
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
+        OkHttpClient client = new OkHttpClient();
+        Gson gson = new GsonBuilder()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ekaratasikenya.com/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        com.ekaratasi.ApiServiceUpdateRegid service = retrofit.create(com.ekaratasi.ApiServiceUpdateRegid.class);
+        UpdateRegid ur = new UpdateRegid();
+        ur.setId(user_id);
+        ur.setRegid(txtRegId.getText().toString());
+
+
+        Call<UpdateRegid> call = service.insertRegidData(ur.getId(),ur.getRegid());
+
+        call.enqueue(new Callback<UpdateRegid>() {
+            @Override
+            public void onResponse(Call<UpdateRegid> call, retrofit2.Response<UpdateRegid> response) {
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UpdateRegid> call, Throwable t) {
+
+            }
+
+
+        });
+
+    }
+
+    public void startService(View v) {
+               String input = "";
+
+        Intent serviceIntent = new Intent(this, PersistService.class);
+        serviceIntent.putExtra("inputExtra", input);
+
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
+
+
+    public void stopService(View v) {
+        Intent serviceIntent = new Intent(this, PersistService.class);
+        stopService(serviceIntent);
+    }
 
 }

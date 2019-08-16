@@ -51,5 +51,7 @@ dependencies {
     implementation 'com.github.satyan:sugar:1.5'
 
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.firebase:firebase-messaging:10.2.1'
 
 }
+apply plugin: 'com.google.gms.google-services'

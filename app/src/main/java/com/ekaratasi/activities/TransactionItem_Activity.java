@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.ekaratasi.R;
 import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.model.ListItem;
+import com.ekaratasi.service.PersistService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

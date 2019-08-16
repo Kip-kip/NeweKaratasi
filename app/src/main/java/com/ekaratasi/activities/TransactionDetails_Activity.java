@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +17,7 @@ import com.ekaratasi.POJO.ConfirmAgent;
 import com.ekaratasi.POJO.MainData;
 import com.ekaratasi.R;
 import com.ekaratasi.helper.SQLiteHandler;
+import com.ekaratasi.service.PersistService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -53,6 +55,15 @@ Spinner material,bindcolor,bindoption;
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /**-START SERVICE FOR NOTIFICATIONS-**/
+                String input = "";
+
+                Intent serviceIntent = new Intent(TransactionDetails_Activity.this, PersistService.class);
+                serviceIntent.putExtra("inputExtra", input);
+
+                ContextCompat.startForegroundService(TransactionDetails_Activity.this, serviceIntent);
+                /**--**/
 
                ConfirmAgent();
 
@@ -113,6 +124,7 @@ Spinner material,bindcolor,bindoption;
      //save data
 
     public void SaveData(){
+
 
         //get the user_id
         // SqLite database handler
