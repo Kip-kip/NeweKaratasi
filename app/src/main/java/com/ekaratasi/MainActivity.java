@@ -81,7 +81,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView gotosettings,noresultimage,nointernet;
+    ImageView gotosettings,noresultimage,nointernet,belloff,bellon;
 
     private SessionManager session;
     private SQLiteHandler db;
@@ -151,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
         newtransaction=findViewById(R.id.btnNewTrans);
         gotosettings=findViewById(R.id.gotosettings);
         txtwelcome=findViewById(R.id.txtWelcome);
+
+        belloff=findViewById(R.id.belloff);
+        bellon=findViewById(R.id.bellon);
 
         noresultimage=findViewById(R.id.noresultimage);
         nointernet=findViewById(R.id.nointernet);
@@ -550,11 +553,11 @@ public class MainActivity extends AppCompatActivity {
         //Log.e(TAG, "Firebase reg id: " + regId);
 
         if (!TextUtils.isEmpty(regId)) {
-            txtRegId.setText("Firebase Reg Id: " + regId);
-            Toast.makeText(MainActivity.this, regId, Toast.LENGTH_LONG).show();
+            txtRegId.setText(regId);
+           // Toast.makeText(MainActivity.this, regId, Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(MainActivity.this, "Not Received", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "Not Received", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -633,12 +636,20 @@ public class MainActivity extends AppCompatActivity {
         serviceIntent.putExtra("inputExtra", input);
 
         ContextCompat.startForegroundService(this, serviceIntent);
+
+        belloff.setVisibility(View.VISIBLE);
+        bellon.setVisibility(View.GONE);
+
     }
 
 
     public void stopService(View v) {
         Intent serviceIntent = new Intent(this, PersistService.class);
         stopService(serviceIntent);
+
+        bellon.setVisibility(View.VISIBLE);
+        belloff.setVisibility(View.GONE);
     }
+
 
 }

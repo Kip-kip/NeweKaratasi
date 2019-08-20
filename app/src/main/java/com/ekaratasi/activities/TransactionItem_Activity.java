@@ -46,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TransactionItem_Activity extends AppCompatActivity {
     TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,ccopies,
             invoice,progress,bw_pages,bw_cost,bw_total,c_pages,c_cost,c_total,total_pages,bind_cost,bind_total,ekaratasi_fee,total_cost,total_cost2;
-    ImageView toinvoice;
+    ImageView toinvoice,back;
     ViewFlipper myflipper;
     Button pay,decline;
     LinearLayout progressunseen,progresspending,progresscompleted;
@@ -66,6 +66,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
         progressunseen=findViewById(R.id.progressunseen);
         progresspending=findViewById(R.id.progresspending);
         progresscompleted=findViewById(R.id.progresscompleted);
+        back=findViewById(R.id.backk);
 
 
         final ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
@@ -170,6 +171,14 @@ public class TransactionItem_Activity extends AppCompatActivity {
         });
 
 
+        //FLIP BACKWARDS
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                myflipper.showPrevious();
+            }
+        });
 
 
 
@@ -361,7 +370,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Intent i = new Intent(TransactionItem_Activity.this, MainActivity.class);
+        Intent i = new Intent(TransactionItem_Activity.this, Transactions_Activity.class);
         startActivity(i);
         overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
         finish();

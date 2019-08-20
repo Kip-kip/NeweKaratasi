@@ -44,11 +44,11 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     private String pdfPath;
     private int pageNumber = 0;
     CardView pick;
-    TextView flname;
+    TextView flname,loadingtext;
     Button UploadButton;
     View loading;
     // Server URL.
-    public static final String PDF_UPLOAD_HTTP_URL = "http://ekaratasikenya.com/mail/server_upload_pdf.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/server_upload_pdf.php";
 
     // Pdf upload request code.
     public int PDF_REQ_CODE = 1;
@@ -73,6 +73,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         pdfView = (PDFView) findViewById(R.id.pdfView);
         UploadButton = (Button) findViewById(R.id.btnUpload);
         loading=findViewById(R.id.loadingdots);
+        loadingtext=findViewById(R.id.loadingtext);
 
         // Adding click listener to Button.
         pick.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +223,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
                 // progressDialog.dismiss();
                 loading.setVisibility(View.VISIBLE);
+                loadingtext.setVisibility(View.VISIBLE);
 
                 PdfID = "DOC-"+UUID.randomUUID().toString();
                 uploadReceiver.setDelegate(this);
@@ -263,6 +265,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     public void onCompleted(int serverResponseCode, byte[] serverResponseBody) {
         // progressDialog.dismiss();
         loading.setVisibility(View.INVISIBLE);
+        loadingtext.setVisibility(View.VISIBLE);
         Intent it = new Intent(PDFUpload_Activity.this, TransactionDetails_Activity.class);
         it.putExtra("PDF_REFNO", PdfID);
         startActivity(it);
@@ -300,11 +303,11 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
                 if (Result.length > 0 && Result[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Toast.makeText(PDFUpload_Activity.this,"Permission Granted", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(PDFUpload_Activity.this,"Permission Granted", Toast.LENGTH_LONG).show();
 
                 } else {
 
-                    Toast.makeText(PDFUpload_Activity.this,"Permission Canceled", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(PDFUpload_Activity.this,"Permission Canceled", Toast.LENGTH_LONG).show();
 
                 }
                 break;

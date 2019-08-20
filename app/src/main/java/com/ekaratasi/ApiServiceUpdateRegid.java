@@ -17,6 +17,6 @@ import retrofit2.http.POST;
 public interface ApiServiceUpdateRegid {
     @FormUrlEncoded
     @POST("eKaratasi/Refubished/BackendAffairs/update_regid.php")
-    Call<UpdateRegid> insertRegidData(@Field("id") String id, @Field("regid") String reg);
+    Call<UpdateRegid> insertRegidData(@Field("id") String id, @Field("regid") String regid);
 
 }
