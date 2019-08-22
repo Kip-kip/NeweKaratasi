@@ -266,7 +266,7 @@ Spinner material,bindcolor,bindoption;
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent it = new Intent(TransactionDetails_Activity.this, TransactionDetails_Activity.class);
+                Intent it = new Intent(TransactionDetails_Activity.this, PDFUpload_Activity.class);
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
                 finish();

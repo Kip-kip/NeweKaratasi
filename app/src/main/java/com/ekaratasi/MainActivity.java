@@ -8,6 +8,8 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -19,6 +21,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -48,12 +51,16 @@ import com.ekaratasi.activities.PDFUpload_Activity;
 import com.ekaratasi.activities.Settings_Activity;
 import com.ekaratasi.activities.TransactionItem_Activity;
 import com.ekaratasi.activities.Transactions_Activity;
+import com.ekaratasi.adapter.MessageAdapter;
+import com.ekaratasi.adapter.NotificationAdapter;
 import com.ekaratasi.adapter.TotalTransactionsAdapter;
 import com.ekaratasi.adapter.TransactionsAdapter;
 import com.ekaratasi.app.Config;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.helper.SessionManager;
 import com.ekaratasi.model.ListItem;
+import com.ekaratasi.model.MessageListItem;
+import com.ekaratasi.model.NotificationListItem;
 import com.ekaratasi.model.TotalCostItem;
 import com.ekaratasi.model.TotalTransactionsItem;
 import com.ekaratasi.service.PersistService;
@@ -133,9 +140,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
+    private List<NotificationListItem> listItemsnotif;
+    private List<MessageListItem> listItemsmessage;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private TextView  txtRegId;
+    private TextView  txtRegId,notifbadge,messagebadge;
+    private View notificationBadge;
 
 
     @Override
@@ -146,6 +156,35 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation =findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setItemIconTintList(null);
+
+
+
+
+
+
+        BottomNavigationMenuView bottomNavigationMenuView = (BottomNavigationMenuView) navigation.getChildAt(0);
+        View v = bottomNavigationMenuView.getChildAt(2);
+
+        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+
+        View badge = LayoutInflater.from(this)
+                .inflate(R.layout.notification_badge, itemView, true);
+
+
+
+        BottomNavigationMenuView bottomNavigationMenuView1 = (BottomNavigationMenuView) navigation.getChildAt(0);
+        View v1 = bottomNavigationMenuView1.getChildAt(3);
+
+        BottomNavigationItemView itemView1 = (BottomNavigationItemView) v1;
+
+        View badge1 = LayoutInflater.from(this)
+                .inflate(R.layout.message_badge, itemView1, true);
+
+
+
+        notifbadge=findViewById(R.id.notificationsbadge);
+        messagebadge=findViewById(R.id.messagesbadge);
+
 
 
         newtransaction=findViewById(R.id.btnNewTrans);
@@ -171,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         listItems = new ArrayList<>();
+        listItemsnotif = new ArrayList<>();
+        listItemsmessage = new ArrayList<>();
 
         // session manager
         session = new SessionManager(getApplicationContext());
@@ -239,6 +280,9 @@ public class MainActivity extends AppCompatActivity {
        //load transactions data
         loadRecyclerViewData();
 
+        //LOAD BADGE ICONS FOR MESSAGES AND NOTIFICATIONS
+        loadRecyclerViewDataNotifications();
+        loadRecyclerViewDataMessages();
 
         txtRegId =  findViewById(R.id.txt_reg_id);
 
@@ -444,6 +488,7 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject o=array.getJSONObject(i);
                                 ListItem item=new ListItem(
                                         o.getString("agent"),
+                                        o.getString("agent_name"),
                                         o.getString("progress_status"),
                                         o.getString("trans_refno"),
                                         o.getString("customer_refno"),
@@ -480,8 +525,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 listItems.add(item);
 
-
-
                             }
 
                             adapter=new TransactionsAdapter(listItems,getApplicationContext());
@@ -510,6 +553,172 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
+    }
+
+    private void loadRecyclerViewDataNotifications(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
+//        final ProgressDialog progressDialog=new ProgressDialog(this);
+//        progressDialog.setMessage("Loading data....");
+//        progressDialog.show();
+
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_notificationsbadge.php?user_id="+user_id+"";
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        // dismiss loadin
+                        loading.setVisibility(View.INVISIBLE);
+
+                        //show no result
+                        noresulttext.setVisibility(View.VISIBLE);
+                        noresultimage.setVisibility(View.VISIBLE);
+
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                NotificationListItem item=new NotificationListItem(
+                                        o.getString("id"),
+                                        o.getString("trans_id"),
+                                        o.getString("agent_refno"),
+                                        o.getString("agent_name"),
+                                        o.getString("type"),
+                                        o.getString("message"),
+                                        o.getString("status"),
+                                        o.getString("time")
+
+                                );
+
+                                //show recycler view and hhide no rsult
+                                recyclerView.setVisibility(View.VISIBLE);
+                                noresultimage.setVisibility(View.GONE);
+                                noresulttext.setVisibility(View.GONE);
+
+                                listItemsnotif.add(item);
+
+                                if(o.getString("status").equals("Unread")){
+
+                                  int lis=listItemsnotif.size();
+                                   notifbadge.setVisibility(View.VISIBLE);
+                                    notifbadge.setText(Integer.toString(lis));
+                                }
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+                        loading.setVisibility(View.INVISIBLE);
+
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void loadRecyclerViewDataMessages(){
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+
+
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messagesbadge.php?user_id="+user_id+"";
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+
+
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                MessageListItem item=new MessageListItem(
+                                        o.getString("agent_name"),
+                                        o.getString("agent"),
+                                        o.getString("customer"),
+                                        o.getString("sender"),
+                                        o.getString("receiver"),
+                                        o.getString("text"),
+                                        o.getString("status"),
+                                        o.getString("time")
+
+                                );
+
+
+                                listItemsmessage.add(item);
+
+
+
+                                    int lis=listItemsmessage.size();
+                                    messagebadge.setVisibility(View.VISIBLE);
+                                    messagebadge.setText(Integer.toString(lis));
+
+
+
+
+                            }
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+
+                        loading.setVisibility(View.INVISIBLE);
+
+                        nointernet.setVisibility(View.VISIBLE);
+                        nointernettext.setVisibility(View.VISIBLE);
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     private void saveListData() {

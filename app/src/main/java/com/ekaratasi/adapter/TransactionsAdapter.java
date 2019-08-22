@@ -46,7 +46,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final ListItem listItem=listItems.get(position);
-        holder.textViewName.setText(listItem.getAgent());
+        holder.textViewName.setText(listItem.getAgent_name());
         holder.textViewPayment.setText(listItem.getPayment_status());
         holder.textViewTotalCost.setText("KES " +listItem.getTotal_cost());
         holder.textViewTime.setText(listItem.getTime_stamp());
@@ -63,8 +63,6 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         else{
 
         }
-
-
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override

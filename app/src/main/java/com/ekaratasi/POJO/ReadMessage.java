@@ -5,7 +5,7 @@ package com.ekaratasi.POJO;
  */
 
 public class ReadMessage {
-    String agentt,customer;
+    String agentt,customer,error_msg,error;
 
     public String getAgentt() {
         return agentt;
@@ -23,5 +23,19 @@ public class ReadMessage {
         this.customer = customer;
     }
 
+    public String getError_msg() {
+        return error_msg;
+    }
 
+    public void setError_msg(String error_msg) {
+        this.error_msg = error_msg;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 }

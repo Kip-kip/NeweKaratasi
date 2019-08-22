@@ -11,6 +11,7 @@ public class NotificationListItem implements Serializable {
     private String id;
     private String trans_id;
     private String agent;
+    private String agent_name;
     private String type;
     private String message;
     private String status;
@@ -21,11 +22,12 @@ public class NotificationListItem implements Serializable {
 
 
 
-    public NotificationListItem(String id,String trans_id, String agent , String type,
+    public NotificationListItem(String id,String trans_id, String agent , String agent_name, String type,
                            String message , String status,String time ) {
         this.id = id;
         this.trans_id = trans_id;
         this.agent = agent;
+        this.agent_name=agent_name;
         this.type = type;
         this.message = message;
         this.status = status;
@@ -55,6 +57,10 @@ public class NotificationListItem implements Serializable {
 
     public void setAgent(String agent) {
         this.agent = agent;
+    }
+
+    public String getAgent_name() {
+        return agent_name;
     }
 
     public String getType() {

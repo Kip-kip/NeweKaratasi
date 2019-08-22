@@ -3,10 +3,13 @@ package com.ekaratasi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,7 +46,7 @@ public class Notification_Activity extends AppCompatActivity {
 
     View loading;
     ImageView noresultimage,nointernet;
-    TextView noresulttext,nointernettext;
+    TextView noresulttext,nointernettext,notifbadge;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -93,6 +96,9 @@ public class Notification_Activity extends AppCompatActivity {
 
         navigation.setItemIconTintList(null);
 
+
+
+        notifbadge=findViewById(R.id.notificationsbadge);
         loading=findViewById(R.id.loadingdots);
         noresultimage=findViewById(R.id.noresultimage);
         nointernet=findViewById(R.id.nointernet);
@@ -153,6 +159,7 @@ public class Notification_Activity extends AppCompatActivity {
                                         o.getString("id"),
                                         o.getString("trans_id"),
                                         o.getString("agent_refno"),
+                                        o.getString("agent_name"),
                                         o.getString("type"),
                                         o.getString("message"),
                                         o.getString("status"),
@@ -167,7 +174,6 @@ public class Notification_Activity extends AppCompatActivity {
 
 
                                 listItems.add(item);
-
 
 
                             }

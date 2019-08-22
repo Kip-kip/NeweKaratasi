@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ekaratasi.R;
@@ -51,6 +52,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.textViewTime.setText(listItem.getTime());
 
 
+
+        if((listItem.getStatus().equals("Unread")) && (listItem.getSender().equals("AGE"))) {
+        holder.btnUnread.setVisibility(View.VISIBLE);
+        }
+        else{
+
+        }
+
+
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +90,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public TextView textViewSender;
         public TextView textViewTime;
         public ConstraintLayout card;
+        public Button btnUnread;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +98,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             textViewText=itemView.findViewById(R.id.textViewText);
             textViewSender= itemView.findViewById(R.id.textViewSender);
             textViewTime= itemView.findViewById(R.id.textViewTime);
+            btnUnread=itemView.findViewById(R.id.btnUnread);
             card= itemView.findViewById(R.id.messagedatalist);
 
 

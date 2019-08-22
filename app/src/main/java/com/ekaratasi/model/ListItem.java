@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class ListItem implements Serializable {
 
     private String agent;
+    private String agent_name;
     private String trans_refno;
     private String customer_refno;
     private String phone;
@@ -37,12 +38,13 @@ public class ListItem implements Serializable {
 
 
 
-    public ListItem(String agent, String progress_status ,
+    public ListItem(String agent, String agent_name, String progress_status ,
                     String trans_refno , String customer_refno , String phone,
                     String material, String bind_type, String bind_color,
                     String copies, String instructions , String payment_status, String invoice_status, String time_stamp, String bw_pages, String bw_cost,
                     String c_pages, String c_cost, String total_pages, String bind_cost,String total_cost, String ekaratasi_fee) {
         this.agent = agent;
+        this.agent_name=agent_name;
         this.progress_status=progress_status;
         this.trans_refno = trans_refno;
         this.customer_refno =customer_refno;
@@ -69,6 +71,11 @@ public class ListItem implements Serializable {
     public String getAgent() {
         return agent;
     }
+
+    public String getAgent_name() {
+        return agent_name;
+    }
+
 
     public String getProgress() {
         return progress_status;

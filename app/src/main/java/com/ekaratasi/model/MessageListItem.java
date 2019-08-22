@@ -14,6 +14,7 @@ public class MessageListItem implements Serializable {
     private String sender;
     private String receiver;
     private String text;
+    private String status;
     private String time;
 
 
@@ -22,13 +23,14 @@ public class MessageListItem implements Serializable {
 
 
     public MessageListItem(String agent_name, String agentt, String customer, String sender, String receiver ,
-                    String text ,String time ) {
+                    String text ,String status, String time ) {
         this.agent_name = agent_name;
         this.agentt = agentt;
         this.customer = customer;
         this.sender = sender;
         this.receiver = receiver;
         this.text = text;
+        this.status = status;
         this.time = time;
 }
 
@@ -42,6 +44,14 @@ public class MessageListItem implements Serializable {
 
     public String getText() {
         return text;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getTime() {

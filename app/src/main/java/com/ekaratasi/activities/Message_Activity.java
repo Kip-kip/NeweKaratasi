@@ -181,6 +181,7 @@ public class Message_Activity extends AppCompatActivity {
                                         o.getString("sender"),
                                         o.getString("receiver"),
                                         o.getString("text"),
+                                        o.getString("status"),
                                         o.getString("time")
 
                                 );

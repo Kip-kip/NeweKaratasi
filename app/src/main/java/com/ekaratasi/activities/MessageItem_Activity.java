@@ -337,13 +337,13 @@ ImageView sendbtn,nointernet;
         ReadMessage readmessage = new ReadMessage();
         readmessage.setAgentt(agent_refno.getText().toString());
         readmessage.setCustomer(user_id);
-
         Call<ReadMessage> call = service.insertReadMessageData(readmessage.getAgentt(), readmessage.getCustomer());
 
         call.enqueue(new Callback<ReadMessage>() {
             @Override
             public void onResponse(Call<ReadMessage> call, retrofit2.Response<ReadMessage> response) {
-
+                ReadMessage tuongee=response.body();
+                String ongeleshwa=tuongee.getError_msg();
 
 
             }

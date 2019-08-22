@@ -17,79 +17,60 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/email2" />
+            android:src="@drawable/sad" />
 
-        <android.support.v7.widget.CardView
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E8B97973" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="@dimen/spacing_large"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="22dp"
-            app:cardElevation="1dp">
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/spacing_mlarge"
+            android:gravity="end"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_xlarge"
+            android:paddingLeft="@dimen/spacing_xlarge"
+            android:paddingStart="@dimen/spacing_xlarge">
 
             <TextView
-                android:id="@+id/passmes"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:gravity="center"
-                android:textColor="@color/blessings"
-                android:text="Oops! Something went a miss. Kindly try again"/>
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/spacing_middle"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp">
+                android:gravity="end"
+                android:text="An error occurred during the process. Please try again"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/white"
+                app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-Agent"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/white"
+                android:textStyle="italic"
+                app:fontFamily="serif" />
 
 
-                <Button
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:id="@+id/btnFailDone"
-                    android:background="@drawable/bg_btn_round_dispute"
-                    android:backgroundTint="@color/blessings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25.0dip"
-                    android:layout_marginTop="46.0dip"
-                    android:text="Done"
-                    android:layout_weight="2"
-                    android:fontFamily="@font/geomanist_regular"
-                    android:textAllCaps="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/btnFailDone"
+                android:layout_width="wrap_content"
+                android:layout_height="25.0dip"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_btn_round_completed"
+                android:fontFamily="@font/geomanist_regular"
+                android:gravity="center"
+                android:text="Ok"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
 
-
-
-
-
-
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/spacing_large"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="1dp">
-
-            <View
-                android:layout_width="@dimen/spacing_mxlarge"
-                android:layout_height="6dp" />
-
-        </android.support.v7.widget.CardView>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -127,11 +127,10 @@ public class TransactionItem_Activity extends AppCompatActivity {
                    total_pages.setText(listItem.getTotal_pages());
                     bind_cost.setText(listItem.getBind_cost());
                     bind_total.setText(listItem.getBind_cost());
-                   total_cost.setText(listItem.getTotal_cost());
-                  total_cost2.setText(listItem.getTotal_cost());
+                   total_cost.setText("KES "+listItem.getTotal_cost());
+                  total_cost2.setText("KES "+listItem.getTotal_cost());
                    ekaratasi_fee.setText((listItem.getEkaratasi_fee()));
                    ccopies.setText(listItem.getCopies());
-
 
 
 //compute bw_total

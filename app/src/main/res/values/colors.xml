@@ -26,5 +26,6 @@
     <color name="lessblessings">#637783</color>
     <color name="green">#174206</color>
     <color name="lightgreen">#387C1E</color>
-    <color name="red">#86060B</color>
+    <color name="webred">#86060B</color>
+    <color name="red">#dd4b39</color>
 </resources>

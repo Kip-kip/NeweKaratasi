@@ -14,7 +14,7 @@
         android:layout_marginStart="10.0dip"
         android:layout_marginTop="20.0dip"
         android:layout_marginBottom="10.0dip"
-        android:src="@drawable/icon_transfer"
+        android:src="@drawable/notification_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -68,12 +68,12 @@
 
     <Button
         android:id="@+id/btnUnread"
-        android:layout_width="50dp"
+        android:layout_width="20dp"
         android:layout_height="15.0dip"
         android:layout_marginBottom="4dp"
         android:background="@drawable/bg_btn_round_completed"
         android:fontFamily="@font/geomanist_regular"
-        android:text="Unread"
+        android:text="1"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="10dp"

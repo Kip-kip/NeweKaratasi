@@ -12,12 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ekaratasi.MainActivity;
+import com.ekaratasi.POJO.EditProfile;
 import com.ekaratasi.POJO.ReadNotification;
 import com.ekaratasi.R;
+import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.model.MessageListItem;
 import com.ekaratasi.model.NotificationListItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -49,6 +53,7 @@ public class NotificationItem_Activity extends AppCompatActivity {
 
 
 
+
         }
 
         ReadNotification();
@@ -73,11 +78,17 @@ public class NotificationItem_Activity extends AppCompatActivity {
         ReadNotification rn = new ReadNotification();
         rn.setId(id.getText().toString());
 
+
         Call<ReadNotification> call = service.insertReadNotifData(rn.getId());
 
         call.enqueue(new Callback<ReadNotification>() {
             @Override
             public void onResponse(Call<ReadNotification> call, Response<ReadNotification> response) {
+                ReadNotification tuongee=response.body();
+                String ongeleshwa=tuongee.getError_msg();
+
+                Integer num =Integer.parseInt(tuongee.getError());
+
 
             }
 
