@@ -235,12 +235,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String input = "";
-
-                Intent serviceIntent = new Intent(MainActivity.this, PersistService.class);
-                serviceIntent.putExtra("inputExtra", input);
-
-                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
 
                 Intent it = new Intent(MainActivity.this, PDFUpload_Activity.class);
                 startActivity(it);
@@ -309,11 +303,19 @@ public class MainActivity extends AppCompatActivity {
 
          UpdateRegid();
 
+
+
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
+
     }
 
     @Override
     public void onBackPressed() {
-    saveListData();
+
+
+        finish();
 
     }
 

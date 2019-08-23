@@ -21,8 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.ekaratasi.ApiServiceCancelTrans;
+import com.ekaratasi.ApiServiceCheckLeastTrans;
 import com.ekaratasi.ApiServicePay;
 import com.ekaratasi.MainActivity;
+import com.ekaratasi.POJO.CancelTrans;
+import com.ekaratasi.POJO.CheckLeastTrans;
 import com.ekaratasi.POJO.SendMessage;
 import com.ekaratasi.POJO.UserPay;
 import com.ekaratasi.R;
@@ -74,8 +78,8 @@ public class TransactionItem_Activity extends AppCompatActivity {
         if (listItem != null) {
 
 //            acquire from layout TRANSACTION.XML
-           agent = (TextView) findViewById(R.id.textViewAgent);
-           trans_refno = (TextView) findViewById(R.id.textViewTransRefno);
+            agent = (TextView) findViewById(R.id.textViewAgent);
+            trans_refno = (TextView) findViewById(R.id.textViewTransRefno);
             customer_refno = (TextView) findViewById(R.id.textViewCustRefno);
             material = (TextView) findViewById(R.id.textViewMaterial);
             bind_color = (TextView) findViewById(R.id.textViewBindColor);
@@ -120,17 +124,17 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
 
             //SET TEXT VIEWS TO VALUES ON INVOICE ACTIVITY
-                  bw_pages.setText(listItem.getBw_pages());
-                    bw_cost.setText(listItem.getBw_cost());
-                    c_pages.setText(listItem.getC_pages());
-                    c_cost.setText(listItem.getC_cost());
-                   total_pages.setText(listItem.getTotal_pages());
-                    bind_cost.setText(listItem.getBind_cost());
-                    bind_total.setText(listItem.getBind_cost());
-                   total_cost.setText("KES "+listItem.getTotal_cost());
-                  total_cost2.setText("KES "+listItem.getTotal_cost());
-                   ekaratasi_fee.setText((listItem.getEkaratasi_fee()));
-                   ccopies.setText(listItem.getCopies());
+            bw_pages.setText(listItem.getBw_pages());
+            bw_cost.setText(listItem.getBw_cost());
+            c_pages.setText(listItem.getC_pages());
+            c_cost.setText(listItem.getC_cost());
+            total_pages.setText(listItem.getTotal_pages());
+            bind_cost.setText(listItem.getBind_cost());
+            bind_total.setText(listItem.getBind_cost());
+            total_cost.setText("KES "+listItem.getTotal_cost());
+            total_cost2.setText("KES "+listItem.getTotal_cost());
+            ekaratasi_fee.setText((listItem.getEkaratasi_fee()));
+            ccopies.setText(listItem.getCopies());
 
 
 //compute bw_total
@@ -139,7 +143,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
             String bwcoststring=listItem.getBw_cost();
             int bwcostint=Integer.parseInt(bwcoststring);
 
-             int bwtotalcost=bwpagesint * bwcostint;
+            int bwtotalcost=bwpagesint * bwcostint;
 
             bw_total.setText(Integer.toString(bwtotalcost));
 //compute c_total
@@ -181,14 +185,15 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
 
 
-                      //PAYMENT----GO AHEAD WITH PAY ----initiate STK push
+        //PAYMENT----GO AHEAD WITH PAY ----initiate STK push
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 showDialogInitiatePayment();
 
-             stkPush();
+             checkLeastTrans();
+
 
 
             }
@@ -199,16 +204,16 @@ public class TransactionItem_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               showDialogDispute();
+                showDialogDispute();
 
-                     }
+            }
         });
 
         //hide invoice if status is not pending
         String progressstatus=progress.getText().toString();
 
         if(progressstatus.equals("Unseen")){
-       progressunseen.setVisibility(View.VISIBLE);
+            progressunseen.setVisibility(View.VISIBLE);
 
         }
         else if(progressstatus.equals("Pending")){
@@ -227,8 +232,67 @@ public class TransactionItem_Activity extends AppCompatActivity {
     }
 
 
+    public void checkLeastTrans() {
+        /*SAVE PHONE */
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String phone = user.get("phone");
+        OkHttpClient client = new OkHttpClient();
+        Gson gson = new GsonBuilder()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ekaratasikenya.com/" )
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        ApiServiceCheckLeastTrans service = retrofit.create(ApiServiceCheckLeastTrans.class);
+        CheckLeastTrans clt = new CheckLeastTrans();
+        clt.setPhonenum(phone);
+        clt.setTrans_refno(trans_refno.getText().toString());
+        Call<CheckLeastTrans> call = service.insertLeastTransData(clt.getPhonenum(), clt.getTrans_refno());
+
+        call.enqueue(new Callback<CheckLeastTrans>() {
+            @Override
+            public void onResponse(Call<CheckLeastTrans> call, Response<CheckLeastTrans> response) {
+                CheckLeastTrans tuongee=response.body();
+                String ongeleshwa=tuongee.getError_msg();
+
+                Integer num =Integer.parseInt(tuongee.getError());
+
+
+                if(num==1){
+
+                    stkPush();
+
+                    Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
+                }
+                else{
+
+                    showDialogFailedCheck();
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckLeastTrans> call, Throwable t) {
+
+            }
+
+
+        });
+
+    }
+
+
     /*FUNCTION INSERTING INTO PAYMENT_RECORD TABLE*/
-    void stkPush() {
+    public void stkPush() {
         /*SAVE PHONE */
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -249,12 +313,12 @@ public class TransactionItem_Activity extends AppCompatActivity {
         UserPay userpay = new UserPay();
         userpay.setPhone(phone);
         userpay.setCash(total_cost.getText().toString());
-        userpay.setTrans_refno(trans_refno.getText().toString());
-        Call<UserPay> call = service.insertPaymentData(userpay.getPhone(), userpay.getCash(), userpay.getTrans_refno());
+        Call<UserPay> call = service.insertPaymentData(userpay.getPhone(), userpay.getCash());
 
         call.enqueue(new Callback<UserPay>() {
             @Override
             public void onResponse(Call<UserPay> call, Response<UserPay> response) {
+
 
 
             }
@@ -365,7 +429,63 @@ public class TransactionItem_Activity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void showDialogFailedCheck() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_failure_check);
+        dialog.setCancelable(true);
+        dialog.show();
+    }
 
+
+    public void cancelTrans(){
+
+        OkHttpClient client = new OkHttpClient();
+        Gson gson = new GsonBuilder()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ekaratasikenya.com/" )
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        ApiServiceCancelTrans service = retrofit.create(ApiServiceCancelTrans.class);
+        CancelTrans cl = new CancelTrans();
+
+        cl.setTrans_refno(trans_refno.getText().toString());
+        Call<CancelTrans> call = service.insertCancelData(cl.getTrans_refno());
+
+        call.enqueue(new Callback<CancelTrans>() {
+            @Override
+            public void onResponse(Call<CancelTrans> call, Response<CancelTrans> response) {
+                CancelTrans tuongee=response.body();
+                String ongeleshwa=tuongee.getError_msg();
+
+                Integer num =Integer.parseInt(tuongee.getError());
+
+
+                if(num==1){
+
+                    Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+
+                }
+                else{
+
+                    showDialogFailedCheck();
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CancelTrans> call, Throwable t) {
+
+            }
+
+
+        });
+    }
     @Override
     public void onBackPressed() {
 

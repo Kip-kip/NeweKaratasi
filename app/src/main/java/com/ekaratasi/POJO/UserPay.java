@@ -5,7 +5,7 @@ package com.ekaratasi.POJO;
  */
 
 public class UserPay {
-    String phone,cash,trans_refno;
+    String phone,cash;
     public String getPhone() {
         return phone;
     }
@@ -21,11 +21,5 @@ public class UserPay {
         this.cash = cash;
     }
 
-    public String getTrans_refno() {
-        return trans_refno;
-    }
 
-    public void setTrans_refno(String trans_refno) {
-        this.trans_refno = trans_refno;
-    }
 }

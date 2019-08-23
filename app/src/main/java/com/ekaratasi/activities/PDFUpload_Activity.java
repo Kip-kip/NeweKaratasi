@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     private int pageNumber = 0;
     CardView pick;
     TextView flname,loadingtext;
+    ImageView retry;
     Button UploadButton;
     View loading;
     // Server URL.
@@ -74,6 +76,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         UploadButton = (Button) findViewById(R.id.btnUpload);
         loading=findViewById(R.id.loadingdots);
         loadingtext=findViewById(R.id.loadingtext);
+        retry=findViewById(R.id.retry);
 
         // Adding click listener to Button.
         pick.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +105,20 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
                 // Calling method to upload PDF on server.
                 PdfUploadFunction();
+
+            }
+        });
+
+        // Refresh page
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(PDFUpload_Activity.this,PDFUpload_Activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                    finish();
+
 
             }
         });
@@ -316,10 +333,13 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(PDFUpload_Activity.this, MainActivity.class);
-        startActivity(i);
+
+        Intent it = new Intent(PDFUpload_Activity.this, MainActivity.class);
+        startActivity(it);
         overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
         finish();
+
+
 
     }
 

@@ -51,6 +51,25 @@ Spinner material,bindcolor,bindoption;
 
         SubmitButton = (Button) findViewById(R.id.btnSubmit);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Adding click listener toSubmit button.
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,5 +294,16 @@ Spinner material,bindcolor,bindoption;
 
         dialog.show();
     }
+
+    public void onBackPressed() {
+        Intent i = new Intent(TransactionDetails_Activity.this, PDFUpload_Activity.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
+
+
+
+    }
+
 
 }

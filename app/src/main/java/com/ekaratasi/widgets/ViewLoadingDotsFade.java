@@ -99,18 +99,18 @@ public class ViewLoadingDotsFade extends LinearLayout {
             animateView(true);
         }
     }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        for (int i = 0; i < OBJECT_SIZE; i++) {
-            if (animator[i].isRunning()) {
-                animator[i].removeAllListeners();
-                animator[i].end();
-                animator[i].cancel();
-            }
-        }
-    }
+//
+//    @Override
+//    protected void onDetachedFromWindow() {
+//        super.onDetachedFromWindow();
+//        for (int i = 0; i < OBJECT_SIZE; i++) {
+//            if (animator[i].isRunning()) {
+//                animator[i].removeAllListeners();
+//                animator[i].end();
+//                animator[i].cancel();
+//            }
+//        }
+//    }
 
     private void animateView(final boolean show) {
         animator = new ObjectAnimator[OBJECT_SIZE];

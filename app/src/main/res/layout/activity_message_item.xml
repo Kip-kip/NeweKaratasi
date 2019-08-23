@@ -148,7 +148,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#ffffff"
             android:orientation="horizontal">
@@ -158,18 +158,22 @@
                 android:id="@+id/textmessage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/geomanist_regular"
                 android:hint="Write a reply"
-                android:minWidth="250dp"
+                android:inputType="text|textMultiLine|textCapSentences"
+                 android:lines="4"
+                android:gravity="left"
+                android:maxLines="8"
                 android:textColor="#000"
                 android:textColorHint="#ced5db" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-
+                android:layout_weight="0"
                 android:gravity="right">
 
                 <ImageView
@@ -178,10 +182,9 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_send_black_24dp"
                     android:background="@drawable/ripple"
+                    android:src="@drawable/ic_send_black_24dp"
                     android:tint="#968E8E" />
-
 
 
             </LinearLayout>
