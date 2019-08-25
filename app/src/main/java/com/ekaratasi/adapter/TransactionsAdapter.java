@@ -49,7 +49,10 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         holder.textViewName.setText(listItem.getAgent_name());
         holder.textViewPayment.setText(listItem.getPayment_status());
         holder.textViewTotalCost.setText("KES " +listItem.getTotal_cost());
-        holder.textViewTime.setText(listItem.getTime_stamp());
+
+        String date=listItem.getTime_stamp();
+        //shorten date
+        holder.textViewTime.setText(date.substring(0,date.length()-3));
         //DETERMINE STATUS BUTTONS
         if(listItem.getProgress().equals("Unseen")){
             holder.btnunseen.setVisibility(View.VISIBLE);
@@ -59,6 +62,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         }
         else if(listItem.getProgress().equals("Completed")) {
             holder.btncompleted.setVisibility(View.VISIBLE);
+        }
+        else if(listItem.getProgress().equals("Cancelled")) {
+            holder.btncancelled.setVisibility(View.VISIBLE);
         }
         else{
 
@@ -92,7 +98,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         public TextView textViewPayment;
         public TextView textViewTotalCost;
         public TextView textViewTime;
-        Button btnpending,btncompleted,btnunseen;
+        Button btnpending,btncompleted,btnunseen,btncancelled;
         public ConstraintLayout card;
 
         public ViewHolder(View itemView) {
@@ -106,6 +112,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
             btncompleted=itemView.findViewById(R.id.btnCompleted);
             btnpending=itemView.findViewById(R.id.btnPending);
             btnunseen=itemView.findViewById(R.id.btnUnseen);
+            btncancelled=itemView.findViewById(R.id.btnCancelled);
 
             card= itemView.findViewById(R.id.datalist);
 

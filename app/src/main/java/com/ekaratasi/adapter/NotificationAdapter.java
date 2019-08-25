@@ -63,7 +63,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         final NotificationListItem listItem=listItems.get(position);
         holder.textViewAgent.setText(listItem.getAgent_name());
         holder.textViewText.setText(listItem.getMessage());
-        holder.textViewTime.setText(listItem.getTime());
+
+        String date=listItem.getTime();
+        //shorten date
+        holder.textViewTime.setText(date.substring(0,date.length()-3));
+
 
 
         //DETERMINE STATUS BUTTONS

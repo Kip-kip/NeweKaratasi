@@ -32,6 +32,7 @@ public class ListItem implements Serializable {
     private String bind_cost;
     private String total_cost;
     private String ekaratasi_fee;
+    private String doc_path;
 
 
 
@@ -42,7 +43,7 @@ public class ListItem implements Serializable {
                     String trans_refno , String customer_refno , String phone,
                     String material, String bind_type, String bind_color,
                     String copies, String instructions , String payment_status, String invoice_status, String time_stamp, String bw_pages, String bw_cost,
-                    String c_pages, String c_cost, String total_pages, String bind_cost,String total_cost, String ekaratasi_fee) {
+                    String c_pages, String c_cost, String total_pages, String bind_cost,String total_cost, String ekaratasi_fee, String doc_path) {
         this.agent = agent;
         this.agent_name=agent_name;
         this.progress_status=progress_status;
@@ -65,6 +66,7 @@ public class ListItem implements Serializable {
         this.bind_cost = bind_cost;
         this.total_cost = total_cost;
         this.ekaratasi_fee =ekaratasi_fee;
+        this.doc_path =doc_path;
     }
 
 
@@ -187,6 +189,14 @@ public class ListItem implements Serializable {
 
     public void setEkaratasi_fee(String ekaratasi_fee) {
         this.ekaratasi_fee = ekaratasi_fee;
+    }
+
+    public String getDoc_path() {
+        return doc_path;
+    }
+
+    public void setDoc_path(String doc_path) {
+        this.doc_path = doc_path;
     }
 }
 

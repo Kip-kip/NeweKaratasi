@@ -73,12 +73,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:textColor="@color/blessings"
             android:fontFamily="@font/geomanist_regular"
             android:layout_marginLeft="10dp"
+            android:textAlignment="center"
             android:visibility="gone"
-            android:text="Uploading your document, view progress on notification tray. If you are not redirected after a short while check your internet connection and try again."/>
+            android:text="Uploading your document, view progress on notification tray. If you are not redirected after a short while check your internet connection and click retry icon above."/>
 
 
     <com.github.barteksc.pdfviewer.PDFView

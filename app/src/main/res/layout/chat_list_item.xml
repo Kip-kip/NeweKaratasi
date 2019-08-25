@@ -57,6 +57,17 @@
                         android:textColor="#616e7f"
                         android:text="" />
 
+                    <TextView
+                        android:id="@+id/datetime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:layout_gravity="right"
+                        android:textSize="10dp"
+                        android:textColor="#616e7f"
+                        />
+
 
                 </LinearLayout>
 
@@ -99,6 +110,16 @@
                         android:fontFamily="@font/geomanist_regular"
                         android:text="too close"
                         android:textColor="#E9FFFFFF" />
+                    <TextView
+                        android:id="@+id/datetime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text=""
+                        android:textSize="10dp"
+                        android:layout_gravity="right"
+                        android:textColor="#E9FFFFFF"
+                        />
 
 
                 </LinearLayout>

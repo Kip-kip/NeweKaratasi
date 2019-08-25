@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -50,10 +51,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TransactionItem_Activity extends AppCompatActivity {
     TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,ccopies,
             invoice,progress,bw_pages,bw_cost,bw_total,c_pages,c_cost,c_total,total_pages,bind_cost,bind_total,ekaratasi_fee,total_cost,total_cost2;
-    ImageView toinvoice,back;
+    ImageView toinvoice,back,tocancel,viewpdf;
     ViewFlipper myflipper;
     Button pay,decline;
-    LinearLayout progressunseen,progresspending,progresscompleted;
+    LinearLayout progressunseen,progresspending,progresscompleted,progresscancelled;
+    TextView doc_path;
     private SQLiteHandler db;
 
 
@@ -64,13 +66,17 @@ public class TransactionItem_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_transaction_item);
 
         toinvoice= (ImageView) findViewById(R.id.toInvoice);
+        tocancel=findViewById(R.id.toCancel);
+        viewpdf=findViewById(R.id.viewpdf);
         pay=findViewById(R.id.btnPay);
         decline=findViewById(R.id.btnDecline);
         myflipper = (ViewFlipper) findViewById(R.id.flipper);
         progressunseen=findViewById(R.id.progressunseen);
         progresspending=findViewById(R.id.progresspending);
         progresscompleted=findViewById(R.id.progresscompleted);
+        progresscancelled=findViewById(R.id.progresscancelled);
         back=findViewById(R.id.backk);
+        doc_path=findViewById(R.id.doc_path);
 
 
         final ListItem listItem = (ListItem) getIntent().getExtras().getSerializable("DETAIL");
@@ -120,6 +126,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
             payment.setText(listItem.getPayment_status());
             invoice.setText(listItem.getInvoice_status());
             progress.setText(listItem.getProgress());
+            doc_path.setText(listItem.getDoc_path());
 
 
 
@@ -163,6 +170,21 @@ public class TransactionItem_Activity extends AppCompatActivity {
         }
 
 
+        //VIEW PDF
+        final String pdflink=doc_path.getText().toString();
+        viewpdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse( "http://docs.google.com/viewer?url=" + pdflink), "text/html");
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
         //TO INVOICE
         toinvoice.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +195,15 @@ public class TransactionItem_Activity extends AppCompatActivity {
             }
         });
 
+        //CANCEL TRANSACTION
+        tocancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showDialogConfirmCancel();
+
+            }
+        });
 
         //FLIP BACKWARDS
         back.setOnClickListener(new View.OnClickListener() {
@@ -211,20 +242,34 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
         //hide invoice if status is not pending
         String progressstatus=progress.getText().toString();
+        String paymentstatus=payment.getText().toString();
+        String invoicestatus=invoice.getText().toString();
 
         if(progressstatus.equals("Unseen")){
             progressunseen.setVisibility(View.VISIBLE);
 
         }
-        else if(progressstatus.equals("Pending")){
-            progresspending.setVisibility(View.VISIBLE);
-            toinvoice.setVisibility(View.VISIBLE);
-        }
         else if(progressstatus.equals("Completed")){
             progresscompleted.setVisibility(View.VISIBLE);
+            tocancel.setVisibility(View.INVISIBLE);
+        }
+        else if(progressstatus.equals("Cancelled")){
+            progresscancelled.setVisibility(View.VISIBLE);
+            tocancel.setVisibility(View.INVISIBLE);
         }
         else{
 
+        }
+
+
+         if((progressstatus.equals("Pending"))&&(paymentstatus.equals("Not Paid")) && (invoicestatus.equals("Sent"))){
+
+            toinvoice.setVisibility(View.VISIBLE);
+        }
+
+
+        if(paymentstatus.equals("Paid")){
+            tocancel.setVisibility(View.INVISIBLE);
         }
 
 
@@ -466,12 +511,12 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
                 if(num==1){
 
-                    Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+                   showDialogCancelSuccess();
 
                 }
                 else{
 
-                    showDialogFailedCheck();
+
 
 
                 }
@@ -486,6 +531,43 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
         });
     }
+
+    private void showDialogCancelSuccess(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_success_cancel);
+        dialog.setCancelable(true);
+
+
+        dialog.show();
+    }
+
+    private void showDialogConfirmCancel(){
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_confirmcancel);
+        dialog.setCancelable(true);
+
+        ((Button) dialog.findViewById(R.id.btno)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ((Button) dialog.findViewById(R.id.btyes)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cancelTrans();
+
+
+            }
+        });
+        dialog.show();
+    }
+
+
     @Override
     public void onBackPressed() {
 

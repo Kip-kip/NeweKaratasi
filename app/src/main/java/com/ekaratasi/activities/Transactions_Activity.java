@@ -195,7 +195,8 @@ public class Transactions_Activity extends AppCompatActivity {
                                         o.getString("total_pages"),
                                         o.getString("bind_cost"),
                                         o.getString("total_cost"),
-                                        o.getString("ekaratasi_fee")
+                                        o.getString("ekaratasi_fee"),
+                                        o.getString("doc_path")
 
 
 
