@@ -139,6 +139,7 @@
         android:textColor="@color/white"
         android:textSize="10dp"
         android:textStyle="bold"
+        android:backgroundTint="#00c0ef"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textViewPayment"
         app:layout_constraintEnd_toEndOf="parent"

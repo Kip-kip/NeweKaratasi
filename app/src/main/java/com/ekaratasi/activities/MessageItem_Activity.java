@@ -133,7 +133,8 @@ ImageView sendbtn,nointernet;
                 }
 
                 SendMessage();
-
+               //clear edit text
+                text.setText("");
             }
         });
 
