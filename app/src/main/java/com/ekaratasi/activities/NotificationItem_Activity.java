@@ -40,6 +40,8 @@ public class NotificationItem_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_notification_item);
 
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
         NotificationListItem listItem = (NotificationListItem) getIntent().getExtras().getSerializable("DETAIL");

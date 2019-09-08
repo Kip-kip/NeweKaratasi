@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -34,13 +35,18 @@ public class Activity_Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final ViewFlipper myflipper;
-        Button btnNameNext,btnPhoneNext,btnEmailNext,btnRegister;
+        final Button btnNameNext,btnPhoneNext,btnEmailNext,btnRegister;
         ImageView back1,back2,back3,back4;
         TextView toLogin;
+        final LinearLayout loadingview;
         final EditText name,email,phone,password;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
+
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
@@ -51,7 +57,7 @@ public class Activity_Register extends AppCompatActivity {
         btnRegister=findViewById(R.id.btnRegister);
         back1=findViewById(R.id.back1);
         toLogin=findViewById(R.id.toLogin);
-
+        loadingview=findViewById(R.id.loading_view);
         back3=findViewById(R.id.back3);
         back4=findViewById(R.id.back4);
 
@@ -91,6 +97,12 @@ public class Activity_Register extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide login button
+                btnRegister.setVisibility(View.INVISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.VISIBLE);
+
 
                 OkHttpClient client = new OkHttpClient();
                 Gson gson = new GsonBuilder()

@@ -65,6 +65,10 @@ public class TransactionItem_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_item);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
         toinvoice= (ImageView) findViewById(R.id.toInvoice);
         tocancel=findViewById(R.id.toCancel);
         viewpdf=findViewById(R.id.viewpdf);

@@ -3,6 +3,7 @@ package com.ekaratasi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,10 @@ public class InvoiceItem_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoiceitem);
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
 
         Intent intent = getIntent();
         String indic= intent.getStringExtra("bw");

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ekaratasi.MainActivity;
+import com.ekaratasi.activities.Activity_Login;
 import com.ekaratasi.app.Config;
 import com.ekaratasi.util.NotificationUtils;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -27,6 +29,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
+
         Log.e(TAG, "From: " + remoteMessage.getFrom());
 
         if (remoteMessage == null)
@@ -36,6 +40,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.e(TAG, "Notification Body: " + remoteMessage.getNotification().getBody());
             handleNotification(remoteMessage.getNotification().getBody());
+
         }
 
         // Check if message contains a data payload.
@@ -48,6 +53,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             } catch (Exception e) {
                 Log.e(TAG, "Exception: " + e.getMessage());
             }
+
         }
     }
 
@@ -67,6 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void handleDataMessage(JSONObject json) {
+
         Log.e(TAG, "push json: " + json.toString());
 
         try {
@@ -94,6 +101,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 LocalBroadcastManager.getInstance(this).sendBroadcast(pushNotification);
 
                 // play notification sound
+
                 NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
                 notificationUtils.playNotificationSound();
             } else {

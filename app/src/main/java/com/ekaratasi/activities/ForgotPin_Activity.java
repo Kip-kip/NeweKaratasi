@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,15 +32,20 @@ public class ForgotPin_Activity extends AppCompatActivity {
     ImageView back;
     TextView txtemail;
     Button reset;
-
+    LinearLayout loadingview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgotpin);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
         back=findViewById(R.id.back);
 
         txtemail=findViewById(R.id.email);
+        loadingview=findViewById(R.id.loading_view);
 
 
         reset=findViewById(R.id.btnReset);
@@ -60,6 +66,10 @@ public class ForgotPin_Activity extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //hide login button
+                reset.setVisibility(View.INVISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.VISIBLE);
 
                 ForgotPin();
 

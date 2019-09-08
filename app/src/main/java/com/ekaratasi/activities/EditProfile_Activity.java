@@ -38,6 +38,10 @@ TextView saveprofile;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
         back=findViewById(R.id.back);
         saveprofile=findViewById(R.id.saveprofile);
 

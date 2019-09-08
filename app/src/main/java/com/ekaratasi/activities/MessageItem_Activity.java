@@ -72,6 +72,9 @@ ImageView sendbtn,nointernet;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_item);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
 
         loading=findViewById(R.id.loadingdots);
         textViewMain= findViewById(R.id.textViewMain);

@@ -15,6 +15,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -32,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.ekaratasi.App.CHANNEL_1_ID;
+
 /**
  * Created by Ravi on 31/03/15.
  */
@@ -40,6 +43,7 @@ public class NotificationUtils {
     private static String TAG = NotificationUtils.class.getSimpleName();
 
     private Context mContext;
+    private NotificationManagerCompat notificationManager;
 
     public NotificationUtils(Context mContext) {
         this.mContext = mContext;
@@ -94,25 +98,54 @@ public class NotificationUtils {
 
     private void showSmallNotification(NotificationCompat.Builder mBuilder, int icon, String title, String message, String timeStamp, PendingIntent resultPendingIntent, Uri alarmSound) {
 
-        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
 
-        inboxStyle.addLine(message);
 
-        Notification notification;
-        notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
-                .setAutoCancel(true)
-                .setContentTitle(title)
-                .setContentIntent(resultPendingIntent)
-                .setSound(alarmSound)
-                .setStyle(inboxStyle)
-                .setWhen(getTimeMilliSec(timeStamp))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
-                .setContentText(message)
-                .build();
 
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(Config.NOTIFICATION_ID, notification);
+
+//IF VERSION IS 27+ (OREO)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            notificationManager = NotificationManagerCompat.from(mContext);
+
+
+            Notification notification = new NotificationCompat.Builder(mContext, CHANNEL_1_ID)
+                    .setSmallIcon(R.drawable.ndogo)
+                    .setContentTitle(title)
+                    .setContentText(message)
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                    .build();
+
+            notificationManager.notify(1, notification);
+
+
+        }
+        else{
+
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+
+            inboxStyle.addLine(message);
+
+            Notification notification;
+            notification = mBuilder.setSmallIcon(icon).setTicker(title).setWhen(0)
+                    .setAutoCancel(true)
+                    .setContentTitle(title)
+                    .setContentIntent(resultPendingIntent)
+                    .setSound(alarmSound)
+                    .setStyle(inboxStyle)
+                    .setWhen(getTimeMilliSec(timeStamp))
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
+                    .setContentText(message)
+                    .build();
+
+            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(Config.NOTIFICATION_ID, notification);
+
+
+        }
+
+
     }
 
     private void showBigNotification(Bitmap bitmap, NotificationCompat.Builder mBuilder, int icon, String title, String message, String timeStamp, PendingIntent resultPendingIntent, Uri alarmSound) {

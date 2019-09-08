@@ -95,6 +95,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
+    <LinearLayout android:gravity="center"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal"
+        android:id="@+id/loading_view"
+        android:background="@drawable/bg_btn_round_white"
+        android:visibility="gone"
+        android:layout_width="0.0dip"
+        android:layout_height="35.0dip"
+        android:layout_marginTop="26.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email">
+
+
+        <ProgressBar
+            android:theme="@style/AppTheme.WhiteAccent"
+            android:id="@+id/progress_bar"
+            android:progressTint="@color/blessings"
+            android:layout_width="wrap_content"
+            android:layout_height="30.0dip" />
+    </LinearLayout>
+
+
     <!--<LinearLayout android:gravity="center"-->
     <!--android:orientation="horizontal"-->
     <!--android:layout_margin="25dp"-->

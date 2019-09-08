@@ -57,12 +57,16 @@ EditText emaili,passi;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
         login=findViewById(R.id.btnLogin);
         toRegister=findViewById(R.id.toRegister);
         emaili=findViewById(R.id.emaili);
         passi=findViewById(R.id.passi);
         forgotpin=findViewById(R.id.txtForgotPin);
-       // loadingview=findViewById(R.id.loading_view);
+       loadingview=findViewById(R.id.loading_view);
 
 
 
@@ -89,10 +93,10 @@ EditText emaili,passi;
             @Override
             public void onClick(View v) {
 
-//                //hide login button
-//                login.setVisibility(View.GONE);
-//                //unhide loading view
-//                loadingview.setVisibility(View.VISIBLE);
+                //hide login button
+                login.setVisibility(View.INVISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.VISIBLE);
 
                 OkHttpClient client = new OkHttpClient();
                 Gson gson = new GsonBuilder()

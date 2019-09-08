@@ -98,110 +98,171 @@
 
 
     <ScrollView
-        android:background="#fffafafa"
         android:layout_width="fill_parent"
         android:layout_height="0.0dip"
+        android:background="#fffafafa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout android:orientation="vertical"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/editProfileContainer"
                 android:layout_width="fill_parent"
-                android:layout_height="70dip">
+                android:layout_height="70dip"
+                android:orientation="vertical">
 
 
                 <Button
-                    android:textSize="13.0sp"
-                    android:layout_marginTop="20dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginRight="10dip"
-                    android:layout_marginBottom="10dip"
                     android:id="@+id/editProfile"
-                    android:background="@drawable/bg_edit_text_blue_border"
-                    android:paddingTop="10.0dip"
-                    android:paddingBottom="10.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ff232323"
-                    android:text="Edit Profile"
-                    android:fontFamily="@font/geomanist_regular"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:background="@drawable/bg_edit_text_blue_border"
                     android:ems="10"
-                    android:maxLength="20"
+                    android:fontFamily="@font/geomanist_regular"
                     android:inputType="textPersonName"
+                    android:maxLength="20"
                     android:paddingStart="20.0dip"
-                    android:paddingEnd="20.0dip" />
-
-
+                    android:paddingTop="10.0dip"
+                    android:paddingEnd="20.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="Edit Profile"
+                    android:textColor="#ff232323"
+                    android:textSize="13.0sp" />
 
 
             </LinearLayout>
 
-
-            <LinearLayout android:orientation="vertical"
+            <LinearLayout
                 android:id="@+id/changePinContainer"
                 android:layout_width="fill_parent"
-                android:layout_height="70dip">
+                android:layout_height="70dip"
+                android:orientation="vertical">
 
 
                 <Button
-                    android:textSize="13.0sp"
-                    android:layout_marginTop="20dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginRight="10dip"
-                    android:layout_marginBottom="10dip"
                     android:id="@+id/changePin"
-                    android:background="@drawable/bg_edit_text_blue_border"
-                    android:paddingTop="10.0dip"
-                    android:paddingBottom="10.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ff232323"
-                    android:text="Change Pin"
-                    android:fontFamily="@font/geomanist_regular"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:background="@drawable/bg_edit_text_blue_border"
                     android:ems="10"
-                    android:maxLength="20"
+                    android:fontFamily="@font/geomanist_regular"
                     android:inputType="textPersonName"
+                    android:maxLength="20"
                     android:paddingStart="20.0dip"
-                    android:paddingEnd="20.0dip" />
+                    android:paddingTop="10.0dip"
+                    android:paddingEnd="20.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="Change Pin"
+                    android:textColor="#ff232323"
+                    android:textSize="13.0sp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/HowContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="70dip"
+                android:orientation="vertical">
+
+
+                <Button
+                    android:id="@+id/How"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:background="@drawable/bg_edit_text_blue_border"
+                    android:ems="10"
+                    android:fontFamily="@font/geomanist_regular"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
+                    android:paddingStart="20.0dip"
+                    android:paddingTop="10.0dip"
+                    android:paddingEnd="20.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="How To Use"
+                    android:textColor="#ff232323"
+                    android:textSize="13.0sp" />
 
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/TalkToUsContainer"
+                android:layout_width="fill_parent"
+                android:layout_height="70dip"
+                android:orientation="vertical">
 
+
+                <Button
+                    android:id="@+id/TalkToUs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:background="@drawable/bg_edit_text_blue_border"
+                    android:ems="10"
+                    android:fontFamily="@font/geomanist_regular"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
+                    android:paddingStart="20.0dip"
+                    android:paddingTop="10.0dip"
+                    android:paddingEnd="20.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="Talk To Us"
+                    android:textColor="#ff232323"
+                    android:textSize="13.0sp" />
+
+
+            </LinearLayout>
 
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="70dip">
+                android:layout_height="70dip"
+                android:orientation="vertical">
 
 
                 <Button
-                    android:textSize="13.0sp"
-                    android:layout_marginTop="20dip"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginRight="10dip"
-                    android:layout_marginBottom="10dip"
                     android:id="@+id/share"
-                    android:background="@drawable/bg_edit_text_blue_border"
-                    android:paddingTop="10.0dip"
-                    android:paddingBottom="10.0dip"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ff232323"
-                    android:text="Share"
-                    android:fontFamily="@font/geomanist_regular"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="20dip"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:background="@drawable/bg_edit_text_blue_border"
                     android:ems="10"
-                    android:maxLength="20"
+                    android:fontFamily="@font/geomanist_regular"
                     android:inputType="textPersonName"
+                    android:maxLength="20"
                     android:paddingStart="20.0dip"
-                    android:paddingEnd="20.0dip" />
+                    android:paddingTop="10.0dip"
+                    android:paddingEnd="20.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="Share"
+                    android:textColor="#ff232323"
+                    android:textSize="13.0sp" />
 
 
             </LinearLayout>

@@ -17,6 +17,11 @@
         <item>A6</item>
     </string-array>
 
+    <string-array name="locations">
+        <item>Select Location</item>
+
+    </string-array>
+
     <string-array name="bindcolor">
         <item>Select bind color</item>
         <item>Blue</item>

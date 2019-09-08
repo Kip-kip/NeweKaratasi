@@ -36,6 +36,10 @@ TextView txtold,txtnew,txtc,savepin;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editpin);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
         back=findViewById(R.id.back);
 
         txtold=findViewById(R.id.txtOldPin);

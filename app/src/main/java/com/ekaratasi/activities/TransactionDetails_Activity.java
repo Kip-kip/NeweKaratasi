@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,11 +36,15 @@ TextView txt;
 EditText copies,agent,instructions;
 Spinner material,bindcolor,bindoption;
     Button SubmitButton;
+    LinearLayout loadingview;
     private SQLiteHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
+
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
         copies = (EditText) findViewById(R.id.copies);
@@ -48,7 +53,7 @@ Spinner material,bindcolor,bindoption;
         bindcolor=(Spinner) findViewById(R.id.bindcolor);
         bindoption=(Spinner) findViewById(R.id.bindoption);
         instructions=(EditText) findViewById(R.id.instructions);
-
+        loadingview=findViewById(R.id.loading_view);
         SubmitButton = (Button) findViewById(R.id.btnSubmit);
 
 
@@ -74,6 +79,11 @@ Spinner material,bindcolor,bindoption;
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //hide login button
+                SubmitButton.setVisibility(View.INVISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.VISIBLE);
 
                 /**-START SERVICE FOR NOTIFICATIONS-**/
                 String input = "";
@@ -229,6 +239,9 @@ Spinner material,bindcolor,bindoption;
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                SubmitButton.setVisibility(View.VISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -247,6 +260,11 @@ Spinner material,bindcolor,bindoption;
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
+                SubmitButton.setVisibility(View.VISIBLE);
+                //unhide loading view
+                loadingview.setVisibility(View.INVISIBLE);
+
             }
         });
 

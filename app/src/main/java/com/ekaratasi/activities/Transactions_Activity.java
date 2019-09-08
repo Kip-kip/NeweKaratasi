@@ -96,6 +96,8 @@ public class Transactions_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

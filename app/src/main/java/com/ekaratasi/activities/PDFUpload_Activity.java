@@ -45,12 +45,12 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     private String pdfPath;
     private int pageNumber = 0;
     CardView pick;
-    TextView flname,loadingtext;
-    ImageView retry;
+    TextView flname,loadingtext,percentage;
+    ImageView retry,swipeimage;
     Button UploadButton;
     View loading;
     // Server URL.
-    public static final String PDF_UPLOAD_HTTP_URL = "http://ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/server_upload_pdf.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "https://ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/server_upload_pdf.php";
 
     // Pdf upload request code.
     public int PDF_REQ_CODE = 1;
@@ -68,6 +68,11 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfupload);
 
+        //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+
+
         // Method to enable runtime permission.
         RequestRunTimePermission();
 
@@ -76,6 +81,8 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         UploadButton = (Button) findViewById(R.id.btnUpload);
         loading=findViewById(R.id.loadingdots);
         loadingtext=findViewById(R.id.loadingtext);
+
+        percentage=findViewById(R.id.percentage);
         retry=findViewById(R.id.retry);
 
         // Adding click listener to Button.
@@ -102,6 +109,17 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
         UploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//show loading dots text
+                loading.setVisibility(View.VISIBLE);
+                loadingtext.setVisibility(View.VISIBLE);
+
+                //hide cardView
+                pick.setVisibility(View.GONE);
+
+                //show progress
+                percentage.setVisibility(View.VISIBLE);
+
+                retry.setVisibility(View.VISIBLE);
 
                 // Calling method to upload PDF on server.
                 PdfUploadFunction();
@@ -239,8 +257,6 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
             try {
 
                 // progressDialog.dismiss();
-                loading.setVisibility(View.VISIBLE);
-                loadingtext.setVisibility(View.VISIBLE);
 
                 PdfID = "DOC-"+UUID.randomUUID().toString();
                 uploadReceiver.setDelegate(this);
@@ -248,9 +264,10 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
                 new MultipartUploadRequest(this, PdfID, PDF_UPLOAD_HTTP_URL)
                         .addFileToUpload(PdfPathHolder, "pdf")
                         .addParameter("name", PdfID)
-                        .setNotificationConfig(new UploadNotificationConfig())
+                        //.setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(2)
                         .startUpload();
+
 
 
             } catch (Exception exception) {
@@ -264,6 +281,10 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
     @Override
     public void onProgress(int progress) {
+
+        String prog= Integer.toString(progress);
+
+        percentage.setText(prog+"%");
 
     }
 

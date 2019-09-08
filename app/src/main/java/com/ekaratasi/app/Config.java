@@ -19,4 +19,18 @@ public class Config {
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
 
     public static final String SHARED_PREF = "ah_firebase";
+
+
+
+    //JSON URL
+    public static final String DATA_URL = "https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_locations.php";
+
+    //Tags used in the JSON String
+    public static final String TAG_USERNAME = "id";
+    public static final String TAG_NAME = "location";
+
+
+    //JSON array name
+    public static final String JSON_ARRAY = "result";
+
 }

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@id/app_bar_layout"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0.0dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@id/app_toolbar"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"/>
+
+            <TextView
+                android:textSize="15.0sp"
+                android:textColor="#263238"
+                android:layout_gravity="center"
+                android:id="@id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/geomanist_regular"
+                android:text="How to use the app"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Initiating a New Transaction"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="10dp"
+    android:fontFamily="@font/geomanist_regular"
+    android:textSize="18dp"
+    android:textColor="@color/blessings"
+    android:textStyle="bold"
+    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Click on new transaction button on home screen"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Choose a PDF document from your storage. Always save your documents as PDF while creating them. This ensures they are not distorted on the agents side. If you do not see your device storage click on the three vertical dots on the top right of the screen and choose 'Show SD card'."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Click upload. Swipe down the notification drawer to monitor progress. Ensure you have good internet connection for faster upload."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. Upon a successful upload you will be redirected to details screen. If you are not redirected, click on the refresh icon and try again. This time ensure internet connection is stronger"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5. Enter the agent's (Cyber Cafe) number and fill in the details on how the document should be printed. The agent number is displayed on the agents' screen and also physically at the agents' premises."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6. Upon submission you will be prompted to confirm the agent details then proceed. That's it!, transaction successful, stand by for an invoice from the agent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7. You can open the transaction on the transactions screen and confirm the transaction details. You can also view the document you uploaded by clicking on the file icon. Agent's progress on your transaction can also be monitored. If you wish to cancel the transaction, click on the X icon. This can only be done before you pay for it."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8. Check the notification drawer to ensure 'E-Karatasi Running' is displayed. This ensures that your device can receive notifications from the agent. Toggle it ON/OFF by clicking on the bell icon on the home screen.."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Making Payment"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="18dp"
+                android:textColor="@color/blessings"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. You will soon receive an invoice notification from the agent. Open the transaction and click on the laptop icon at the bottom of the page."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+            />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. The Sim Tool Kit will pop up prompting you to pay to KISA SOFTWARE ENTERPRISE. Enter your pin and press 'OK'. That's it! payment is completed."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Payment status will reflect as 'Paid'. Stand by for a notification indicating the completion of printing."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. During the entire process always ENSURE that you are CONNECTED to the INTERNET."
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="@dimen/_50dp"
+                android:fontFamily="@font/geomanist_regular"
+                android:textSize="15dp"
+                android:textColor="@color/blessings"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="6.0dip"
         android:layout_marginRight="6.0dip"
+        android:paddingBottom="@dimen/_50dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"

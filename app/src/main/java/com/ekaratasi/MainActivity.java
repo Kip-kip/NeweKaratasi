@@ -42,6 +42,7 @@ import com.android.volley.toolbox.Volley;
 import com.ekaratasi.POJO.EditProfile;
 import com.ekaratasi.POJO.UpdateRegid;
 import com.ekaratasi.activities.Activity_Login;
+import com.ekaratasi.activities.Agents_Activity;
 import com.ekaratasi.activities.EditProfile_Activity;
 import com.ekaratasi.activities.InvoiceItem_Activity;
 import com.ekaratasi.activities.MessageItem_Activity;
@@ -125,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent ittt = new Intent(MainActivity.this, Message_Activity.class);
                     startActivity(ittt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
+                    return true;
+
+                case R.id.navigation_agents:
+
+                    Intent itttt = new Intent(MainActivity.this, Agents_Activity.class);
+                    startActivity(itttt);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
                     return true;
@@ -228,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
 
        txtwelcome.setText("Welcome,"+" "+username);
 
-
+       //make notification statusbar dark
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
         newtransaction.setOnClickListener(new View.OnClickListener() {
@@ -457,6 +467,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadRecyclerViewData(){
 
+
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -471,12 +482,12 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        // dismiss loadin
+                        // dismiss loading
                         loading.setVisibility(View.INVISIBLE);
 
-                            //show no result
-                        noresultimage.setVisibility(View.VISIBLE);
+                        //show no result
                         noresulttext.setVisibility(View.VISIBLE);
+                        noresultimage.setVisibility(View.VISIBLE);
 
 
                         //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -487,7 +498,8 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray array=jsonObject.getJSONArray("heroes");
 
                             for(int i=0; i<array.length();i++){
-                                JSONObject o=array.getJSONObject(i);
+
+                                  JSONObject o=array.getJSONObject(i);
                                 ListItem item=new ListItem(
                                         o.getString("agent"),
                                         o.getString("agent_name"),
@@ -515,10 +527,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
                                 );
 
 
-                            //show recycler view and hhide no rsult
+
+
+                                //show recycler view and hhide no rsult
                                 recyclerView.setVisibility(View.VISIBLE);
                                 noresultimage.setVisibility(View.GONE);
                                 noresulttext.setVisibility(View.GONE);
