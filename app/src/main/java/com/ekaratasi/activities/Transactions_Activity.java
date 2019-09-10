@@ -87,6 +87,14 @@ public class Transactions_Activity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
                     return true;
+
+                case R.id.navigation_agents:
+                    Intent ittttt = new Intent(Transactions_Activity.this, Agents_Activity.class);
+                    startActivity(ittttt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
+                    return true;
+
             }
             return false;
         }

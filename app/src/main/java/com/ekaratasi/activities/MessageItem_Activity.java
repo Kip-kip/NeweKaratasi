@@ -65,12 +65,27 @@ public class MessageItem_Activity extends AppCompatActivity {
     View loading;
 TextView textViewMain,agent_refno,nointernettext;
 EditText text,insertagent;
-ImageView sendbtn,nointernet;
+ImageView sendbtn,nointernet,back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_item);
+
+        back=findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent it = new Intent(MessageItem_Activity.this, Message_Activity.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+
+            }
+        });
 
         //make notification statusbar dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

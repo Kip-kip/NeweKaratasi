@@ -39,6 +39,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ekaratasi.POJO.CheckLeastTrans;
+import com.ekaratasi.POJO.CheckTransExistence;
 import com.ekaratasi.POJO.EditProfile;
 import com.ekaratasi.POJO.UpdateRegid;
 import com.ekaratasi.activities.Activity_Login;
@@ -275,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //check if user has made any transactions yet
+        checkTransExistence();
+
      //load the total cost
         loadTotalCost();
 
@@ -485,9 +490,6 @@ public class MainActivity extends AppCompatActivity {
                         // dismiss loading
                         loading.setVisibility(View.INVISIBLE);
 
-                        //show no result
-                        noresulttext.setVisibility(View.VISIBLE);
-                        noresultimage.setVisibility(View.VISIBLE);
 
 
                         //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -536,9 +538,6 @@ public class MainActivity extends AppCompatActivity {
 
                                 //show recycler view and hhide no rsult
                                 recyclerView.setVisibility(View.VISIBLE);
-                                noresultimage.setVisibility(View.GONE);
-                                noresulttext.setVisibility(View.GONE);
-
 
 
 
@@ -560,9 +559,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
+
+                        //SHOW NO INTERNET
                         loading.setVisibility(View.INVISIBLE);
                         nointernet.setVisibility(View.VISIBLE);
                         nointernettext.setVisibility(View.VISIBLE);
+
 
 
 
@@ -594,12 +596,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        // dismiss loadin
-                        loading.setVisibility(View.INVISIBLE);
 
-                        //show no result
-                        noresulttext.setVisibility(View.VISIBLE);
-                        noresultimage.setVisibility(View.VISIBLE);
 
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
@@ -622,10 +619,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 );
 
-                                //show recycler view and hhide no rsult
-                                recyclerView.setVisibility(View.VISIBLE);
-                                noresultimage.setVisibility(View.GONE);
-                                noresulttext.setVisibility(View.GONE);
+
 
                                 listItemsnotif.add(item);
 
@@ -650,10 +644,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
-                        loading.setVisibility(View.INVISIBLE);
 
-                        nointernet.setVisibility(View.VISIBLE);
-                        nointernettext.setVisibility(View.VISIBLE);
                     }
                 });
 
@@ -728,16 +719,73 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyerror) {
 
-
-                        loading.setVisibility(View.INVISIBLE);
-
-                        nointernet.setVisibility(View.VISIBLE);
-                        nointernettext.setVisibility(View.VISIBLE);
                     }
                 });
 
         RequestQueue requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+
+
+    public void checkTransExistence() {
+        /*SAVE PHONE */
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        OkHttpClient client = new OkHttpClient();
+        Gson gson = new GsonBuilder()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ekaratasikenya.com/" )
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        ApiServiceTransExistence service = retrofit.create(ApiServiceTransExistence.class);
+        CheckTransExistence ct = new CheckTransExistence();
+        ct.setUser_id(user_id);
+        Call<CheckTransExistence> call = service.insertTransExistence(ct.getUser_id());
+
+        call.enqueue(new Callback<CheckTransExistence>() {
+            @Override
+            public void onResponse(Call<CheckTransExistence> call, retrofit2.Response<CheckTransExistence> response) {
+                CheckTransExistence tuongee=response.body();
+                String ongeleshwa=tuongee.getError_msg();
+
+                Integer num =Integer.parseInt(tuongee.getError());
+
+//if TRANSACTIONs are available hide NO RESULT IMAGE AND TEXT
+                if(num==1){
+
+
+
+
+
+
+                }
+                else{
+
+                    //show no result
+                    noresulttext.setVisibility(View.VISIBLE);
+                    noresultimage.setVisibility(View.VISIBLE);
+
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CheckTransExistence> call, Throwable t) {
+
+            }
+
+
+        });
+
     }
 
     private void saveListData() {

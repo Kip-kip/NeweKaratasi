@@ -43,7 +43,7 @@ public class Message_Activity extends AppCompatActivity {
     private List<MessageListItem> listItems;
 
     View loading;
-    ImageView noresultimage,nointernet;
+    ImageView noresultimage,nointernet,back;
     TextView noresulttext,nointernettext;
     FloatingActionButton fab;
     private SQLiteHandler db;
@@ -82,6 +82,14 @@ public class Message_Activity extends AppCompatActivity {
                     overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
                     finish();
                     return true;
+
+                case R.id.navigation_agents:
+                    Intent ittttt = new Intent(Message_Activity.this, Agents_Activity.class);
+                    startActivity(ittttt);
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
+                    finish();
+                    return true;
+
             }
             return false;
         }
@@ -91,6 +99,19 @@ public class Message_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
+        back=findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+                navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+                navigation.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         //make notification statusbar dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

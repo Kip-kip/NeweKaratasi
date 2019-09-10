@@ -32,13 +32,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NotificationItem_Activity extends AppCompatActivity {
     TextView notification,id;
+    ImageView back;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_item);
+        back=findViewById(R.id.back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent it = new Intent(NotificationItem_Activity.this, Notification_Activity.class);
+                startActivity(it);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+
+            }
+        });
 
         //make notification statusbar dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

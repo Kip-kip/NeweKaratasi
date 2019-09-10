@@ -51,7 +51,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TransactionItem_Activity extends AppCompatActivity {
     TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,ccopies,
             invoice,progress,bw_pages,bw_cost,bw_total,c_pages,c_cost,c_total,total_pages,bind_cost,bind_total,ekaratasi_fee,total_cost,total_cost2;
-    ImageView toinvoice,back,tocancel,viewpdf;
+    ImageView toinvoice,back,backk,tocancel,viewpdf;
     ViewFlipper myflipper;
     Button pay,decline;
     LinearLayout progressunseen,progresspending,progresscompleted,progresscancelled;
@@ -79,7 +79,8 @@ public class TransactionItem_Activity extends AppCompatActivity {
         progresspending=findViewById(R.id.progresspending);
         progresscompleted=findViewById(R.id.progresscompleted);
         progresscancelled=findViewById(R.id.progresscancelled);
-        back=findViewById(R.id.backk);
+        backk=findViewById(R.id.backk);
+        back=findViewById(R.id.back);
         doc_path=findViewById(R.id.doc_path);
 
 
@@ -210,7 +211,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
         });
 
         //FLIP BACKWARDS
-        back.setOnClickListener(new View.OnClickListener() {
+        backk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -218,6 +219,19 @@ public class TransactionItem_Activity extends AppCompatActivity {
             }
         });
 
+
+        //FLIP BACKWARDS
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent i = new Intent(TransactionItem_Activity.this, Transactions_Activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+            }
+        });
 
 
         //PAYMENT----GO AHEAD WITH PAY ----initiate STK push
@@ -317,7 +331,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
 
                     stkPush();
 
-                    Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(TransactionItem_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
                 }
                 else{

@@ -46,7 +46,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     private int pageNumber = 0;
     CardView pick;
     TextView flname,loadingtext,percentage;
-    ImageView retry,swipeimage;
+    ImageView retry,swipeimage,back;
     Button UploadButton;
     View loading;
     // Server URL.
@@ -67,6 +67,21 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfupload);
+
+
+        back=findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(PDFUpload_Activity.this, MainActivity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+
+            }
+        });
 
         //make notification statusbar dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

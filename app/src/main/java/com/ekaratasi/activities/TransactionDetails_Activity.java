@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ TextView txt;
 EditText copies,agent,instructions;
 Spinner material,bindcolor,bindoption;
     Button SubmitButton;
+    ImageView back;
     LinearLayout loadingview;
     private SQLiteHandler db;
     @Override
@@ -64,7 +66,19 @@ Spinner material,bindcolor,bindoption;
 
 
 
+        back=findViewById(R.id.back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(TransactionDetails_Activity.this, PDFUpload_Activity.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+                finish();
+
+            }
+        });
 
 
 

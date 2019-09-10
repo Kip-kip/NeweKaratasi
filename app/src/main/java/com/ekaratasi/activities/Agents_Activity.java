@@ -162,6 +162,8 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedItemText = (String) spinner.getItemAtPosition(position);
                 // Notify the selected item text
+                listItems.clear();
+
                 loadRecyclerViewData(selectedItemText);
 
             }
@@ -244,8 +246,9 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
     }
 
     private void loadRecyclerViewData(String si){
+
         loading.setVisibility(View.VISIBLE);
-        Toast.makeText(Agents_Activity.this, si, Toast.LENGTH_LONG).show();
+
         String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_agents.php?location="+si+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,

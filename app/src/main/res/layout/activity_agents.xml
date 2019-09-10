@@ -29,11 +29,11 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto">
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"/>
+            <!--<ImageView-->
+                <!--android:id="@+id/back"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_arrow_back"/>-->
 
 
 
@@ -115,7 +115,7 @@
         android:layout_marginTop="120dp"
         android:alpha="0.7"
         app:layout_constraintTop_toBottomOf="@+id/yarecyclerView"
-        android:src="@drawable/kanroonoresult"
+        android:src="@drawable/womannoresults"
         android:visibility="invisible" />
 
 
@@ -127,7 +127,7 @@
         android:paddingTop="30.0dip"
         android:paddingEnd="70.0dip"
         android:layout_marginTop="250dp"
-        android:text="No recent chats."
+        android:text="No location selected."
         android:textAlignment="center"
         android:textColor="#855F5A5A"
         app:layout_constraintTop_toBottomOf="@+id/yarecyclerView"
