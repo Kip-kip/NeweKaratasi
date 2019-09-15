@@ -1,18 +1,22 @@
 package com.ekaratasi.activities;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +38,7 @@ import net.gotev.uploadservice.UploadNotificationConfig;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 
 public class PDFUpload_Activity extends AppCompatActivity implements OnPageChangeListener, OnLoadCompleteListener,
@@ -117,6 +122,27 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
                 startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PDF_REQ_CODE);
 
 
+
+                final Toast mToastToShow;
+                int toastDurationInMilliSeconds = 10000;
+                mToastToShow =  Toast.makeText(getApplicationContext(), "If you do not see your device storage click on the three vertical dots on the top right of the screen and choose 'Show SD card'",Toast.LENGTH_LONG);
+
+
+                // Set the countdown to display the toast
+                CountDownTimer toastCountDown;
+                toastCountDown = new CountDownTimer(toastDurationInMilliSeconds, 1000 /*Tick duration*/) {
+                    public void onTick(long millisUntilFinished) {
+                        mToastToShow.show();
+                    }
+                    public void onFinish() {
+                        mToastToShow.cancel();
+                    }
+                };
+
+                // Show the toast and starts the countdown
+                mToastToShow.show();
+                toastCountDown.start();
+
             }
         });
 
@@ -187,11 +213,22 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
                 e.printStackTrace();
             }
             String path= FilePath.getPath(this,filePath);
+
+            //If the path is Not available let the user know where to chose from
+            if(path.equals("Noy")){
+
+                showDialogPickInternal();
+            }
+            else{
+
+
+            }
+
             File file = new File(path);
             displayFromFile(file);
+
         }
     }
-
 
 
 
@@ -215,6 +252,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
             result = uri.getLastPathSegment();
         }
         return result;
+
     }
 
     @Override
@@ -249,6 +287,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
                 .spacing(10) // in dp
                 .onPageError(this)
                 .load();
+
     }
 
 
@@ -378,5 +417,29 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
 
     }
+
+
+    //Pick your document from Phone Internal Storage Dialog
+
+    public void showDialogPickInternal() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); // before
+        dialog.setContentView(R.layout.dialog_pick_internal);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(true);
+
+        ((Button) dialog.findViewById(R.id.btnCrossC)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+    }
+
+
+
 
 }

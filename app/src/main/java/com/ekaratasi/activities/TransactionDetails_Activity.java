@@ -8,12 +8,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ekaratasi.POJO.ConfirmAgent;
 import com.ekaratasi.POJO.MainData;
@@ -82,6 +84,27 @@ Spinner material,bindcolor,bindoption;
 
 
 
+//HIDE BIND COLOR WHEN BIND OPTION IS NOT SELECTED
+        bindoption.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedItemText = (String) bindoption.getItemAtPosition(position);
+                // Notify the selected item text
+                if(selectedItemText.equals("No")){
+                    bindcolor.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    bindcolor.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
 
 

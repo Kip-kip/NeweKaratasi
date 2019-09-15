@@ -158,7 +158,10 @@ EditText emaili,passi;
 
                     @Override
                     public void onFailure(Call<UserLogin> call, Throwable t) {
-
+                        login.setVisibility(View.VISIBLE);
+                        //unhide loading view
+                        loadingview.setVisibility(View.INVISIBLE);
+                        Toast.makeText(Activity_Login.this, "Please check your internet connection and try again", Toast.LENGTH_LONG).show();
                     }
 
 

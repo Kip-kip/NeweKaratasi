@@ -126,7 +126,8 @@ public class ForgotPin_Activity extends AppCompatActivity {
                 else{
 
                     Toast.makeText(ForgotPin_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
-
+reset.setVisibility(View.VISIBLE);
+loadingview.setVisibility(View.INVISIBLE);
 
                 }
             }

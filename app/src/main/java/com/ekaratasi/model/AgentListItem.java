@@ -13,6 +13,9 @@ public class AgentListItem implements Serializable {
     private String phone;
     private String location;
     private String image;
+    private String prices;
+    private String offers;
+    private String reviews;
 
 
 
@@ -20,12 +23,16 @@ public class AgentListItem implements Serializable {
 
 
 
-    public AgentListItem(String agent_name, String agent_refno, String phone, String location, String image) {
+    public AgentListItem(String agent_name, String agent_refno, String phone, String location, String image, String prices, String offers, String reviews) {
         this.agent_name = agent_name;
         this.agent_refno=agent_refno;
         this.phone = phone;
         this.location = location;
         this.image = image;
+        this.prices = prices;
+        this.offers = offers;
+        this.reviews = reviews;
+
 
 }
 
@@ -67,6 +74,30 @@ public class AgentListItem implements Serializable {
 
     public String getImage() {
         return image;
+    }
+
+    public String getPrices() {
+        return prices;
+    }
+
+    public void setPrices(String prices) {
+        this.prices = prices;
+    }
+
+    public String getOffers() {
+        return offers;
+    }
+
+    public void setOffers(String offers) {
+        this.offers = offers;
+    }
+
+    public String getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(String reviews) {
+        this.reviews = reviews;
     }
 }
 

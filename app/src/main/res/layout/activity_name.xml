@@ -69,7 +69,7 @@
         android:drawablePadding="10.0dip"
         android:ems="10"
         android:fontFamily="@font/geomanist_regular"
-        android:hint="Name"
+        android:hint="Full Names"
         android:inputType="text"
         android:textColor="#ffeeeeee"
         android:textColorHint="#ffeeeeee"

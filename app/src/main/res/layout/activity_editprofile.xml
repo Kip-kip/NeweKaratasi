@@ -151,7 +151,6 @@
                 android:fontFamily="@font/geomanist_regular"
                 android:hint="Phone"
                 android:inputType="textPersonName"
-                android:maxLength="20"
                 android:paddingStart="20.0dip"
                 android:paddingTop="10.0dip"
                 android:paddingEnd="20.0dip"

@@ -249,7 +249,7 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
 
         loading.setVisibility(View.VISIBLE);
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_agents.php?location="+si+"";
+        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_agents.php?loc="+si+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,
@@ -277,7 +277,11 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
                                         o.getString("agent_refno"),
                                         o.getString("phone"),
                                         o.getString("location"),
-                                        o.getString("image")
+                                        o.getString("image"),
+                                        o.getString("prices"),
+                                        o.getString("offers"),
+                                        o.getString("reviews")
+
 
                                 );
 

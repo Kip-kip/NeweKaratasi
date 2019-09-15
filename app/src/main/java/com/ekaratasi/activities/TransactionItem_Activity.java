@@ -50,7 +50,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TransactionItem_Activity extends AppCompatActivity {
     TextView agent,trans_refno,customer_refno,material,bind_color,bind_type,copies,instructions,payment,ccopies,
-            invoice,progress,bw_pages,bw_cost,bw_total,c_pages,c_cost,c_total,total_pages,bind_cost,bind_total,ekaratasi_fee,total_cost,total_cost2;
+            invoice,progress,bw_pages,bw_cost,bw_total,c_pages,c_cost,c_total,total_pages,bind_cost,bind_total,total_cost,total_cost2;
     ImageView toinvoice,back,backk,tocancel,viewpdf;
     ViewFlipper myflipper;
     Button pay,decline;
@@ -112,7 +112,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
             total_pages=findViewById(R.id.total_pages);
             bind_cost=findViewById(R.id.bind_cost);
             bind_total=findViewById(R.id.bind_total);
-            ekaratasi_fee=findViewById(R.id.ekaratasi_fee);
+
             total_cost=findViewById(R.id.total_cost);
             total_cost2=findViewById(R.id.total_cost2);
             ccopies=findViewById(R.id.ccopies);
@@ -145,7 +145,7 @@ public class TransactionItem_Activity extends AppCompatActivity {
             bind_total.setText(listItem.getBind_cost());
             total_cost.setText("KES "+listItem.getTotal_cost());
             total_cost2.setText("KES "+listItem.getTotal_cost());
-            ekaratasi_fee.setText((listItem.getEkaratasi_fee()));
+
             ccopies.setText(listItem.getCopies());
 
 

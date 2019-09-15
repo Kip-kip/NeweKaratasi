@@ -108,7 +108,6 @@
                 android:hint="Old Pin" 
                 android:ems="10"
                 android:fontFamily="@font/geomanist_regular"
-                android:maxLength="6"
                 android:inputType="textPassword"
                 android:paddingStart="20.0dip" 
                 android:paddingEnd="20.0dip" />
@@ -125,7 +124,6 @@
                 android:layout_marginTop="12.0dip" 
                 android:hint="New Pin" 
                 android:ems="10" 
-                android:maxLength="6"
                 android:inputType="textPassword"
                 android:paddingStart="20.0dip" 
                 android:paddingEnd="20.0dip" />
@@ -141,7 +139,6 @@
                 android:layout_marginTop="12.0dip"
                 android:hint="Confirm Pin"
                 android:ems="10"
-                android:maxLength="6"
                 android:inputType="textPassword"
                 android:paddingStart="20.0dip" 
                 android:paddingEnd="20.0dip" />

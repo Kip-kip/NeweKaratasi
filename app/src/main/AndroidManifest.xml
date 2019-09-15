@@ -46,15 +46,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activities.InvoiceItem_Activity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".activities.PDFUpload_Activity"
             android:label="@string/app_name">
@@ -122,24 +114,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activities.Activity_Transaction_Success"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.Activity_Transaction_Failure"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".activities.NotificationItem_Activity"
@@ -202,6 +178,16 @@
 
         <activity
             android:name=".activities.Agents_Activity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.Agent_Details_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

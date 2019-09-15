@@ -138,17 +138,21 @@ public class Activity_Register extends AppCompatActivity {
                             finish();
                         }
                         else{
-//                            Intent it = new Intent(TransactionDetails_Activity.this, Activity_Transaction_Success.class);
-//                            startActivity(it);
-//                            overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
-//                            finish();
+
+                            btnRegister.setVisibility(View.VISIBLE);
+                            //unhide loading view
+                            loadingview.setVisibility(View.INVISIBLE);
+
                         }
 
                     }
 
                     @Override
                     public void onFailure(Call<UserInfo> call, Throwable t) {
-
+                        Toast.makeText(Activity_Register.this, "Please check your internet connection and try again", Toast.LENGTH_LONG).show();
+                        btnRegister.setVisibility(View.VISIBLE);
+                        //unhide loading view
+                        loadingview.setVisibility(View.INVISIBLE);
                     }
 
 
