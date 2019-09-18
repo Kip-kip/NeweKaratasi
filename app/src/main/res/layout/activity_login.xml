@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+
+                <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/flipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -178,3 +210,14 @@
 
 
 </android.support.constraint.ConstraintLayout>
+
+                    <include layout="@layout/activity_email"></include>
+                    <include layout="@layout/activity_phone"></include>
+                    <include layout="@layout/activity_password"></include>
+
+                </ViewFlipper>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

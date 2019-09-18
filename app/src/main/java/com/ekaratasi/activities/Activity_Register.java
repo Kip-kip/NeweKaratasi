@@ -39,7 +39,7 @@ public class Activity_Register extends AppCompatActivity {
         ImageView back1,back2,back3,back4;
         TextView toLogin;
         final LinearLayout loadingview;
-        final EditText name,email,phone,password;
+        final EditText name,email,phone,password,cpassword;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
@@ -66,6 +66,7 @@ public class Activity_Register extends AppCompatActivity {
         email=findViewById(R.id.edtemail);
         phone=findViewById(R.id.edtphone);
         password=findViewById(R.id.edtpass);
+        cpassword=findViewById(R.id.edtcpass);
 
 
 
@@ -119,7 +120,8 @@ public class Activity_Register extends AppCompatActivity {
                 userinfo.setEmail(email.getText().toString());
                 userinfo.setPhone(phone.getText().toString());
                 userinfo.setPassword(password.getText().toString());
-                Call<UserInfo> call = service.insertUserInfo(userinfo.getName(), userinfo.getEmail(), userinfo.getPhone(), userinfo.getPassword());
+                userinfo.setCpassword(cpassword.getText().toString());
+                Call<UserInfo> call = service.insertUserInfo(userinfo.getName(), userinfo.getEmail(), userinfo.getPhone(), userinfo.getPassword(), userinfo.getCpassword());
 
                 call.enqueue(new Callback<UserInfo>() {
                     @Override
@@ -132,6 +134,11 @@ public class Activity_Register extends AppCompatActivity {
                         Toast.makeText(Activity_Register.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
                         if(num==1){
+
+                            btnRegister.setVisibility(View.VISIBLE);
+                            //unhide loading view
+                            loadingview.setVisibility(View.INVISIBLE);
+
                             Intent it = new Intent(Activity_Register.this, Activity_Login.class);
                             startActivity(it);
                             overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);

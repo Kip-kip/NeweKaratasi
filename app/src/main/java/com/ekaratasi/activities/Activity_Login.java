@@ -130,10 +130,10 @@ EditText emaili,passi;
 
                         if(num==1){
 
-//                            //u hide login button
-//                            login.setVisibility(View.VISIBLE);
-//                            //hide loading view
-//                            loadingview.setVisibility(View.GONE);
+                            //u hide login button
+                            login.setVisibility(View.VISIBLE);
+                            //hide loading view
+                            loadingview.setVisibility(View.GONE);
 
                             //save user data to database
                             db.addUser(returnname, returnphone,returnuserid, returnemail);
@@ -147,10 +147,10 @@ EditText emaili,passi;
 
                         }
                         else{
-//                            //show login button
-//                            login.setVisibility(View.VISIBLE);
-//                            //hide loading view
-//                            loadingview.setVisibility(View.GONE);
+                            //show login button
+                            login.setVisibility(View.VISIBLE);
+                            //hide loading view
+                            loadingview.setVisibility(View.GONE);
                             Toast.makeText(Activity_Login.this, ongeleshwa, Toast.LENGTH_LONG).show();
                         }
 

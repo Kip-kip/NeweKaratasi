@@ -153,7 +153,7 @@ TextView saveprofile;
                 }
                 else{
 
-
+                    Toast.makeText(EditProfile_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
                 }
             }

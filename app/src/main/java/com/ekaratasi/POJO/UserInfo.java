@@ -5,7 +5,7 @@ package com.ekaratasi.POJO;
  */
 
 public class UserInfo {
-    String phone,email,name,password,error_msg,error;
+    String phone,email,name,password,cpassword,error_msg,error;
     public String getPhone() {
         return phone;
     }
@@ -36,6 +36,14 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCpassword() {
+        return cpassword;
+    }
+
+    public void setCpassword(String cpassword) {
+        this.cpassword = cpassword;
     }
 
     public String getError_msg() {

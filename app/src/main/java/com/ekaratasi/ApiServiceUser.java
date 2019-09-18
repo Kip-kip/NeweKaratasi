@@ -21,5 +21,5 @@ public interface ApiServiceUser {
 
     @FormUrlEncoded
     @POST("eKaratasi/Refubished/BackendAffairs/save_user.php")
-    Call<UserInfo> insertUserInfo(@Field("name") String name, @Field("email") String email, @Field("phone") String phone, @Field("password") String password);
+    Call<UserInfo> insertUserInfo(@Field("name") String name, @Field("email") String email, @Field("phone") String phone, @Field("password") String password, @Field("cpassword") String cpassword);
 }

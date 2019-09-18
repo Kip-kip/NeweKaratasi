@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ForgotPin_Activity extends AppCompatActivity {
 
     ImageView back;
-    TextView txtemail;
+    TextView txtemail,trouble;
     Button reset;
     LinearLayout loadingview;
     @Override
@@ -43,7 +43,7 @@ public class ForgotPin_Activity extends AppCompatActivity {
 
 
         back=findViewById(R.id.back);
-
+        trouble=findViewById(R.id.trouble);
         txtemail=findViewById(R.id.email);
         loadingview=findViewById(R.id.loading_view);
 
@@ -59,6 +59,23 @@ public class ForgotPin_Activity extends AppCompatActivity {
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.nothing);
                 finish();
+
+            }
+        });
+
+        //trouble logging in send email
+        trouble.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                String[] strTo = { "info@ekaratasikenya.com" };
+                intent.putExtra(Intent.EXTRA_EMAIL, strTo);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Log in problem(supply email and phone)");
+                intent.putExtra(Intent.EXTRA_TEXT, "");
+                intent.setType("message/rfc822");
+                intent.setPackage("com.google.android.gm");
+                startActivity(intent);
 
             }
         });
@@ -115,7 +132,8 @@ public class ForgotPin_Activity extends AppCompatActivity {
 
                     Toast.makeText(ForgotPin_Activity.this, ongeleshwa, Toast.LENGTH_LONG).show();
 
-
+                    reset.setVisibility(View.VISIBLE);
+                    loadingview.setVisibility(View.INVISIBLE);
 
                     Intent it = new Intent(ForgotPin_Activity.this, Activity_Login.class);
                     startActivity(it);
@@ -134,7 +152,8 @@ loadingview.setVisibility(View.INVISIBLE);
 
             @Override
             public void onFailure(Call<ForgotPin> call, Throwable t) {
-
+                reset.setVisibility(View.VISIBLE);
+                loadingview.setVisibility(View.INVISIBLE);
             }
 
 
