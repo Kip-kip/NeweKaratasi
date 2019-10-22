@@ -182,9 +182,19 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/ripple"
-                    android:src="@drawable/ic_send_black_24dp"
+                     android:src="@drawable/ic_send_black_24dp"
+
                     android:tint="#968E8E" />
+
+                <ImageView
+                    android:id="@+id/sendBtn2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_send_black_24dp"
+                    android:visibility="gone"
+                    android:tint="#263239" />
 
 
             </LinearLayout>

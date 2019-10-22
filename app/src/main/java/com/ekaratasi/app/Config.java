@@ -23,7 +23,7 @@ public class Config {
 
 
     //JSON URL
-    public static final String DATA_URL = "https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_locations.php";
+    public static final String DATA_URL = "http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_locations.php";
 
     //Tags used in the JSON String
     public static final String TAG_USERNAME = "id";

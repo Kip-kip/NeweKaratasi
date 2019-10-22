@@ -157,7 +157,7 @@ public class Transactions_Activity extends AppCompatActivity {
         HashMap<String, String> user = db.getUserDetails();
         String user_id = user.get("uid");
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactions.php?user_id="+user_id+"";
 
 //        final ProgressDialog progressDialog=new ProgressDialog(this);
 //        progressDialog.setMessage("Loading data....");

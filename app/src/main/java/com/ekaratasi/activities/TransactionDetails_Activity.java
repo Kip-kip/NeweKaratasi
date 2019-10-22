@@ -117,21 +117,49 @@ Spinner material,bindcolor,bindoption;
             @Override
             public void onClick(View view) {
 
-                //hide login button
-                SubmitButton.setVisibility(View.INVISIBLE);
-                //unhide loading view
-                loadingview.setVisibility(View.VISIBLE);
+                //VALIDATION
 
-                /**-START SERVICE FOR NOTIFICATIONS-**/
-                String input = "";
+                if(agent.getText().toString().equals("")){
 
-                Intent serviceIntent = new Intent(TransactionDetails_Activity.this, PersistService.class);
-                serviceIntent.putExtra("inputExtra", input);
+                    Toast.makeText(getApplicationContext(), "Agent number cannot be empty", Toast.LENGTH_LONG).show();
+                }
+                else if(material.getSelectedItem().equals("Select material")){
 
-                ContextCompat.startForegroundService(TransactionDetails_Activity.this, serviceIntent);
-                /**--**/
+                        Toast.makeText(getApplicationContext(), "Please choose material", Toast.LENGTH_LONG).show();
 
-               ConfirmAgent();
+                }
+                else if(copies.getText().toString().equals("")){
+
+                    Toast.makeText(getApplicationContext(), "Please fill number of copies", Toast.LENGTH_LONG).show();
+
+                }
+                else if(bindoption.getSelectedItem().equals("Select bind option")){
+
+                    Toast.makeText(getApplicationContext(), "Please choose bind option", Toast.LENGTH_LONG).show();
+
+                }
+                else{
+
+                    //hide login button
+                    SubmitButton.setVisibility(View.INVISIBLE);
+                    //unhide loading view
+                    loadingview.setVisibility(View.VISIBLE);
+
+                    /**-START SERVICE FOR NOTIFICATIONS-**/
+                    String input = "";
+
+                    Intent serviceIntent = new Intent(TransactionDetails_Activity.this, PersistService.class);
+                    serviceIntent.putExtra("inputExtra", input);
+
+                    ContextCompat.startForegroundService(TransactionDetails_Activity.this, serviceIntent);
+                    /**--**/
+
+                    ConfirmAgent();
+
+                }
+
+
+
 
             }
         });

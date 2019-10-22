@@ -172,7 +172,7 @@
             android:ems="10"
             android:hint="No of copies"
             android:textColorHint="#666464"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:maxLength="20"
             android:paddingStart="20.0dip"
             android:paddingTop="10.0dip"

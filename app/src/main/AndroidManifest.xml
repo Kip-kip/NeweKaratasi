@@ -10,9 +10,9 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/smalllogo"
+        android:icon="@mipmap/eklauncherlogo2"
+        android:roundIcon="@mipmap/eklauncherlogo2_round"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/promiselogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:largeHeap="true"

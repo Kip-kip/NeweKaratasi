@@ -1,5 +1,6 @@
 package com.ekaratasi.activities;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -85,6 +86,8 @@ TextView saveprofile;
         saveprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                saveprofile.setTextColor(Color.LTGRAY);
 
              EditProfile();
 

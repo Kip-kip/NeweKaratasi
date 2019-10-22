@@ -192,7 +192,7 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
                             //Storing the Array of JSON String to our JSON Array
                             result = j.getJSONArray(Config.JSON_ARRAY);
 
-                            //Calling method getStudents to get the students from the JSON Array
+                            //Calling method getStudents to get the locations from the JSON Array
                             getLocations(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -249,7 +249,7 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
 
         loading.setVisibility(View.VISIBLE);
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_agents.php?loc="+si+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_agents.php?loc="+si+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,

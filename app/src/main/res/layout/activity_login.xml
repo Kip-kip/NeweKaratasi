@@ -64,7 +64,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Welcome to eKaratasi, Log in to continue"
+        android:text="Welcome to E-Karatasi, Log in to continue"
          android:fontFamily="@font/geomanist_regular"
         android:textColor="#ffeeeeee"
         android:textSize="16sp"

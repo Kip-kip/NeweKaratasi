@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
@@ -221,6 +223,11 @@ public class MainActivity extends AppCompatActivity {
 
        txtwelcome.setText("Welcome,"+" "+username);
 
+
+
+
+
+
        //make notification statusbar dark
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
@@ -251,6 +258,9 @@ public class MainActivity extends AppCompatActivity {
         gotosettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                gotosettings.setBackgroundColor(Color.LTGRAY);
+
                 Intent it = new Intent(MainActivity.this, Settings_Activity.class);
                 startActivity(it);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.nothing);
@@ -333,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
         // Fetching user details from sqlite
         HashMap<String, String> user = db.getUserDetails();
         String user_id = user.get("uid");
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totalcost.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totalcost.php?user_id="+user_id+"";
 
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
@@ -396,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
         // Fetching user details from sqlite
         HashMap<String, String> user = db.getUserDetails();
         String user_id = user.get("uid");
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totaltransactions.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_totaltransactions.php?user_id="+user_id+"";
 
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
@@ -461,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
         // Fetching user details from sqlite
         HashMap<String, String> user = db.getUserDetails();
         String user_id = user.get("uid");
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactionsformain.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_transactionsformain.php?user_id="+user_id+"";
 
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
@@ -474,7 +484,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                        //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
                         try {
                             JSONObject jsonObject=new JSONObject(s);
@@ -571,7 +580,7 @@ public class MainActivity extends AppCompatActivity {
 //        progressDialog.setMessage("Loading data....");
 //        progressDialog.show();
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_notificationsbadge.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_notificationsbadge.php?user_id="+user_id+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,
@@ -644,7 +653,7 @@ public class MainActivity extends AppCompatActivity {
         String user_id = user.get("uid");
 
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messagesbadge.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messagesbadge.php?user_id="+user_id+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,

@@ -56,15 +56,28 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         //DETERMINE STATUS BUTTONS
         if(listItem.getProgress().equals("Unseen")){
             holder.btnunseen.setVisibility(View.VISIBLE);
+            holder.btncompleted.setVisibility(View.INVISIBLE);
+            holder.btnpending.setVisibility(View.INVISIBLE);
+            holder.btncancelled.setVisibility(View.INVISIBLE);
         }
         else if(listItem.getProgress().equals("Pending")) {
             holder.btnpending.setVisibility(View.VISIBLE);
+            holder.btncompleted.setVisibility(View.INVISIBLE);
+            holder.btnunseen.setVisibility(View.INVISIBLE);
+            holder.btncancelled.setVisibility(View.INVISIBLE);
         }
         else if(listItem.getProgress().equals("Completed")) {
             holder.btncompleted.setVisibility(View.VISIBLE);
+            holder.btnunseen.setVisibility(View.INVISIBLE);
+            holder.btnpending.setVisibility(View.INVISIBLE);
+            holder.btncancelled.setVisibility(View.INVISIBLE);
+
         }
         else if(listItem.getProgress().equals("Cancelled")) {
             holder.btncancelled.setVisibility(View.VISIBLE);
+            holder.btncompleted.setVisibility(View.INVISIBLE);
+            holder.btnunseen.setVisibility(View.INVISIBLE);
+            holder.btnpending.setVisibility(View.INVISIBLE);
         }
         else{
 

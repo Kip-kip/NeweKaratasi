@@ -31,7 +31,7 @@ public class PersistService extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("E-Karatasi Running")
                 .setContentText("Click on bell icon in app to stop")
-                .setSmallIcon(R.drawable.ndogo)
+                .setSmallIcon(R.drawable.dpilogo)
                 .setContentIntent(pendingIntent)
                 .build();
 

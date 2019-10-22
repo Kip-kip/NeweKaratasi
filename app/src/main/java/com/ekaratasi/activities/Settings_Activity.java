@@ -1,6 +1,7 @@
 package com.ekaratasi.activities;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -93,7 +94,7 @@ public class Settings_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                logout.setTextColor(Color.LTGRAY);
                 //end session
                 session.setLogin(false);
                 //delete user

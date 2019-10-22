@@ -176,7 +176,7 @@ public class Message_Activity extends AppCompatActivity {
 //        progressDialog.setMessage("Loading data....");
 //        progressDialog.show();
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php?user_id="+user_id+"";
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php?user_id="+user_id+"";
 
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,

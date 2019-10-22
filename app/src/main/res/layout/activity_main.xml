@@ -63,7 +63,6 @@
                         android:onClick="stopService"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/ripplesmall"
                         app:srcCompat="@drawable/ic_notifications_off_black_24dp" />
 
 
@@ -76,7 +75,6 @@
                         android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:background="@drawable/ripplesmall"
                         app:srcCompat="@drawable/ic_notifications_black_24dp" />
 
                     <TextView
@@ -120,7 +118,6 @@
                 android:layout_marginEnd="16.0dip"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/ripplesmall"
                 app:srcCompat="@drawable/ic_settings_black_24dp" />
 
             <android.support.constraint.Guideline
@@ -180,7 +177,7 @@
                     android:layout_height="@dimen/profile_image_size"
                     android:layout_gravity="center"
                     android:layout_marginTop="50.0dip"
-                    android:alpha="1"
+
                     android:contentDescription="@string/profile_image"
                     app:layout_constraintBottom_toTopOf="@+id/txtWelcome"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -65,7 +65,7 @@ public class MessageItem_Activity extends AppCompatActivity {
     View loading;
 TextView textViewMain,agent_refno,nointernettext;
 EditText text,insertagent;
-ImageView sendbtn,nointernet,back;
+ImageView sendbtn,sendbtn2,nointernet,back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +94,9 @@ ImageView sendbtn,nointernet,back;
         loading=findViewById(R.id.loadingdots);
         textViewMain= findViewById(R.id.textViewMain);
         agent_refno=findViewById(R.id.agent_refno);
-        sendbtn=findViewById(R.id.sendBtn);
         text=findViewById(R.id.textmessage);
+        sendbtn=findViewById(R.id.sendBtn);
+        sendbtn2=findViewById(R.id.sendBtn2);
         insertagent=findViewById(R.id.insertagent);
 
 
@@ -153,8 +154,43 @@ ImageView sendbtn,nointernet,back;
                 SendMessage();
                //clear edit text
                 text.setText("");
+
+                //hide this button
+               sendbtn.setVisibility(View.GONE);
+
+                //SHow other send button
+
+               sendbtn2.setVisibility(View.VISIBLE);
             }
         });
+
+        // Adding click listener Send Message button 2.
+        sendbtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                String indic= intent.getStringExtra("INDIC");
+                if(indic.equals("CREATE")) {
+                    //set agent_refno from insert agent edit text
+                    agent_refno.setText(insertagent.getText().toString());
+                }
+                else{
+
+                }
+
+                //SendMessage();
+                //clear edit text
+                text.setText("");
+
+                //hide this button
+                sendbtn2.setVisibility(View.GONE);
+
+                //SHow other send button
+
+                sendbtn.setVisibility(View.VISIBLE);
+            }
+        });
+
 
 
 
@@ -180,7 +216,7 @@ ImageView sendbtn,nointernet,back;
 //        progressDialog.setMessage("Loading data....");
 //        progressDialog.show();
 
-        String URL_DATA="https://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_message_item.php?user_id="+user_id+"&&agent="+agent;
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_message_item.php?user_id="+user_id+"&&agent="+agent;
         StringRequest stringRequest=new StringRequest(Request.Method.GET,
                 URL_DATA,
                 new Response.Listener<String>() {

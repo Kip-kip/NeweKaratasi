@@ -51,7 +51,7 @@ public class FilePath
 //
 //                return getDataColumn(context, contentUri, null, null);
 
-                return "Noy";
+               return "Nay";
 
             }
 
@@ -77,7 +77,7 @@ public class FilePath
 //
 //                return getDataColumn(context, contentUri, selection, selectionArgs);
 
-                return "Noy";
+                return "Ney";
 
             }
         }
@@ -90,14 +90,13 @@ public class FilePath
 //
 //            return getDataColumn(context, uri, null, null);
 
-            return "Noy";
+            return "Niy";
 
         }
         // File
         else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            //return uri.getPath();
+            return uri.getPath();
 
-            return "Noy";
         }
 
         return null;
