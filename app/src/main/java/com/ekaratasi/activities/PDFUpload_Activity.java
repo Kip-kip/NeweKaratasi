@@ -149,7 +149,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 //
 //                // Show the toast and starts the countdown
 //                mToastToShow.show();
-//                toastCountDown.start();
+//                toastCountDown.start();.*\.pdf$
 
 
 
@@ -364,7 +364,7 @@ public class PDFUpload_Activity extends AppCompatActivity implements OnPageChang
 
         /** GETTING FILE PATH FROM THE TEXTVIEW**/
 
-        PdfPathHolder =  docnjia.getText().toString();
+        PdfPathHolder = docnjia.getText().toString();
 
 
         // If file path object is null then showing toast message to move file into internal storage.

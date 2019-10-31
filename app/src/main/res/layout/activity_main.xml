@@ -168,16 +168,17 @@
                         android:textColor="#88000000"
                         android:textSize="@dimen/available_balance_size" />
 
+
                 </LinearLayout>
 
 
-                <ImageView
-                    android:id="@+id/imageView2"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilephoto"
                     android:layout_width="@dimen/profile_image_size"
                     android:layout_height="@dimen/profile_image_size"
                     android:layout_gravity="center"
                     android:layout_marginTop="50.0dip"
-
+                    android:src="@drawable/icon_user"
                     android:contentDescription="@string/profile_image"
                     app:layout_constraintBottom_toTopOf="@+id/txtWelcome"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -185,7 +186,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
-                    app:srcCompat="@drawable/icon_user" />
+                    />
+
+
+
+
 
                 <TextView
                     android:id="@+id/txtWelcome"
@@ -202,7 +207,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView2" />
+                    app:layout_constraintTop_toBottomOf="@id/profilephoto" />
+
+
 
                 <TextView
                     android:id="@+id/txtMessage"

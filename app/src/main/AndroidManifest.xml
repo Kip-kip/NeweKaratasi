@@ -18,8 +18,16 @@
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
         >
-        <activity android:name=".activities.Activity_Register"></activity>
-        <activity android:name=".activities.Activity_Login">
+        <activity
+            android:name=".activities.Activity_Register"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            >
+
+        </activity>
+        <activity
+            android:name=".activities.Activity_Login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

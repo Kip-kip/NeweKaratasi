@@ -40,7 +40,7 @@
 
 
             <TextView
-                android:textSize="14.0sp"
+                android:textSize="16dp"
                 android:textColor="#263238"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -65,7 +65,7 @@
         android:layout_marginRight="20dp"
         android:fontFamily="@font/geomanist_regular"
         android:textColorHint="#666464"
-        android:textSize="15dp"
+        android:textSize="14dp"
         android:entries="@array/locations"
         app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"/>
 

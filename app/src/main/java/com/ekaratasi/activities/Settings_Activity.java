@@ -12,14 +12,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ekaratasi.MainActivity;
 import com.ekaratasi.POJO.SendMessage;
 import com.ekaratasi.POJO.SendTalk;
 import com.ekaratasi.R;
 import com.ekaratasi.helper.SQLiteHandler;
 import com.ekaratasi.helper.SessionManager;
+import com.ekaratasi.model.PPItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -34,7 +46,7 @@ public class Settings_Activity extends AppCompatActivity {
     TextView logout,txtname,txtphone;
     Button editProfile,how;
     Button changePin,share,talktous;
-    ImageView back;
+    ImageView back,profilephoto;
     private SessionManager session;
     private SQLiteHandler db;
 
@@ -55,6 +67,7 @@ public class Settings_Activity extends AppCompatActivity {
         talktous=findViewById(R.id.TalkToUs);
         how=findViewById(R.id.How);
         share=findViewById(R.id.share);
+        profilephoto=findViewById(R.id.profilephotosettings);
 
         txtphone=findViewById(R.id.textMobileNumber);
         txtname=findViewById(R.id.textName);
@@ -74,6 +87,10 @@ public class Settings_Activity extends AppCompatActivity {
 
         // session manager
         session = new SessionManager(getApplicationContext());
+
+        //load profile photo
+        loadProfilePhoto();
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,6 +280,71 @@ public class Settings_Activity extends AppCompatActivity {
         dialog.show();
     }
 
+
+
+    /**loading profile picture**/
+
+    private void loadProfilePhoto(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_profilephoto.php?user_id="+user_id+"";
+
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                PPItem item=new PPItem(
+                                        o.getString("profilephoto")
+                                );
+
+
+                                String ImgUrl=o.getString("profilephoto");
+
+                                Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profilephoto);
+
+
+                            }
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+
+
+
+
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
 
 
     public void onBackPressed(){

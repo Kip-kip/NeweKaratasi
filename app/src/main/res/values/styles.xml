@@ -61,4 +61,22 @@
         <item name="android:textSize">13.0sp</item>
         <item name="android:paddingStart">10.0dip</item>
     </style>
+
+    <!--FULL SCREEN NO ACTION  BAR NO STATUS BAR-->
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+
+
+    </style>
+
+    <!--WHITE STATUS BAR NO ACTION BAR-->
+    <style name="MyCustomAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/blessings</item>
+    </style>
+
 </resources>

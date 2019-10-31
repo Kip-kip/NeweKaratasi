@@ -36,7 +36,7 @@
                 <!--android:src="@drawable/ic_arrow_back"/>-->
 
             <TextView
-                android:textSize="14.0sp"
+                android:textSize="16dp"
                 android:textColor="#263238"
                 android:layout_gravity="center"
                 android:id="@id/toolbar_title"

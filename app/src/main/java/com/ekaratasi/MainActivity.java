@@ -49,6 +49,7 @@ import com.ekaratasi.helper.SessionManager;
 import com.ekaratasi.model.ListItem;
 import com.ekaratasi.model.MessageListItem;
 import com.ekaratasi.model.NotificationListItem;
+import com.ekaratasi.model.PPItem;
 import com.ekaratasi.model.TotalCostItem;
 import com.ekaratasi.model.TotalTransactionsItem;
 import com.ekaratasi.service.PersistService;
@@ -57,6 +58,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,7 +77,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView gotosettings,noresultimage,nointernet,belloff,bellon;
+    ImageView gotosettings,noresultimage,nointernet,belloff,bellon,profilephoto;
 
     private SessionManager session;
     private SQLiteHandler db;
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     private List<ListItem> listItems;
     private List<NotificationListItem> listItemsnotif;
     private List<MessageListItem> listItemsmessage;
+    private List<PPItem> listItemsprofilephoto;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private TextView  txtRegId,notifbadge,messagebadge;
@@ -175,20 +178,16 @@ public class MainActivity extends AppCompatActivity {
         View badge1 = LayoutInflater.from(this)
                 .inflate(R.layout.message_badge, itemView1, true);
 
-
+        /**INSTATIATION**/
 
         notifbadge=findViewById(R.id.notificationsbadge);
         messagebadge=findViewById(R.id.messagesbadge);
-
-
-
         newtransaction=findViewById(R.id.btnNewTrans);
         gotosettings=findViewById(R.id.gotosettings);
         txtwelcome=findViewById(R.id.txtWelcome);
-
-        belloff=findViewById(R.id.belloff);
+         belloff=findViewById(R.id.belloff);
         bellon=findViewById(R.id.bellon);
-
+        profilephoto=findViewById(R.id.profilephoto);
         noresultimage=findViewById(R.id.noresultimage);
         nointernet=findViewById(R.id.nointernet);
         noresulttext=findViewById(R.id.noresulttext);
@@ -196,10 +195,8 @@ public class MainActivity extends AppCompatActivity {
         loading=findViewById(R.id.loadingdots);
         viewall=findViewById(R.id.viewall);
         alltransactions=findViewById(R.id.allTransactions);
-
         totalcost=findViewById(R.id.totalcost);
         totaltransactions=findViewById(R.id.totaltransactions);
-
         recyclerView =findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -225,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+       //set profilephoto
 
 
 
@@ -259,7 +258,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                gotosettings.setBackgroundColor(Color.LTGRAY);
+                gotosettings.setColorFilter(ContextCompat.getColor(getApplicationContext(),
+                        R.color.mygray));
 
                 Intent it = new Intent(MainActivity.this, Settings_Activity.class);
                 startActivity(it);
@@ -277,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
 
        //load the totaltransactions
         loadTotalTransactions();
+
+        //load profile photo
+        loadProfilePhoto();
 
        //load transactions data
         loadRecyclerViewData();
@@ -328,6 +331,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    /**log out function**/
+
     private void logoutUser() {
         session.setLogin(false);
         Intent it = new Intent(MainActivity.this, Activity_Login.class);
@@ -335,6 +340,10 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
         finish();
     }
+
+
+    /**loading the total cost of all transactions function**/
+
     private void loadTotalCost(){
 
         // SqLite database handler
@@ -397,6 +406,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
+
+
+    /**loading total number of transaction function**/
 
     private void loadTotalTransactions(){
 
@@ -461,6 +474,74 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**loading profile picture**/
+
+    private void loadProfilePhoto(){
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = db.getUserDetails();
+        String user_id = user.get("uid");
+        String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_profilephoto.php?user_id="+user_id+"";
+
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET,
+                URL_DATA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        try {
+                            JSONObject jsonObject=new JSONObject(s);
+
+                            JSONArray array=jsonObject.getJSONArray("heroes");
+
+                            for(int i=0; i<array.length();i++){
+                                JSONObject o=array.getJSONObject(i);
+                                PPItem item=new PPItem(
+                                        o.getString("profilephoto")
+                                );
+
+
+                                  String ImgUrl=o.getString("profilephoto");
+
+                                Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profilephoto);
+
+
+                            }
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyerror) {
+
+
+
+
+
+                    }
+                });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+
+
+    /**loading transactions oh the main activity function**/
 
     private void loadRecyclerViewData(){
 
@@ -567,6 +648,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    /**loading total number of notifications on the badge bottom navigation function**/
+
     private void loadRecyclerViewDataNotifications(){
 
         // SqLite database handler
@@ -643,6 +727,9 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
+
+    /**loading total number of messages on the badge bottom navigation function**/
 
     private void loadRecyclerViewDataMessages(){
         // SqLite database handler
