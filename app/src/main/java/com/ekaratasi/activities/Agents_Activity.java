@@ -329,7 +329,10 @@ public class Agents_Activity extends AppCompatActivity implements Spinner.OnItem
     @Override
     public void onBackPressed() {
 
-
+        Intent it = new Intent(Agents_Activity.this, MainActivity.class);
+        startActivity(it);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
+        finish();
 
 
     }

@@ -140,6 +140,8 @@ public class Message_Activity extends AppCompatActivity {
 
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
 //                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+
         loadRecyclerViewData();
 
         // Adding click listener to FAB
@@ -172,9 +174,6 @@ public class Message_Activity extends AppCompatActivity {
         HashMap<String, String> user = db.getUserDetails();
         String user_id = user.get("uid");
 
-//        final ProgressDialog progressDialog=new ProgressDialog(this);
-//        progressDialog.setMessage("Loading data....");
-//        progressDialog.show();
 
         String URL_DATA="http://www.ekaratasikenya.com/eKaratasi/Refubished/BackendAffairs/fetch_messages.php?user_id="+user_id+"";
 
@@ -253,10 +252,7 @@ public class Message_Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        navigation.setVisibility(View.VISIBLE);
 
 
     }

@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.MediaStore;
@@ -248,8 +249,13 @@ public class EditProfile_Activity extends AppCompatActivity implements OnPageCha
 
                                 String ImgUrl=o.getString("profilephoto");
 
-                                Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profile_image);
+                                //check here to KITKAT or new version
+                                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT){
+                                    Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profile_image);
+                                }
+                                else{
 
+                                }
 
                             }
 
@@ -583,7 +589,7 @@ public class EditProfile_Activity extends AppCompatActivity implements OnPageCha
     @Override
     public void onBackPressed() {
 
-        Intent it = new Intent(EditProfile_Activity.this, MainActivity.class);
+        Intent it = new Intent(EditProfile_Activity.this, Settings_Activity.class);
         startActivity(it);
         overridePendingTransition(R.anim.slide_in_left,R.anim.nothing);
         finish();

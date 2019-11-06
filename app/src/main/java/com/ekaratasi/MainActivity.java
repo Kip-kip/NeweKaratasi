@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -509,7 +510,14 @@ public class MainActivity extends AppCompatActivity {
 
                                   String ImgUrl=o.getString("profilephoto");
 
-                                Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profilephoto);
+                                //check here to KITKAT or new version
+                                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT){
+                                    Picasso.with(getApplicationContext()).load(ImgUrl).fit().into(profilephoto);
+                                }
+                                else{
+
+                                }
+
 
 
                             }
