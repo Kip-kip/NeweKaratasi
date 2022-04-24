@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ekaratasi">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.newekaratasi">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.Manifest.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/eklauncherlogo2"
-        android:roundIcon="@mipmap/eklauncherlogo2_round"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/eklauncherlogo2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:largeHeap="true"
         android:usesCleartextTraffic="true"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         >
         <activity
-            android:name=".activities.Activity_Register"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            >
+            android:name="com.newekaratasi.activities.Activity_Register"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
         </activity>
         <activity
-            android:name=".activities.Activity_Login"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            >
+            android:name="com.newekaratasi.activities.Activity_Login"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,9 +36,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activities.Splash_Activity"
-            >
+        <activity android:name="com.newekaratasi.activities.Splash_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.newekaratasi.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +55,7 @@
 
 
         <activity
-            android:name=".activities.PDFUpload_Activity"
+            android:name="com.newekaratasi.activities.PDFUpload_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -68,7 +65,7 @@
         </activity>
 
         <activity
-            android:name=".activities.Transactions_Activity"
+            android:name="com.newekaratasi.activities.Transactions_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,7 +75,7 @@
         </activity>
 
         <activity
-            android:name=".activities.TransactionItem_Activity"
+            android:name="com.newekaratasi.activities.TransactionItem_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,7 +85,7 @@
         </activity>
 
         <activity
-            android:name=".activities.Message_Activity"
+            android:name="com.newekaratasi.activities.Message_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -97,7 +94,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MessageItem_Activity"
+            android:name="com.newekaratasi.activities.MessageItem_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,7 +103,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.TransactionDetails_Activity"
+            android:name="com.newekaratasi.activities.TransactionDetails_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,7 +112,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.Notification_Activity"
+            android:name="com.newekaratasi.activities.Notification_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -125,20 +122,8 @@
         </activity>
 
 
-
-
         <activity
-            android:name=".activities.NotificationItem_Activity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".activities.Settings_Activity"
+            android:name="com.newekaratasi.activities.NotificationItem_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -148,16 +133,7 @@
         </activity>
 
         <activity
-            android:name=".activities.EditProfile_Activity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.ChangePin_Activity"
+            android:name="com.newekaratasi.activities.Settings_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -167,7 +143,16 @@
         </activity>
 
         <activity
-            android:name=".activities.ForgotPin_Activity"
+            android:name="com.newekaratasi.activities.EditProfile_Activity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.newekaratasi.activities.ChangePin_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -177,7 +162,7 @@
         </activity>
 
         <activity
-            android:name=".activities.HowToUse_Activity"
+            android:name="com.newekaratasi.activities.ForgotPin_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -187,7 +172,7 @@
         </activity>
 
         <activity
-            android:name=".activities.Agents_Activity"
+            android:name="com.newekaratasi.activities.HowToUse_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -197,7 +182,17 @@
         </activity>
 
         <activity
-            android:name=".activities.Agent_Details_Activity"
+            android:name="com.newekaratasi.activities.Agents_Activity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.newekaratasi.activities.Agent_Details_Activity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -207,19 +202,19 @@
         </activity>
 
         <!-- Firebase Notifications -->
-        <service android:name="com.ekaratasi.service.MyFirebaseMessagingService">
+        <service android:name="com.newekaratasi.service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name="com.ekaratasi.service.MyFirebaseInstanceIDService">
+        <service android:name="com.newekaratasi.service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name=".service.PersistService" />
+        <service android:name="com.newekaratasi.service.PersistService" />
 
     </application>
 

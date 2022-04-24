@@ -1,12 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: net.gotev:uploadservice:2.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/uploadservice-2.1.aar/ffccf8eb4b21613779daed3d449c2710/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/uploadservice-2.1.aar/ffccf8eb4b21613779daed3d449c2710/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-uploadservice-2.1.aar/500a7d7c203c75f8aa94c3e43697289d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-uploadservice-2.1.aar/500a7d7c203c75f8aa94c3e43697289d/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-uploadservice-2.1.aar/500a7d7c203c75f8aa94c3e43697289d/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.gotev/uploadservice/2.1/cbe8e138c4b5373b3707c54dce1c49a4e4ab0be7/uploadservice-2.1-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

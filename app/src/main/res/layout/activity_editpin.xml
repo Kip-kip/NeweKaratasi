@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<androidx.constraintlayout.widget.ConstraintLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout android:orientation="vertical"
         android:id="@+id/linearLayout"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="@id/profile_image"
         app:layout_constraintTop_toTopOf="@id/profile_image" />
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         android:id="@id/app_bar_layout"
         android:background="@android:color/transparent"
@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@id/app_toolbar"
             android:background="@android:color/transparent"
             android:fitsSystemWindows="true"
@@ -74,8 +74,8 @@
                 style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
 
 
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@id/profile_image"
@@ -173,4 +173,4 @@
             android:layout_width="wrap_content" 
             android:layout_height="45.0dip" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

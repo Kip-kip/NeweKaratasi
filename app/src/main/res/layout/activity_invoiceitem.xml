@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="com.ekaratasi.activities.InvoiceItem_Activity">
+    tools:context="com.newekaratasi.activities.InvoiceItem_Activity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.nbsp:materialfilepicker:1.9.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialfilepicker-1.9.1.aar/adc70d05be4aba16d6e4a8036cce9c13/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialfilepicker-1.9.1.aar/adc70d05be4aba16d6e4a8036cce9c13/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/materialfilepicker-1.9.1.aar/adc70d05be4aba16d6e4a8036cce9c13/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

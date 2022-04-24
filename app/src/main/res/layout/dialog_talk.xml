@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_cancel"
             android:background="@drawable/bg_btn_round_dispute"
             android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
             android:textAllCaps="false"
             android:text="Cancel" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_submit"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"

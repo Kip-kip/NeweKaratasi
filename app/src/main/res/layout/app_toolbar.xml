@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
+<androidx.appcompat.widget.Toolbar
     android:id="@id/app_toolbar"
     android:background="@android:color/transparent"
     android:fitsSystemWindows="true"
@@ -25,4 +25,4 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"/>
 
-</android.support.v7.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>
